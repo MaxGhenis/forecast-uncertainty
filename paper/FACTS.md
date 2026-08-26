@@ -66,12 +66,52 @@ PENDING-LIT (awaiting the verified lit review). Unresolved items carry
 - Bin edges are encoded in the data column headers (`F0_0T0_4` styles) —
   scheme changes are self-describing. COMPUTED (2021Q2.csv inspected).
 
-## Pending computation (sol lane)
+## Full-pipeline results (COMPUTED — SOL_REPORT.md; verified: 43 tests
+green in an independent run, golden regression exact vs seed, LOTV
+identity max error 4e-16)
 
-- All-variable, all-horizon, all-round measures for both surveys;
-  term structure of stated uncertainty; within-year fixed-event shrinkage;
-  ECB longer-term series level and post-2021 shift; calibration per
-  variable; disagreement share across variables; bin-change mechanics.
+- Coverage: 3,695 density round-target summaries; US PRGDP/PRPGDP/RECESS
+  232 rounds 1968Q4–2026Q3; ECB 111 rounds all variables; 2,894
+  concept-matched calibration rows.
+- Stability + spike-decay: US PRGDP total SD 2010–19 mean 1.250, 2020–24
+  mean 1.744, 2026 1.361. ECB RGDP 0.727 → 1.577 (2020–24; peak 2.616 in
+  2020) → 0.786 in 2026. ECB HICP 0.676 → 0.965, still 0.913 in 2026 —
+  inflation uncertainty has NOT fully decayed in the EA. US PRPGDP
+  pandemic-era uncertainty DECLINED (0.806 → 0.761).
+- Disagreement share (median share_between): US PRGDP 16.8%, ECB HICP
+  14.3%, ECB RGDP 15.7% — but US core CPI 32.1%, core PCE 32.5%, PRPGDP
+  27.1%, PRUNEMP 25.6%, ECB UNEMP 26.7%. Disagreement is the minority
+  share everywhere (no median reaches 33%); the "10–20%" phrasing holds
+  only for growth and EA prices. Say "a sixth to a third."
+- Term structure (US Q1 2010–26, within/total): PRGDP h0 1.14/1.28 → h1
+  1.29/1.41 → h2 1.37/1.48 → h3 1.38/1.49 — rises then plateaus after two
+  years. PRUNEMP keeps rising through h3. ECB (balanced rounds,
+  within/total): RGDP total INVERTS mildly — 0.86 at rolling-1y vs 0.81
+  longer-term; HICP plateaus ~2y; UNEMP keeps rising (1.02 longer-term).
+- Fixed-event shrinkage (2010–19 current-year total SD, Q1→Q4): PRGDP
+  −38.6%, PRUNEMP −41.1%, PRPGDP −27.7%, PRCCPI −27.5%, PRCPCE −24.2%.
+- Calibration (±1σ / pooled-90% coverage, all horizons): US PRGDP
+  74.9/85.3, PRPGDP 82.5/92.5, PRUNEMP 63.6/86.4, PRCCPI 82.9/88.6,
+  PRCPCE 76.4/87.2. ECB overconfident: HICP 56.7/71.8, RGDP 48.9/65.3,
+  UNEMP 55.9/81.5. Q1 next-year US PRGDP 69.7% (= seed). Miss clusters:
+  1996–99 (every forecast of those outcomes), 2020–21; every US
+  PRPGDP/PRCCPI/PRCPCE forecast of 2021 AND 2022 missed both bands; all
+  16 ECB calendar HICP forecasts of 2022 missed both bands. Counts are
+  descriptive (shared realizations, not independent).
+- ECB longer-term shift (through-2020 → 2021–26, total SD): HICP 0.699 →
+  0.913 (+30.6%) vs rolling-1y +58.8%; longer-term consensus 1.824% →
+  1.999% vs 1y 1.582% → 2.287%. Long expectations moved less than short —
+  but they moved.
+- Bin mechanics: 2020Q2–2024Q1 wide-bin era raised PRGDP within SD +59.4%
+  vs pre-window but pooled IQR only +39.9%; at the clean 2024Q2 boundary
+  next-year PRGDP SD fell 22% while IQR fell 3.9% — the mechanical
+  signature. Use IQR for cross-era statements.
+- CORRECTIONS to earlier claims: PRPGDP has TWO target-year blocks
+  (current + next) per documentation Table 6 — not four; the SPF has NO
+  UNEMP10 variable (the downloaded file was an HTML error page); RGDP10
+  runs Q1-only 1992Q1–2026Q1 (35 rounds), CPI10 quarterly since 1991Q4.
+- HICPX calibration pending lane 2 (realization series now local,
+  concept-verified "All-items excluding energy and food").
 
 ## Literature (verified — LITREVIEW.md, 84 works, all fetch-checked)
 

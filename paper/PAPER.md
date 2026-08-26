@@ -21,27 +21,31 @@ Economic Perspectives (if the panorama framing dominates the methods).
 
 ## Abstract (draft)
 
-Professional forecasters state their own uncertainty four times a year. Since
-1968 the US Survey of Professional Forecasters has collected probability
-distributions — not just point forecasts — for output growth and inflation,
-and the ECB's survey has done the same for the euro area since 1999. We pool
-every reported histogram by the law of total variance, decomposing total
-uncertainty into the average forecaster's stated uncertainty and the
-disagreement between forecasters, for every variable, horizon, and survey
-round. Three findings organize the panorama. Stated uncertainty is stable:
-pooled next-year US growth uncertainty averaged 1.26 points over 1992–2020
-and stands at 1.36 in 2026. Disagreement — the visible spread between
-forecasters — carries a median 18% of total variance; the invisible
-within-forecaster share carries the rest. The distributions are honest on
-average (a ±1σ band covered 70% of outcomes over 33 years) and fail in
-clusters, missing six straight years around the late-1990s productivity boom
-and the pandemic in both directions. Density elicitation stops three to five
-years out. Published estimates of AI's growth effects span roughly 0.1 to 30
-percentage points a year (Shenk 2026; Cunningham 2025) at exactly the
-horizons no survey asks about, and we show what asking would take. An
-interactive companion tracks every series.
-[NEEDS-SOL: confirm cross-variable/EA versions of facts 1–2 hold before
-"every variable" phrasing ships.]
+Professional forecasters state their own uncertainty four times a year.
+Since 1968 the US Survey of Professional Forecasters has collected
+probability distributions — not just point forecasts — for output growth
+and inflation, and the ECB's survey has done the same for the euro area
+since 1999. We pool every reported histogram by the law of total variance,
+decomposing total uncertainty into the average forecaster's stated
+uncertainty and the disagreement between forecasters, for every variable,
+horizon, and survey round — 3,695 round-target distributions. Five findings
+organize the panorama. Stated growth uncertainty is stable: its pandemic
+spike decayed by 2026 on both continents, while euro-area inflation
+uncertainty remains a third above its pre-2021 level. Disagreement — the
+only uncertainty visible in point-forecast data — is the minority share
+everywhere: a sixth of total variance for growth, at most a third for any
+variable. Stated uncertainty stops rising with horizon by year two, and the
+ten-year US point forecasts invert the term structure outright: forecasters
+put a tighter interquartile range on the next decade's growth (0.2pp) than
+on next year's (0.4pp). The US distributions are roughly calibrated on
+average (69.7% one-sigma coverage over 33 years); the euro area's are
+overconfident (49–57%); both fail in clusters at regime shifts. And the
+euro area's unique long-horizon density — four to five years out — sits at
+its series high after 2021, exactly where the US elicits nothing. Density
+elicitation stops there. Published estimates of AI's growth effects span
+roughly 0.1 to 30 percentage points a year (Shenk 2026; Cunningham 2025)
+at the horizons no survey asks about, and we show what asking would take.
+A live interactive tracks every series.
 
 ---
 
@@ -96,13 +100,14 @@ what, how far out. Draftable now from FACTS.md (survey structure blocks):
 
 | Survey | Density variables | Density horizons | Since |
 |---|---|---|---|
-| US SPF (Philadelphia Fed) | output growth, GDP price inflation | current + next year (to 2009Q1); current…+3 (2009Q2–) | 1968Q4 (nominal GNP era; real GNP 1981Q3; real GDP 1992Q1) |
+| US SPF (Philadelphia Fed) | output growth | current + next year (to 2009Q1); current…+3 (2009Q2–) | 1968Q4 (nominal GNP era; real GNP 1981Q3; real GDP 1992Q1) |
+| US SPF | GDP price inflation | current + next year (Table 6: two blocks throughout) | 1968Q4 (deflator concept changes in step) |
 | US SPF | core CPI, core PCE (Q4/Q4) | current + next year | 2007Q1 |
 | US SPF | unemployment rate | current…+3 | 2009Q2 |
 | US SPF | recession probability (decline in real GDP) | current + 4 quarters | 1968Q4 |
-| US SPF | 10-year growth, CPI, PCE, unemployment | POINT only — no density | 1991–1992 era [NEEDS-SOL: exact starts] |
-| ECB SPF | HICP, real GDP growth, unemployment | current/next calendar year; rolling 1y + 2y; longer-term (4y in Q1/Q2 rounds, 5y in Q3/Q4; Q1-only in early years) | 1999Q1 |
-| ECB SPF | core HICP | same structure | 2017Q1 |
+| US SPF | 10-year growth, CPI, PCE | POINT only — no density (RGDP10 Q1-only since 1992Q1; CPI10 quarterly since 1991Q4; PCE10 since 2007Q1) | 1991–2007 |
+| ECB SPF | HICP, real GDP growth, unemployment | current/next calendar year (+ year after next); rolling 1y + 2y; longer-term (4y in Q1/Q2 rounds, 5y in Q3/Q4; Q1-only in early years) | 1999Q1 |
+| ECB SPF | core HICP (ex energy and food) | same structure | 2017Q1 |
 
 Prose to carry: the asymmetry. The US survey is longer; the euro-area survey
 asks further out. Nobody asks beyond five years, and the US stops at three.
@@ -146,30 +151,56 @@ rather than averaging over it. [PENDING-SOL: shrinkage profile.]
 
 ## 4. Five stylized facts
 
-Each fact gets a figure from the pipeline and a paragraph. Status:
+Each fact gets a figure from the pipeline and a paragraph. All numbers
+below are computed (FACTS.md, full-pipeline block).
 
-1. **Stated uncertainty is stable — and its 2021 spike decayed fast.**
-   Next-year US growth: 1.24pp pooled SD in 1992, 1.26 average through
-   2020, 2.10 peak in 2021, 1.36 by 2026 (COMPUTED). [PENDING-SOL: same
-   series for inflation, unemployment, and the euro area.]
-2. **Disagreement is the small share.** Median 18% of total variance
-   (decile range 12–32%, max 41% in 2009) for US next-year growth
-   (COMPUTED). The spread you can see in point forecasts understates
-   stated uncertainty roughly threefold. [PENDING-SOL: does the share stay
-   small across variables, horizons, and the EA?]
-3. **The term structure of stated uncertainty is flat where it exists —
-   and the point-forecast term structure inverts.** The 10-year IQR (0.20)
-   sits below the next-year IQR (0.40) in 2026 (COMPUTED). [PENDING-SOL:
-   within-density term structure h=0…3 US, 1y/2y/longer ECB; where does
-   stated uncertainty peak?]
-4. **The distributions are calibrated on average and fail in regimes.**
-   69.7% one-sigma coverage over 33 years; misses: 1996–2001 (six straight,
-   five upside then the 2001 bust), 2008–09, 2020–21 (COMPUTED). The
-   average is textbook; the errors are not independent draws.
-5. **The euro area asks the question the US doesn't — and the answer moved
-   after 2021.** The ECB longer-term density series (4–5 years out)
-   [PENDING-SOL: level 1999–2026, post-2021 shift; this is the fact the
-   whole AI section leans on, so it ships only with computed numbers].
+1. **Stated uncertainty is stable in growth — and its pandemic spike
+   decayed on both continents, while euro-area inflation uncertainty has
+   not come home.** US next-year growth: 1.25pp average total SD 2010–19,
+   1.74 in 2020–24, 1.36 by 2026. ECB growth: 0.73 → 1.58 (peak 2.62 in
+   2020) → 0.79 in 2026. ECB HICP one-year uncertainty went 0.68 → 0.97
+   and still stands at 0.91 in 2026, a third above its pre-2021 level. One
+   counterpoint the panorama surfaces: US GDP-price uncertainty declined
+   through the pandemic era.
+2. **Disagreement is the minority share of stated uncertainty —
+   everywhere, but not uniformly.** The median between share is a sixth
+   for growth (US 17%, EA 16%) and EA prices (14%), and a quarter to a
+   third for unemployment and the US inflation densities (26–33%). No
+   variable's median reaches a third: the spread visible in point
+   forecasts understates stated uncertainty two-to-threefold across the
+   whole panorama.
+3. **Stated uncertainty rises with horizon only until year two — then
+   plateaus, and for growth it even inverts.** US growth within-SD climbs
+   1.14 → 1.29 → 1.37 from the current year to two years out, then gains
+   one point in the hundredths place at three (1.38). In the euro area,
+   total growth uncertainty is mildly higher at the one-year rolling
+   horizon (0.86) than at the four-to-five-year horizon (0.81). Only
+   unemployment keeps steepening. And the term structure of the US
+   10-year point forecasts inverts outright: IQR 0.20 for the decade vs
+   0.40 for next year in 2026. Forecasters do not state growing
+   uncertainty at the horizons where growth uncertainty should compound.
+   (Within-year, the fixed-event effect is strong and mechanical:
+   current-year uncertainty falls 24–41% from Q1 to Q4.)
+4. **The US distributions are roughly calibrated on average; the euro
+   area's are overconfident; both fail in clusters.** ±1σ coverage across
+   all horizons: US 64–83% by variable (growth 75%, the Q1 next-year
+   series exactly 69.7% over 33 years); ECB 49–57%. Misses are not
+   spread — they cluster in regime shifts: every forecast of the 1996–99
+   outcomes missed; every US core-inflation forecast of 2021 and 2022
+   missed both the ±1σ and the 90% band; all 16 ECB calendar-year HICP
+   forecasts of 2022 missed both bands.
+5. **The euro area asks the question the US doesn't — and after 2021 the
+   long answer moved less than the short one, but it moved.** The ECB
+   longer-term (4–5 year) density: total SD 0.70 before 2021, 0.91 after
+   (+31%), against +59% at one year; longer-term consensus inflation
+   1.82% → 2.00% against 1.58% → 2.29% at one year. Stated long-run
+   uncertainty is now at its series high exactly where the US elicits
+   nothing.
+
+Cross-era caveat carried by the figures: the 2020Q2–2024Q1 US wide-bin
+era inflates SD-based measures mechanically (+59% within-SD vs +40%
+pooled IQR; at the clean 2024Q2 scheme change, SD fell 22% while IQR fell
+4%). Cross-era statements use the pooled IQR.
 
 ## 5. The elicitation gap
 
