@@ -114,15 +114,39 @@ identity max error 4e-16)
   176 rows (57.7%/69.2% excluding ECB estimate-status observations);
   realization concept-verified "All-items excluding energy and food".
 
-## Pending — lane 3 (proper scores; sol run 20260826-103739)
+## Proper scores (COMPUTED — SCORES_REPORT.md; verified: 74 tests green in
+an independent run, pooled≤individual on all 3,070 rows, skill identities
+exact, Scores view browser-checked)
 
-- CRPS (closed form on the piecewise-linear pooled CDF), pinball at
-  05/10/25/50/75/90/95, PIT per calibrated row.
-- Benchmarks, no lookahead (expanding window, min 10 obs): climatology and
-  Gaussian-around-consensus with historical-error SD; skill scores.
-- Pooled-mixture CRPS vs average individual CRPS (does disagreement
-  variance earn its keep?).
-- Scores view in the interactive.
+- Pooled vs average individual CRPS: 0.741 vs 0.817, a 9.25% gain; every
+  row improves. CAVEAT: the sign is structural (CRPS is convex in the CDF,
+  so the linear pool beats the average individual by Jensen) — the
+  empirical content is the magnitude (3.5–18.7% by cell) and its
+  cross-section: gains are smallest at ECB longer horizons, where the
+  disagreement share is smallest.
+- Climatology skill (expanding window, min 10 obs, no lookahead): positive
+  for all nine survey-variables, +15.3% (ECB HICP, ECB RGDP) to +57.1%
+  (US core CPI). Negative cells exist: US unemployment +3y −19.4%; ECB
+  unemployment rolling-2y −16.6% and longer-term −21.2% (long-horizon
+  unemployment densities lose to unconditional history).
+- Gaussian-around-consensus (RMSE of past errors, same expanding rules) is
+  the hard benchmark: variable-level skill positive for US real GDP
+  (+6.2%) and all four ECB variables; NEGATIVE for US GDP prices,
+  unemployment, core CPI, and core PCE — for those, the elicited density
+  shape adds nothing beyond the consensus point wrapped in its own error
+  history. It also adapts after 2020 (its RMSE learns the misses).
+- Tails carry the clusters (pinball 05 vs 95, by target years): 2008–09
+  growth losses in the LOWER tail (ECB 2.286 vs 0.215; US 0.572 vs 0.196);
+  2020–22 inflation losses in the UPPER tail by factors ~5–9 (US GDP
+  prices, both US cores, ECB HICP, ECB core); late-1990s US output upper
+  tail. 2020–22 US growth balanced (crash + rebound).
+- PIT: ECB real GDP U-shaped — 45.8% of rows in the two extreme deciles
+  (underdispersion); ECB HICP 36.9%; US unemployment left-skewed (mean PIT
+  0.355; 22.4% in the bottom decile).
+- Benchmark coverage: climatology scored on 2,717/3,070 rows, Gaussian on
+  2,451 (min-10 windows; ECB annual histories are 26–30 years; ECB core
+  HICP longer-term has no Gaussian at all). Correlated rows, no
+  significance tests — descriptive.
 - Lit anchors verified: Boero, Smith and Wallis (2011, IJF 27(2), 379–393 —
   in the LITREVIEW corpus) on scoring rules and survey density forecasts;
   Gneiting and Raftery (2007), "Strictly Proper Scoring Rules, Prediction,

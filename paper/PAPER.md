@@ -39,7 +39,10 @@ ten-year US point forecasts invert the term structure outright: forecasters
 put a tighter interquartile range on the next decade's growth (0.2pp) than
 on next year's (0.4pp). The US distributions are roughly calibrated on
 average (69.7% one-sigma coverage over 33 years); the euro area's are
-overconfident (49–57%); both fail in clusters at regime shifts. And the
+overconfident (49–57%); both fail in clusters at regime shifts, in the
+tail the regime moved toward — and scored properly, the densities beat
+climatology everywhere but beat a consensus-plus-historical-error Gaussian
+only for growth and the euro area. And the
 euro area's unique long-horizon density — four to five years out — sits at
 its series high after 2021, exactly where the US elicits nothing. Density
 elicitation stops there. Published estimates of AI's growth effects span
@@ -160,8 +163,12 @@ the pooled mixture against the average individual forecaster (does the
 disagreement variance earn its keep?). PITs complete the standard
 diagnostics. Scoring rules on these densities go back to Boero, Smith and
 Wallis (2011, IJF); the scoring-rule theory is Gneiting and Raftery (2007,
-JASA 102(477), 359–378 — verified from the paper). [PENDING-SOL-3: all
-score numbers.]
+JASA 102(477), 359–378 — verified from the paper). One structural note the
+text must carry: the pooled CDF is the mean of individual CDFs and CRPS is
+convex in the CDF, so the pool beats the average individual on every
+observation by construction — the empirical content is the size of that
+gain (3.5–18.7% by cell) and where it thins (the long ECB horizons, where
+disagreement is smallest).
 
 ## 4. Five stylized facts
 
@@ -202,9 +209,15 @@ below are computed (FACTS.md, full-pipeline block).
    spread — they cluster in regime shifts: every forecast of the 1996–99
    outcomes missed; every US core-inflation forecast of 2021 and 2022
    missed both the ±1σ and the 90% band; all 16 ECB calendar-year HICP
-   forecasts of 2022 missed both bands. [PENDING-SOL-3: the skill version —
-   CRPS vs climatology and Gaussian-around-consensus benchmarks; pinball
-   05/95 to show the miss clusters live in the tails.]
+   forecasts of 2022 missed both bands. Scored properly, the densities
+   beat climatology everywhere (variable-level CRPS skill +15% to +57%) —
+   but beat the harder benchmark, a Gaussian around the consensus with
+   historical-error RMSE, only for US growth (+6%) and the euro area: for
+   US inflation and unemployment, the elicited shape adds nothing beyond
+   the point forecast wrapped in its own track record. And the pinball
+   decomposition shows the clusters live in tails: 2008–09 growth losses
+   sit in the lower tail (ECB 05-loss 2.29 vs 95-loss 0.22), 2020–22
+   inflation losses in the upper tail by factors of five to nine.
 5. **The euro area asks the question the US doesn't — and after 2021 the
    long answer moved less than the short one, but it moved.** The ECB
    longer-term (4–5 year) density: total SD 0.70 before 2021, 0.91 after
