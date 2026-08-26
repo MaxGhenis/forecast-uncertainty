@@ -1,0 +1,2574 @@
+                                 Documentation
+                                 Last Update: July 28, 2026
+
+                                     Table of Contents
+
+
+ 1.   Overview                                                            2
+
+ 2.   Median and Mean Forecasts for Levels                                9
+
+ 3.   Growth Rates: Median and Mean Forecasts and Technical Definitions   26
+
+ 4.   Forecasts of Individual Participants                                32
+
+ 5.   One-Year-Ahead and 10-Year-Ahead Inflation Forecasts                35
+
+ 6.   Mean Probability Forecasts                                          36
+
+ 7.   Presentation of Data by Individual Variable                         46
+
+ 8.   Natural Rate of Unemployment                                        47
+
+ 9.   Cross-Sectional Forecast Dispersion                                 48
+
+10.   Implied Forecasts                                                   51
+
+11.   List of Changes to this Document                                    61
+                                                                                             2
+
+1. Overview
+The forecasts for the Survey of Professional Forecasters (SPF) are provided by the Federal
+Reserve Bank of Philadelphia. The quarterly survey, formerly conducted by the American
+Statistical Association (ASA) and the National Bureau of Economic Research (NBER),
+began in 1968:Q4 and was taken over by the Philadelphia Fed in 1990:Q2.
+
+The data set contains all variables currently included in the survey. Some variables have been
+in the survey since 1968:Q4; others were added in the survey of 1981:Q3. In recent years, we
+added the following variables:
+
+   •   Long-Term Projections. Beginning with the survey of 1992:Q1, we added long-term
+       forecasts for 10-year annual-average real GDP growth and productivity growth
+       (RGDP10 and PROD10). We also added 10-year annual-average forecasts for returns
+       on S&P 500 stocks, three-month Treasury bills, and 10-year Treasury bonds
+       (STOCK10, BILL10, and BOND10). These long-term forecasts appear in first-
+       quarter surveys only.
+
+   •   Natural Rate of Unemployment. In the survey of 1996:Q3, we added forecasts for
+       the natural rate of unemployment (UBAR). This variable appears in third-quarter
+       surveys only.
+
+   •   Nonfarm Payroll Employment. In the survey of 2003:Q4, we added forecasts for
+       nonfarm payroll employment (EMP).
+
+   •   Long-Term CPI Inflation. In the survey of 2005:Q3, we added forecasts for the
+       five-year annual-average rate of headline CPI inflation (CPI5YR). We also extended
+       the forecast horizon one year for fourth-quarter over fourth-quarter headline CPI
+       inflation.
+
+   •   Short-Term CPI and PCE Inflation. In the survey of 2007:Q1, we added forecasts
+       for core CPI inflation (CORECPI), headline PCE inflation (PCE), and core PCE
+       inflation (COREPCE).
+
+   •   Core CPI and Core PCE Probabilities. In the survey of 2007:Q1, we added density
+       projections for core CPI inflation (PRCCPI) and core PCE inflation (PRCPCE).
+
+   •   Unemployment and Real GDP Probabilities. In the survey of 2009:Q2, we added
+       density projections for the civilian unemployment rate (PRUNEMP). We also
+       extended the annual forecast horizon two years for density projections for real GDP
+       growth (PRGDP).
+
+   •   Baa Interest Rate. In the survey of 2010:Q1, we added projections for the rate on
+       Moody’s Baa corporate bond yields (BAABOND).
+                                                                                              3
+
+In the surveys conducted since the Philadelphia Fed took over, the forecasters provide
+quarterly projections for five quarters and annual projections for the current year and the
+following year. Except as noted in the pages below, the format of the survey is the same as it
+was when we took it over. However, in recent years, we made the following changes to the
+forecast horizons:
+
+   •   Annual Horizons for Unemployment and Real GDP. Beginning with the 2009:Q2
+       survey, we asked the forecasters to provide two more years of annual projections for
+       the annual-average civilian unemployment rate (UNEMP) and annual-average real
+       GDP (RGDP).
+
+   •   Annual Horizons for Interest Rates. Beginning with the 2009:Q3 survey, we asked
+       the forecasters to provide two more years of annual projections for the annual-average
+       rates on three-month Treasury bills (TBILL) rate and 10-year Treasury bonds
+       (TBOND).
+
+This documentation provides information on the variables forecast and the format of the files.
+We begin with a listing and description of the files and the survey’s timing. We then discuss
+the following topics:
+
+   •   Section 2 discusses the organization of the files for median and mean forecasts for the
+       levels of variables. We also document the names of the variables. Importantly, this
+       section describes any caveats on particular survey variables.
+
+   •   Section 3 discusses forecasts for growth rates. For most survey variables, we
+       construct growth rates as the rate of growth in the mean or median forecast for the
+       level. The exceptions are the headline and core CPI and PCE inflation rates, which
+       enter the survey in growth-rate form.
+
+   •   Section 4 discusses the files for individual forecasts. The organization of the files is
+       similar to that for the mean and median forecasts. Important caveats exist in using the
+       individual responses.
+
+   •   Section 5 discusses a special file that we have constructed for one-year-ahead and 10-
+       year-ahead forecasts for CPI inflation.
+
+   •   Section 6 discusses the survey’s density projections.
+
+   •   Section 7 discusses an alternative way of presenting the data by the variable forecast.
+
+   •   Section 8 discusses the files containing the projections for the natural rate of
+       unemployment (NAIRU). This variable enters the survey only in the third quarter.
+
+   •   Section 9 discusses the data files and our computations for cross-sectional forecast
+       dispersion.
+                                                                                                     4
+
+        •   Section 10 discusses implied forecasts for 21 variables that do not directly enter the
+            survey. This includes projections for interest-rate term spreads, real interest rates, and
+            forward inflation rates.
+
+        •   Section 11 lists the changes made to this document.
+
+    Table 1 provides a list of the files and a description of their contents.
+
+                              Table 1. Overview — Files and Contents
+
+
+   Name of File                                    Brief Description of Contents
+
+                        An Excel workbook with multiple worksheets. Each worksheet holds the time
+                        series of median forecasts for the level of a different variable. The first two
+MedianLevel.xlsx        columns list the year and quarter in which the survey was conducted. The
+                        remaining columns give the median forecasts for all quarterly and annual horizons,
+                        as described below.
+                        An Excel workbook with multiple worksheets. Each worksheet holds the time
+                        series of mean forecasts for the level of a different variable. The first two columns
+MeanLevel.xlsx          list the year and quarter in which the survey was conducted. The remaining
+                        columns give the mean forecasts for all quarterly and annual horizons, as
+                        described below.
+                        An Excel workbook with multiple worksheets. Each worksheet holds the time
+                        series of median forecasts for growth of a different variable (annualized
+MedianGrowth.xlsx       percentage points). These are the growth rates of the levels provided in
+                        MedianLevel.xlsx. The first two columns list the year and quarter in which the
+                        survey was conducted. The remaining columns give the forecasts for all quarterly
+                        horizons.
+                        An Excel workbook with multiple worksheets. Each worksheet holds the time
+                        series of mean forecasts for growth of a different variable (annualized percentage
+MeanGrowth.xlsx         points). These are the growth rates of the levels provided in MeanLevel.xlsx. The
+                        first two columns list the year and quarter in which the survey was conducted. The
+                        remaining columns give the forecasts for all quarterly horizons.
+                        An Excel workbook with six worksheets. Each worksheet gives the time series of
+Prob.xlsx               mean probability forecasts for a different probability variable in the survey, as
+                        described below. The first two columns give the year and quarter in which the
+                        survey was conducted.
+                        An Excel workbook with multiple worksheets. Each worksheet holds the time
+                        series of forecast dispersion for the level of a different variable. The dispersion
+                        measure is defined as the difference between the 75th percentile and the 25th
+Dispersion_1.xlsx       percentile of the projections in levels. The first column lists the year and quarter in
+                        which the survey was conducted. The remaining columns give the 25th percentile,
+                        the 75th percentile, and the forecast dispersion for all quarterly horizons. We
+                        provide this measure of dispersion only for the variables for which it makes the
+                        most sense.
+                                                                                              5
+
+
+    Name of File                              Brief Description of Contents
+
+                    An Excel workbook with multiple worksheets. Each worksheet holds the time
+                    series of forecast dispersion for the Q/Q growth (annualized percentage points) of
+                    a different variable. The dispersion measure is defined as the difference between
+Dispersion_2.xlsx   the 75th percentile and the 25th percentile of the projections for Q/Q growth,
+                    expressed in annualized percentage points. The first column lists the year and
+                    quarter in which the survey was conducted. The remaining columns give the 25th
+                    percentile, the 75th percentile, and the forecast dispersion for all quarterly
+                    horizons. We provide this measure of dispersion only for the variables for which it
+                    makes the most sense.
+                    An Excel workbook with multiple worksheets. Each worksheet holds the time
+                    series of forecast dispersion for the log difference of the levels of a different
+                    variable. The dispersion measure is defined as the percent difference (in
+Dispersion_3.xlsx   percentage points) between the 75th percentile and the 25th percentile of the
+                    projections in levels. The first column lists the year and quarter in which the
+                    survey was conducted. The remaining columns give the 25th percentile, the 75th
+                    percentile, and the forecast dispersion for all quarterly horizons. We provide this
+                    measure of dispersion only for the variables for which it makes the most sense.
+                    An Excel workbook with multiple worksheets. Each worksheet holds the time
+                    series of individual forecasts of a different variable. The first three columns give
+SPFmicrodata.xlsx   the year and quarter of the survey and the forecaster’s identification number (ID).
+                    The remaining columns give the forecasts for all horizons in the survey, organized
+                    in the same manner as the mean and median forecast files for levels
+                    (MedianLevel.xlsx and MeanLevel.xlsx).
+                    An Excel workbook with one worksheet containing three series for expectations of
+                    inflation. The first two are one-year-ahead expectations of inflation (measured by
+                    the GNP/GDP price index and, alternatively, the CPI). The third series is the
+Inflation.xlsx      expectation for annual-average inflation over the next 10 years. The one-year-
+                    ahead expectations are annual averages, in annualized percentage points, over the
+                    four quarters, beginning with the quarter after the quarter in which the survey was
+                    conducted. (The year and quarter in which the survey was conducted are listed in
+                    the first two columns.) All forecasts are based on the median response.
+                                                                                                 6
+
+Overview: Timing of the Survey. The Philadelphia Fed’s first survey was the one for
+1990:Q2. However, this survey was not conducted in real time because we had not yet taken
+over full responsibility from the ASA/NBER. For this survey, the forecasters were asked to
+provide dated forecasts from May 1990.
+
+The first survey we conducted in real time was the one for 1990:Q3. With a few minor
+exceptions noted below, we have maintained a consistent timing in conducting the surveys
+since the 1990:Q3 survey. We now discuss several topics related to the survey’s timing. The
+topics are:
+
+   •   information sets and deadlines;
+   •   survey release dates; and
+   •   timing of surveys prior to the 1990:Q2 survey.
+
+Information Sets and Deadlines. The survey’s timing is geared to the release of the Bureau
+of Economic Analysis’s (BEA) advance report of the national income and product accounts
+(NIPA). This report is released at the end of the first month of each quarter. It contains the
+first estimate of GDP (and components) for the previous quarter. We send our survey
+questionnaires after this report is released to the public. The survey’s questionnaires report
+recent historical values of the data from the BEA’s advance report and the most recent
+reports of other government statistical agencies. Thus, in submitting their projections, our
+panelists’ information sets include the data reported in the advance report.
+
+For surveys conducted after the 1990:Q2 survey, we have set the deadlines for responses to
+late in the second to third week of the middle month of each quarter. A complete list of the
+deadline dates for surveys from 1990:Q2 to the present is available on the Philadelphia Fed’s
+website at https://www.philadelphiafed.org/-/media/frbp/assets/surveys-and-data/survey-of-
+professional-forecasters/spf-release-dates.txt.
+
+For some variables, notably those contained in the Bureau of Labor Statistics’s (BLS)
+monthly Employment Situation Summary, there could be a revision to the data (and an
+additional monthly observation) compared with the data we reported on the survey
+questionnaire. This happens when there is a new release of the data after we send the survey
+questionnaire but before the deadline for returning it. The Employment Situation Summary is
+a prime example because the BLS has almost always released this report on the first Friday
+of each month, after we send the questionnaire and before the deadline. Thus, the information
+sets of the panelists include the data reported in the Employment Situation Summary that the
+BLS releases to the public in the middle month of each quarter.
+
+A minor change in the timing of the dates of the deadlines occurred beginning with the
+survey of 2005:Q1. Beginning with this survey, we tightened our production schedule. The
+dates of the deadlines for responses were moved up a few days (in most surveys), to the
+second week of the middle month. (The dates for release to the public were also moved up a
+few days.)
+
+Survey Release Dates. From 1990:Q3 to 2004:Q4, we released the results of the survey to
+the public in the fourth week of the middle month of the quarter. Exceptions are noted on the
+                                                                                                            7
+
+Philadelphia Fed’s website for the survey. Beginning with the survey of 2005:Q1, we
+advanced the dates of release a few days, to late in the second week of the middle month of
+the quarter. We always release the results before the BEA’s second report for the national
+income and product accounts. 1
+
+Timing of Surveys Prior to the 1990:Q2 Survey. We do not know with certainty the timing
+of the surveys conducted by the ASA/NBER. We think that, in broad terms, the timing was
+similar to that adopted by the Philadelphia Fed. In other words, we think that the
+questionnaires were sent to panelists after the first (advance) report of the national income
+and product accounts and that the results were released to the public before the second report.
+However, because we are uncertain about the ASA/NBER’s timing, our reference dates do
+not cover surveys prior to that of 1990:Q2.
+
+
+
+
+1
+  Beginning with the benchmark revision of July 2009, the BEA changed its vintage terminology: Instead of the
+terminology “Advance,” “Preliminary,” and “Final,” the BEA uses “Advance,” “Second,” and “Third.” The
+timing of these releases remains the same.
+                                                                                                               8
+
+ Table 1A summarizes the timing of the Survey of Professional Forecasters in the surveys
+ beginning with 1990:Q3.
+
+                   Table 1A. Timing of the Survey of Professional Forecasters
+                                     1990:Q3 to Present
+
+ Survey Name         Questionnaires         Last Quarter of       Date of Deadline       Results Released
+                    Sent to Panelists        History in the       for Submissions 2       to the Public
+                                               Panelists’
+                                           Information Sets
+
+ First Quarter        End of January              Q4             Middle of February        Middle to Late
+                   (after NIPA advance                            (second to third            February
+                          report)                                      week)               (before NIPA
+                                                                                           second report)
+
+Second Quarter         End of April               Q1               Middle of May        Middle to Late May
+                   (after NIPA advance                             (second to third       (before NIPA
+                          report)                                       week)             second report)
+
+
+Third Quarter           End of July               Q2              Middle of August         Middle to Late
+                   (after NIPA advance                            (second to third            August
+                          report)                                      week)               (before NIPA
+                                                                                           second report)
+
+
+Fourth Quarter        End of October              Q3            Middle of November         Middle to Late
+                   (after NIPA advance                            (second to third           November
+                          report)                                      week)               (before NIPA
+                                                                                           second report)
+
+
+
+
+ 2
+   A minor break in the timing of the dates of the deadlines and news releases begins with the survey of 2005:Q1.
+ For details, see the text above and the file located on the Philadelphia Fed’s website at
+ https://www.philadelphiafed.org/-/media/frbp/assets/surveys-and-data/survey-of-professional-forecasters/spf-
+ release-dates.txt.
+                                                                                                              9
+
+2. Median and Mean Forecasts for Levels
+
+In each survey, the forecasters provide their projections for the next five quarters and for the
+current and following years. 3 The files MedianLevel.xlsx and MeanLevel.xlsx contain the
+median and mean survey responses. Both files are organized in the same manner. Each is an
+Excel workbook containing multiple worksheets, with each worksheet containing the
+forecasts for a particular variable. You move among the worksheets by choosing the
+appropriate tab at the bottom. These tabs refer to the variable being forecast. We use “#N/A”
+to denote a missing value. Table 2 defines the variables forecast (worksheet tabs) and
+provides a brief description of each.
+
+In July 2012, we added forecasts for some variables that do not appear directly in the survey.
+We construct these “implied forecasts” as linear combinations of the forecasts for variables
+in the survey. Examples are forecasts for real interest rates, the spread between various
+interest rates, and five-year forward, five-year annual-average inflation rates. Table 2A lists
+the variables for which we compute “implied forecasts.”
+
+
+
+
+3
+  See the discussion below for exceptions for the annual forecasts in the surveys of 1985:Q1, 1986:Q1, and
+1990:Q1. Beginning with the 2007:Q1 survey, we asked the forecasters to provide the annual forecasts for the
+current and the next two years for CPI inflation rate, core CPI inflation rate, PCE inflation rate, and core PCE
+inflation rate. Beginning with the 2010:Q1 survey, we asked the forecasters to provide two more years of annual
+forecasts for the civilian unemployment rate, three-month Treasury bill rate, 10-year Treasury bond rate, and
+real GDP.
+                                                                                        10
+
+                   Table 2. Variables Forecast in the Survey
+
+Variable
+ Name                                       Description
+  and
+Worksheet
+  Tab
+            Forecasts for the quarterly and annual level of nominal GDP. Seasonally
+            adjusted, annual rate, billions $. Prior to 1992, these are forecasts for
+ NGDP       nominal GNP. Annual forecasts are for the annual average of the quarterly
+            levels.
+
+            First survey to include this variable: 1968:Q4.
+            Forecasts for the quarterly and annual level of the chain-weighted GDP
+            price index. Seasonally adjusted, index, base year varies. 1992–1995, GDP
+ PGDP       implicit deflator. Prior to 1992, GNP implicit deflator. Annual forecasts
+            are for the annual average of the quarterly levels.
+
+            First survey to include this variable: 1968:Q4.
+            Forecasts for the quarterly and annual level of nominal corporate profits
+ CPROF      after tax excluding IVA and CCAdj. Seasonally adjusted, annual rate,
+            billions $. Beginning with the survey of 2006:Q1, this variable includes
+            IVA and CCAdj. Annual forecasts are for the annual average of the
+            quarterly levels.
+
+            First survey to include this variable: 1968:Q4.
+            Forecasts for the quarterly average and annual-average unemployment
+            rate. Seasonally adjusted, percentage points. Quarterly forecasts are for the
+UNEMP       quarterly average of the underlying monthly levels. Annual forecasts are
+            for the annual average of the underlying monthly levels.
+
+            First survey to include this variable: 1968:Q4.
+            Forecasts for the quarterly average and annual-average level of nonfarm
+            payroll employment. Seasonally adjusted, thousands of jobs. Quarterly
+  EMP       forecasts are for the quarterly average of the underlying monthly levels.
+            Annual forecasts are for the annual average of the underlying monthly
+            levels.
+
+            First survey to include this variable: 2003:Q4.
+            Forecasts for the quarterly average and annual-average level of the index
+            of industrial production. Seasonally adjusted, index, base year varies.
+INDPROD     Quarterly forecasts are for the quarterly average of the underlying monthly
+            levels. Annual forecasts are for the annual average of the underlying
+            monthly levels.
+
+            First survey to include this variable: 1968:Q4.
+                                                                                        11
+
+          Forecasts for the quarterly average and annual-average level of housing
+          starts. Seasonally adjusted, annual rate, millions. Quarterly forecasts are
+HOUSING   for the quarterly average of the underlying monthly levels. Annual
+          forecasts are for the annual average of the underlying monthly levels.
+
+          First survey to include this variable: 1968:Q4.
+          Forecasts for the quarterly average and annual-average three-month
+          Treasury bill rate. Percentage points. Quarterly forecasts are for the
+ TBILL    quarterly average of the underlying daily levels. Annual forecasts are for
+          the annual average of the underlying daily levels.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly average and annual-average level of Moody’s
+          Aaa corporate bond yield. Percentage points. Prior to 1990:Q4, this is the
+ BOND     new, high-grade corporate bond yield (Business Conditions Digest
+          variable 116). Quarterly forecasts are for the quarterly average of the
+          underlying daily levels. Annual forecasts are for the annual average of the
+          underlying daily levels. Moody’s now views the historical values for the
+          Aaa and Baa corporate bond yields (BOND and BAABOND) as
+          proprietary. Accordingly, the Philadelphia Fed is not permitted to release
+          these historical values to the public.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly average and annual-average level of Moody’s
+          Baa corporate bond yield. Percentage points. Quarterly forecasts are for
+BAABOND   the quarterly average of the underlying daily levels. Annual forecasts are
+          for the annual average of the underlying daily levels. Moody’s now views
+          the historical values for the Aaa and Baa corporate bond yields (BOND
+          and BAABOND) as proprietary. Accordingly, the Philadelphia Fed is not
+          permitted to release these historical values to the public.
+
+          First survey to include this variable: 2010:Q1.
+          Forecasts for the quarterly average and annual-average 10-year Treasury
+          bond rate. Percentage points. Quarterly forecasts are for the quarterly
+ TBOND    average of the underlying daily levels. Annual forecasts are for the annual
+          average of the underlying daily levels.
+
+          First survey to include this variable: 1992:Q1.
+          Forecasts for the quarterly and annual level of chain-weighted real GDP.
+          Seasonally adjusted, annual rate, base year varies. 1992–1995, fixed-
+ RGDP     weighted real GDP. Prior to 1992, fixed-weighted real GNP. Annual
+          forecasts are for the annual average of the quarterly levels. Prior to
+          1981:Q3, RGDP is computed by using the formula NGDP / PGDP * 100.
+
+          First survey to include this variable: 1968:Q4.
+                                                                                         12
+
+          Forecasts for the quarterly and annual level of chain-weighted real
+          personal consumption expenditures. Seasonally adjusted, annual rate, base
+RCONSUM   year varies. Annual forecasts are for the annual average of the quarterly
+          levels. Prior to 1996, fixed-weighted real personal consumption
+          expenditures.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly and annual level of chain-weighted real
+          nonresidential fixed investment. Also known as business fixed investment.
+RNRESIN   Seasonally adjusted, annual rate, base year varies. Annual forecasts are for
+          the annual average of the quarterly levels. Prior to 1996, fixed-weighted
+          real nonresidential fixed investment.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly and annual level of chain-weighted real
+          residential fixed investment. Seasonally adjusted, annual rate, base year
+RRESINV   varies. Annual forecasts are for the annual average of the quarterly levels.
+          Prior to 1996, fixed-weighted real residential fixed investment.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly and annual level of chain-weighted real federal
+          government consumption and gross investment. Seasonally adjusted,
+RFEDGOV   annual rate, base year varies. Annual forecasts are for the annual average
+          of the quarterly levels. Prior to 1996, fixed-weighted real federal
+          government purchases of goods and services.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly and annual level of chain-weighted real state
+          and local government consumption and gross investment. Seasonally
+RSLGOV    adjusted, annual rate, base year varies. Annual forecasts are for the annual
+          average of the quarterly levels. Prior to 1996, fixed-weighted real state and
+          local government purchases of goods and services.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly and annual level of chain-weighted real change
+          in private inventories. Seasonally adjusted, annual rate, base year varies.
+ RCBI     Annual forecasts are for the annual average of the quarterly levels. Prior to
+          1996, fixed-weighted real change in inventories.
+
+          First survey to include this variable: 1981:Q3.
+          Forecasts for the quarterly and annual level of chain-weighted real net
+          exports. Seasonally adjusted, annual rate, base year varies. Annual
+REXPORT   forecasts are for the annual average of the quarterly levels. Prior to 1996,
+          fixed-weighted real net exports.
+
+          First survey to include this variable: 1981:Q3.
+                                                                                        13
+
+         Forecasts for the annual-average rate of headline CPI inflation over the
+         next five years. Seasonally adjusted, annualized percentage points. The
+         “next five years” includes the year in which we conducted the survey and
+         the following four years. Conceptually, the calculation of inflation is one
+CPI5YR   that runs from the fourth quarter of the year before the survey year to the
+         fourth quarter of the year that is five years beyond the survey year,
+         representing a total of 20 quarters or five years. The fourth-quarter level is
+         the quarterly average of the underlying monthly levels.
+
+         First survey to include this variable: 2005:Q3.
+         Forecasts for the annual-average rate of headline PCE inflation over the
+         next five years. Seasonally adjusted, annualized percentage points. The
+         “next five years” includes the year in which we conducted the survey and
+PCE5YR   the following four years. Conceptually, the calculation of inflation is one
+         that runs from the fourth quarter of the year before the survey year to the
+         fourth quarter of the year that is five years beyond the survey year,
+         representing a total of 20 quarters or five years. The fourth-quarter level is
+         the quarterly average of the underlying monthly levels.
+
+         First survey to include this variable: 2007:Q1.
+         Forecasts for the annual-average rate of headline CPI inflation over the
+         next 10 years. Seasonally adjusted, annualized percentage points. The
+         “next 10 years” includes the year in which we conducted the survey and
+         the following nine years. Conceptually, the calculation of inflation is one
+         that runs from the fourth quarter of the year before the survey year to the
+CPI10    fourth quarter of the year that is 10 years beyond the survey year,
+         representing a total of 40 quarters or 10 years. The fourth-quarter level is
+         the quarterly average of the underlying monthly levels.
+
+         First survey to include this variable: 1991:Q4.
+         Forecasts for the annual-average rate of headline PCE inflation over the
+         next 10 years. Seasonally adjusted, annualized percentage points. The
+         “next 10 years” includes the year in which we conducted the survey and
+         the following nine years. Conceptually, the calculation of inflation is one
+PCE10    that runs from the fourth quarter of the year before the survey year to the
+         fourth quarter of the year that is 10 years beyond the survey year,
+         representing a total of 40 quarters or 10 years. The fourth-quarter level is
+         the quarterly average of the underlying monthly levels.
+
+         First survey to include this variable: 2007:Q1.
+                                                                                       14
+
+          Forecasts for the annual-average rate of growth in chain-weighted real
+          GDP over the next 10 years. Annualized percentage points. First-quarter
+          surveys only. The 10-year horizon covers the year in which we conducted
+RGDP10    the survey through the year that is 10 years after the survey year, a total of
+          40 quarters or 10 years. Prior to 1996, fixed-weighted real GDP.
+
+          First survey to include this variable: 1992:Q1.
+          Forecasts for the annual-average rate of growth in productivity (output/per
+          hour) over the next 10 years. Annualized percentage points. First-quarter
+          surveys only. The 10-year horizon covers the year in which we conducted
+PROD10    the survey through the year that is 10 years after the survey year, a total of
+          40 quarters or 10 years.
+
+          First survey to include this variable: 1992:Q1.
+          Forecasts for the annual-average rate of return to equities (S&P 500) over
+          the next 10 years. Percentage points. First-quarter surveys only. The 10-
+STOCK10   year horizon covers the year in which we conducted the survey through the
+          year that is 10 years after the survey year, a total of 40 quarters or 10
+          years.
+
+          First survey to include this variable: 1992:Q1
+          Forecasts for 10-year annual-average yield on 10-year constant maturity
+          Treasury bonds. Percentage points. First-quarter surveys only.
+
+          The phrasing of the question for this variable changed in the survey of
+BOND10    2014:Q1. This change may or may not cause a structural break in the time
+          series of responses. For additional details, see the section below on
+          caveats.
+
+          First survey to include this variable: 1992:Q1.
+          Forecasts for the annual-average rate of return to three-month Treasury
+          bills over the next 10 years. Percentage points. First-quarter surveys only.
+BILL10    The 10-year horizon covers the year in which we conducted the survey
+          through the year that is 10 years after the survey year, a total of 40 quarters
+          or 10 years.
+
+          First survey to include this variable: 1992:Q1.
+          Forecasts for the headline CPI inflation rate. Seasonally adjusted, annual
+          rate, percentage points. Quarterly forecasts are annualized quarter-over-
+          quarter percent changes of the quarterly average price index level. Annual
+  CPI     forecasts are fourth-quarter over fourth-quarter percent changes. The
+          quarterly price index level is the quarterly average of the underlying
+          monthly price index levels.
+
+          First survey to include this variable: 1981:Q3.
+                                                                                            15
+
+             Forecasts for the core CPI inflation rate. Seasonally adjusted, annual rate,
+             percentage points. Quarterly forecasts are annualized quarter-over-quarter
+             percent changes of the quarterly average price index level. Annual
+CORECPI      forecasts are fourth-quarter over fourth-quarter percent changes. The
+             quarterly price index level is the quarterly average of the underlying
+             monthly price index levels.
+
+             First survey to include this variable: 2007:Q1.
+             Forecasts for the headline chain-weighted PCE inflation rate. Seasonally
+             adjusted, annual rate, percentage points. Quarterly forecasts are annualized
+             quarter-over-quarter percent changes of the quarterly average price index
+   PCE       level. Annual forecasts are fourth-quarter over fourth-quarter percent
+             changes. The quarterly price index level is the quarterly average of the
+             underlying monthly price index levels.
+
+             First survey to include this variable: 2007:Q1.
+             Forecasts for the core chain-weighted PCE inflation rate. Seasonally
+             adjusted, annual rate, percentage points. Quarterly forecasts are annualized
+             quarter-over-quarter percent changes of the quarterly average price index
+COREPCE      level. Annual forecasts are fourth-quarter over fourth-quarter percent
+             changes. The quarterly price index level is the quarterly average of the
+             underlying monthly price index levels.
+
+             First survey to include this variable: 2007:Q1.
+             Probability of quarter-over-quarter chain-weighted real GDP growth less
+RECESS1 to   than zero for the current quarter (RECESS1) and the following four
+ RECESS5     quarters (RECESS2 to RECESS5). Percentage points. The “current
+    and      quarter” is the quarter in which we conducted the survey. Over 1992–
+  Anxious    1995, the output concept is fixed-weighted real GDP. Prior to 1992, the
+   Index     output concept is fixed-weighted real GNP. Note: RECESS2 is known as
+             the “Anxious Index.”
+
+             First survey to include this variable: 1968:Q4.
+             Density projections for annual chain-weighted real GDP growth falling
+             into various ranges. Percentage points. Annual real GDP growth is the
+             year-over-year growth of the annual-average level of chain-weighted real
+ PRGDP       GDP. The annual-average level of chain-weighted real GDP is the average
+             of the level of quarterly chain-weighted real GDP over the four quarters of
+             the year. From 1992–1995, the output concept is fixed-weighted real GDP.
+             Prior to 1992, the output concept is fixed-weighted real GNP. See the
+             section on “Mean Probability Forecasts” for additional details.
+
+             First survey to include this variable: 1968:Q4.
+                                                                                           16
+
+          Density projections for annual chain-weighted GDP price inflation falling
+          into various ranges. Percentage points. Annual chain-weighted GDP price
+          inflation is the year-over-year growth of the annual-average level of the
+PRPGDP    chain-weighted GDP price index. The annual-average level of the chain-
+          weighted GDP price index is the average of the quarterly chain-weighted
+          GDP price index over the four quarters of the year. From 1992–1995, the
+          price index is the GDP implicit deflator. Prior to 1992, the price index is
+          the GNP implicit deflator. See the section on “Mean Probability
+          Forecasts” for additional details.
+
+          First survey to include this variable: 1968:Q4.
+          Density projections for annual core CPI inflation falling into various
+          ranges. Percentage points. Annual core CPI inflation is the fourth-quarter
+          over fourth-quarter growth of the fourth-quarter average of the core CPI
+PRCCPI    price index level. The fourth-quarter average CPI price index level is the
+          average of the underlying monthly price index levels. See the section on
+          “Mean Probability Forecasts” for additional details.
+
+          First survey to include this variable: 2007:Q1.
+          Density projections for annual chain-weighted core PCE inflation falling
+          into various ranges. Percentage points. Annual chain-weighted core PCE
+          inflation is the fourth-quarter over fourth-quarter growth of the fourth-
+          quarter average of the chain-weighted core PCE price index level. The
+PRCPCE    fourth-quarter average chain-weighted PCE price index level is the
+          average of the underlying monthly chain-weighted price index levels. See
+          the section on “Mean Probability Forecasts” for additional details.
+
+          First survey to include this variable: 2007:Q1.
+          Density projections for the annual-average unemployment rate falling into
+          various ranges. Percentage points. The annual-average unemployment rate
+PRUNEMP   is the average of the 12 monthly unemployment rates of the year. See the
+          section on “Mean Probability Forecasts” for additional details.
+
+          First survey to include this variable: 2009:Q2.
+          Natural rate of unemployment. Percentage points. Third-quarter surveys
+          only. Files for the mean statistics, median statistics, dispersion statistics,
+ UBAR     and individual responses are for those panelists who provide an estimate
+          and say that they use the natural rate of unemployment in forming their
+          projections.
+
+          First survey to include this variable: 1996:Q3.
+                                                                                            17
+
+             Table 2A. Variables for Which We Compute Implied Forecasts
+
+These variables do not appear directly in the survey. Rather, we compute the implied
+forecasts using linear combinations of the projections for variables in the survey. The section
+titled “Implied Forecasts” provides extensive documentation on our methods.
+
+  Variable Name
+       and                                             Description
+  Worksheet Tab
+                         (Implied) Forecasts for the spread between the nominal rate on 10-year
+                         Treasury bonds and the nominal rate on three-month Treasury bills.
+SPR_TBOND_TBILL          Annualized percentage points.
+
+                         First survey to include this variable: 1992:Q1.
+                         (Implied) Forecasts for the spread between the nominal rate on
+  SPR_BAA_AAA            Moody’s Baa bonds and the nominal rate on Moody’s Aaa bonds.
+                         Annualized percentage points. Moody’s views the historical values for
+                         the Aaa and Baa corporate bond yields (BOND and BAABOND) as
+                         proprietary. Accordingly, the Philadelphia Fed is not permitted to
+                         release these historical values to the public.
+
+                         First survey to include this variable: 2010:Q1.
+                         (Implied) Forecasts for the spread between the nominal rate on
+                         Moody’s Baa bonds and the nominal rate on 10-year Treasury bonds.
+SPR_BAA_TBOND            Annualized percentage points. Moody’s views the historical values for
+                         the Aaa and Baa corporate bond yields (BOND and BAABOND) as
+                         proprietary. Accordingly, the Philadelphia Fed is not permitted to
+                         release these historical values to the public.
+
+                         First survey to include this variable: 2010:Q1.
+                         (Implied) Forecasts for the spread between the nominal rate on
+SPR_AAA_TBOND            Moody’s Aaa bonds and the nominal rate on 10-year Treasury bonds.
+                         Annualized percentage points. Moody’s views the historical values for
+                         the Aaa and Baa corporate bond yields (BOND and BAABOND) as
+                         proprietary. Accordingly, the Philadelphia Fed is not permitted to
+                         release these historical values to the public.
+
+                         First survey to include this variable: 1992:Q1.
+                         (Implied) Forecasts for the real rate on three-month Treasury bills using
+RR1_TBILL_PGDP           forecasts for GNP/GDP inflation. Annualized percentage points. See the
+RR2_TBILL_PGDP           section on “Implied Forecasts” for additional information.
+RR3_TBILL_PGDP
+                         First survey to include this variable: 1981:Q3.
+                                                                                     18
+
+ Variable Name
+      and                                       Description
+ Worksheet Tab
+                 (Implied) Forecasts for the real rate on three-month Treasury bills using
+RR1_TBILL_CPI    forecasts for headline CPI inflation. Annualized percentage points. See
+RR2_TBILL_CPI    the section on “Implied Forecasts” for additional information.
+RR3_TBILL_CPI
+                 First survey to include this variable: 1981:Q3.
+                 (Implied) Forecasts for the real rate on three-month Treasury bills using
+RR1_TBILL_CCPI   forecasts for core CPI inflation. Annualized percentage points. See the
+RR2_TBILL_CCPI   section on “Implied Forecasts” for additional information.
+RR3_TBILL_CCPI
+                 First survey to include this variable: 2007:Q1.
+                 (Implied) Forecasts for the real rate on three-month Treasury bills using
+RR1_TBILL_PCE    forecasts for headline PCE inflation. Annualized percentage points. See
+RR2_TBILL_PCE    the section on “Implied Forecasts” for additional information.
+RR3_TBILL_PCE
+                 First survey to include this variable: 2007:Q1.
+                 (Implied) Forecasts for the real rate on three-month Treasury bills using
+RR1_TBILL_CPCE   forecasts for core PCE inflation. Annualized percentage points. See the
+RR2_TBILL_CPCE   section on “Implied Forecasts” for additional information.
+RR3_TBILL_CPCE
+                 First survey to include this variable: 2007:Q1.
+                 Five-year forward five-year annual-average headline CPI inflation using
+                 the fourth-quarter average of the underlying monthly price index levels.
+                 Annualized percentage points.
+
+  CPI05YF05      The horizon covers the five-year period that begins with the fourth
+                 quarter of the year that is four years after the survey year and ends with
+                 the fourth quarter of the year that is nine years after the survey year.
+
+                 First survey to include this variable: 2005:Q3.
+                 Previous name (before July 2026): CPIF5.
+                 Five-year forward five-year annual-average headline chain-weighted
+                 PCE inflation using the fourth-quarter average of the underlying
+                 monthly price index levels. Annualized percentage points.
+
+  PCE05YF05      The horizon covers the five-year period that begins with the fourth
+                 quarter of the year that is four years after the survey year and ends with
+                 the fourth quarter of the year that is nine years after the survey year.
+
+                 First survey to include this variable: 2007:Q1.
+                 Previous name (before July 2026): PCEF5.
+                                                                                    19
+
+Variable Name
+     and                                      Description
+Worksheet Tab
+                Three-year forward two-year annual-average headline CPI inflation
+                using the fourth-quarter average of the underlying monthly price index
+                levels. Annualized percentage points.
+
+ CPI02YF03      The horizon covers the two-year period that begins with the fourth
+                quarter of the year that is two years after the survey year and ends with
+                the fourth quarter of the year that is four years after the survey year.
+
+                First survey to include this variable: 2005:Q3.
+                Three-year forward two-year annual-average headline chain-weighted
+                PCE inflation using the fourth-quarter average of the underlying
+                monthly price index levels. Annualized percentage points.
+
+ PCE02YF03      The horizon covers the two-year period that begins with the fourth
+                quarter of the year that is two years after the survey year and ends with
+                the fourth quarter of the year that is four years after the survey year.
+
+                First survey to include this variable: 2007:Q1.
+                Three-year forward seven-year annual-average headline CPI inflation
+                using the fourth-quarter average of the underlying monthly price index
+                levels. Annualized percentage points.
+
+ CPI07YF03      The horizon covers the seven-year period that begins with the fourth
+                quarter of the year that is two years after the survey year and ends with
+                the fourth quarter of the year that is nine years after the survey year.
+
+                First survey to include this variable: 2005:Q3.
+                Three-year forward seven-year annual-average headline chain-weighted
+                PCE inflation using the fourth-quarter average of the underlying
+                monthly price index levels. Annualized percentage points.
+ PCE07YF03
+                The horizon covers the seven-year period that begins with the fourth
+                quarter of the year that is two years after the survey year and ends with
+                the fourth quarter of the year that is nine years after the survey year.
+
+                First survey to include this variable: 2007:Q1.
+                                                                                            20
+
+File Structure: Column Header Nomenclature and Forecast Horizons. We organize the
+files by the date of the survey. Each row gives the projections from a different survey. The
+first two columns give the year and quarter in which the survey was conducted. The
+remaining columns give the forecasts.
+
+As you move across a given row, the columns give the forecast for a different quarterly or
+annual horizon. We distinguish among the horizons by appending “1” through “6” (quarterly
+forecasts) or “A” and “B” (annual-average forecasts) to a root name identifying the variable
+forecast. The number “1” represents the “forecast” for the quarter prior to the quarter in
+which the survey is conducted. The forecasters know the values of the variables for this
+quarter at the time they submit their projections. For example, for NIPA variables, these
+values are the BEA’s advance estimate for the quarter. The forecasters are permitted to
+forecast a revision to the BEA’s advance estimate but most do not. Thus, the data in this
+column correspond closely to the BEA’s advance estimate. The number “2” represents the
+forecast for the current quarter, defined as the quarter in which the survey is conducted. The
+numbers “3” through “6” represent the forecasts for the four quarters after the current
+quarter. The letters “A” and “B” represent annual-average forecasts for the current year (the
+year in which the survey is conducted) and the following year.
+
+Beginning with the 2005:Q3 survey, we extended the annual forecast horizon one year for
+headline CPI inflation. We use the letters “A,” “B,” and “C” to denote the annual fourth-
+quarter over fourth-quarter inflation forecasts for the year in which we conducted the survey
+(“A”) and the following two years (“B” and “C”).
+
+Beginning with the 2007:Q1 survey, we added three new inflation variables to the
+questionnaire: core CPI inflation, PCE inflation, and core PCE inflation. Paralleling the
+aforementioned extension of the headline CPI inflation annual horizon, we also extended the
+annual horizon for the new variables one year beyond the usual two-year ahead horizon. For
+these three new inflation variables, the letters “A,” “B,” and “C” represent fourth-quarter
+over fourth-quarter inflation forecasts for the current year and the next two years. Thus, the
+meaning of the letters “A,” “B,” and “C” for the new inflation variables is the same as for
+headline CPI inflation.
+
+Beginning with the 2009:Q2 survey, we extended the annual forecast horizon by two years
+for the civilian unemployment rate and real GDP. Beginning with the 2009:Q3 survey, we
+extended the annual forecast horizon by two years for the three-month Treasury bill rate and
+10-year Treasury bond rate. For these four variables, the letters “A,” “B,” “C,” and “D”
+represent annual-average forecasts for the current year and the next three years.
+                                                                                            21
+
+File Structure: Example. Table 3 gives an example of the forecast horizons included at
+three successive quarterly survey dates: 2005:Q3, 2005:Q4, and 2006:Q1. In the survey
+conducted in the third quarter of 2005, the forecasters knew the BEA’s advance estimate for
+2005:Q2, and they provided quarterly forecasts for 2005:Q3 through 2006:Q3. Their
+projection for 2005:Q3 is a forecast for the current quarter because that is the quarter in
+which the forecasters are standing when they make their projections. (Some call this the one-
+step-ahead forecast while others call it the 0-step-ahead forecast or the nowcast.) The
+forecasters’ annual-average projections were those for 2005 and 2006.
+
+Note two features about the format of our files. First, as you move down a particular column,
+you get the sequence of a given step-ahead forecast. For example, the column labeled
+NGDP2 gives the sequence of current-quarter (or nowcast) forecasts. The column labeled
+NGDP6 gives the sequence of 5-step-ahead forecasts (if you count NGDP2 as the one-step-
+ahead forecast). Be careful about these sequences! The forecasts for levels are always scaled
+to the base year that was in effect at the time of the survey. Over time, as benchmark
+revisions to the data occur, the scale changes. (Below, we provide additional information on
+base years.)
+
+Second, the years included in the annual forecast horizon (“A” and “B”) change in each first-
+quarter survey. In the surveys conducted from 2005:Q1 through 2005:Q4, for example, the
+forecasters provided annual-average projections for the current year (2005) and the next year
+(2006). In the survey of 2006:Q1, the current year is 2006 and the next year is 2007, so the
+forecasters provided projections for those years. As noted below in the section on probability
+forecasts, similar comments apply to the annual forecast horizons for the survey’s density
+projections for annual-average over annual-average growth in the level of real GDP
+(variable: PRGDP) and the level of the GDP price index (variable: PRPGDP), the survey’s
+density projections for fourth-quarter over fourth-quarter growth in the level of the core CPI
+price index (variable: PRCCPI) and the fourth-quarter over fourth-quarter growth in the level
+of the core PCE price index (variable: PRCPCE), and the survey’s density projections for the
+annual-average level of the unemployment rate (variable: PRUNEMP).
+                                                                                                                                                                  22
+
+
+
+                                Table 3. Example: Forecast Horizons for Nominal GDP at Three Survey Dates
+
+        Survey Date               Quarterly                                 Quarterly Projections:                                        Annual-Average
+      (Year, Quarter)             Historical                                  Quarter Forecast                                              Projections:
+                                   Value                                                                                                   Year Forecast
+
+      (1)            (2)             (3)             (4)              (5)             (6)              (7)              (8)              (9)            (10)
+     Year          Quarter          NGDP1           NGDP2            NGDP3           NGDP4            NGDP5            NGDP6           NGDPA           NGDPB
+
+
+     2005              3           2005:Q2          2005:Q3          2005:Q4         2006:Q1          2006:Q2         2006:Q3            2005             2006
+
+     2005              4           2005:Q3          2005:Q4          2006:Q1         2006:Q2          2006:Q3         2006:Q4            2005             2006
+
+     2006              1           2005:Q4          2006:Q1          2006:Q2         2006:Q3          2006:Q4         2007:Q1            2006             2007
+
+Table notes. The table shows how we organize the survey’s median (or mean) responses for three survey dates: 2005:Q3, 2005:Q4, and 2006:Q1. The entries in
+columns (1)–(2) show the year and quarter when we conducted the survey. The entry in column (3) shows the observation date for the last known historical quarter
+at the time we sent the questionnaire to the panelists. The entries in columns (4)–(8) show the quarterly observation dates forecast. The entries in columns (9)–(10)
+show the annual observation dates forecast: Notice how the annual-average forecast horizons are fixed within a calendar year and change in each first-quarter
+survey. Moody’s views the historical values for the Aaa and Baa corporate bond yields (BOND and BAABOND) as proprietary. Accordingly, the Philadelphia Fed
+is not permitted to release these historical values to the public.
+
+At each survey date, we record the projections for various horizons in the same row. NGDP1 is the real-time quarterly historical value
+for the previous quarter — that is, the quarter before the quarter when we conducted the survey. NGDP2 is the forecast (nowcast) for
+the current quarter — that is, the quarter when we conducted the survey. NGDP3 to NGDP6 are the forecasts for the following four
+quarters. NGDPA and NGDPB are the annual-average projections for the current year (the year when we conducted the survey) and the
+following year.
+                                                                                                          23
+
+Changes in Base Year. There have been a number of changes of base year in NIPA since the
+survey began. As noted above, the forecasts for levels in our data set use the base year that
+was in effect when we sent the forecasters the survey questionnaire. In particular, we do not
+rescale the forecasts of previous surveys when there is a change in base year. Table 4
+provides the base year in effect for NIPA variables for each range of survey dates. The base
+year for the survey’s forecasts for industrial production has also changed over time. These
+base years appear in Table 5.
+
+    Table 4. Base Years for NIPA Variables in the Survey of Professional Forecasters
+
+
+                   Range of Survey Dates                              Base Year
+
+                    1968:Q4 to 1975:Q4                                   1958
+                    1976:Q1 to 1985:Q4                                   1972
+                    1986:Q1 to 1991:Q4                                   1982
+                    1992:Q1 to 1995:Q4 4                                 1987
+                    1996:Q1 to 1999:Q3 5                                 1992
+                    1999:Q4 to 2003:Q4                                   1996
+                    2004:Q1 to 2009:Q2                                   2000
+                    2009:Q3 to 2013:Q2                                   2005
+                    2013:Q3 to 2018:Q2                                   2009
+                    2018:Q3 to 2023:Q3                                   2012
+                     2023:Q4 to present                                  2017
+
+Table 5. Base Years for Industrial Production in the Survey of Professional Forecasters
+
+
+                  Range of Survey Dates                               Base Year
+
+                    1968:Q4 to 1971:Q3                                1957–1959
+                    1971:Q4 to 1985:Q2                                   1967
+                    1985:Q3 to 1990:Q1                                   1977
+                    1990:Q2 to 1996:Q4                                   1987
+                    1997:Q1 to 2002:Q4                                   1992
+                    2003:Q1 to 2005:Q4                                   1997
+                    2006:Q1 to 2010:Q2                                   2002
+                    2010:Q3 to 2015:Q2                                   2007
+                    2015:Q3 to 2021:Q2                                   2012
+                     2021:Q3 to present                                  2017
+
+
+4
+ In the survey of 1992:Q1, the survey’s measure of output switches from GNP to GDP.
+5
+ In the survey of 1996:Q1, the survey’s measures of NIPA prices and quantities switch to chain-weighted
+measures.
+                                                                                              24
+
+
+Caveats: Breaks in the Historical Series of Projections and Additional Information for
+Selected Variables. The historical time series in this survey are quite lengthy. A limited
+number of series are subject to some discontinuities. This section documents these breaks and
+provides additional information for selected variables.
+
+   •   Moody’s Corporate Aaa Bond Yield (BOND). This variable is inconsistent before
+       1990:Q4. Prior to the survey of 1990:Q4, the variable used was the new, high-grade
+       corporate bond yield (Business Conditions Digest variable 116.) This rate was
+       generated at the U.S. Treasury primarily for internal use. The advantage of using it
+       beginning in 1981:Q3 was that it was readily available. But many forecasters did not
+       track this variable and, instead, sent in forecasts of closely related variables, such as
+       Moody’s Aaa bond rate. The levels of these other variables may have differed by as
+       much as 50 basis points. To eliminate this problem, we switched to using Moody’s
+       Aaa bond rate in 1990:Q4, and now the forecasts are consistent. Moody’s now views
+       the historical values for the Aaa and Baa corporate bond yields (BOND and
+       BAABOND) as proprietary. Accordingly, the Philadelphia Fed is not permitted to
+       release these historical values to the public.
+
+   •   Moody’s Corporate Baa Bond Yield (BAABOND). Moody’s now views the
+       historical values for the Aaa and Baa corporate bond yields (BOND and BAABOND)
+       as proprietary. Accordingly, the Philadelphia Fed is not permitted to release these
+       historical values to the public.
+
+   •   Corporate Profits (CPROF). This variable is inconsistent before 2006:Q1. Prior to
+       the survey of 2006:Q1, it is corporate profits after tax excluding IVA and CCAdj. The
+       historical values of this particular measure are subject to large discrete jumps when
+       there is a change in tax law affecting depreciation provisions. The time series of
+       projections for this series in the Survey of Professional Forecasters may or may not
+       capture the jumps in historical values, depending on whether the forecasters
+       anticipated the corresponding changes in tax law. Beginning with the survey of
+       2006:Q1, we switched to the after-tax measure that includes IVA and CCAdj.
+
+   •   Small Sample in the Survey of 1990:Q2. The Philadelphia Fed took over the survey
+       in the summer of 1990. We were too late to send out a survey in 1990:Q2. However,
+       to avoid having a missing data point, we mailed a 1990:Q2 survey form along with
+       the 1990:Q3 survey form. We asked that only those who had a written record of their
+       forecasts of three months earlier fill out the 1990:Q2 survey. As a result, the number
+       of respondents was only nine. We felt that even a small, after-the-fact sample was
+       better than no sample at all.
+
+   •   Problem with Annual Forecasts and Probability Forecasts — Surveys 1985:Q1,
+       1986:Q1, and 1990:Q1. Generally, annual forecasts pertain to the current year and
+       the following year. However, an error was made in the first-quarter surveys of 1985
+       and 1986. In those quarters, for the first 19 variables listed above (excluding EMP),
+       the first annual forecast is for the previous year and the second annual forecast is for
+       the current year. However, we cannot be sure from the NBER’s records whether the
+                                                                                           25
+
+    same is true for the probability variables PRGDP and PRPGDP. In addition, in the
+    first quarter of 1990, for the same variables listed above, the same error was made, so
+    that the first annual forecast is for the previous year and the second annual forecast is
+    for the current year. The probability variables were done correctly in that survey, so
+    they pertain to the current year and the following year.
+
+•   Real GNP prior to the Survey of 1981:Q3. The survey did not ask the panelists to
+    forecast this variable prior to the survey of 1981:Q3. To provide a longer time series
+    for this variable, we compute real GNP from 1968:Q4 to 1981:Q2 by using the
+    formula NGDP / PGDP * 100. We compute the implied forecast for each panelist,
+    then the means and medians.
+
+•   Long-Term Forecasts for the Yield on 10-Year Constant-Maturity Treasury
+    Bonds (BOND10). Beginning with the survey of 2014:Q1, we changed the way in
+    which we ask the forecasters for their long-term (10-year annual average) forecast for
+    the yield on 10-year constant-maturity Treasury bonds. We made the change because
+    the question had always been ambiguously phrased. Such ambiguity might produce
+    difficulties in interpreting the survey’s responses. This change may or may not affect
+    the way in which the panelists answer the question. Note that this variable (BOND10)
+    enters the survey only in the first quarter of the year. However, each quarter the
+    survey asks for short-term projections for the 10-year Treasury rate.
+
+       o In first-quarter surveys prior to that of 2014:Q1: We asked the forecasters for
+         their expectation of the “annual average over the next 10 years of the return to
+         10-year Treasury bonds.” This could mean: (1) the return to buying a 10-year
+         Treasury bond on the survey date and holding it until maturity; or (2) the 10-
+         year average return to buying a 10-year Treasury bond every day (or month or
+         quarter) over the next 10 years and holding each bond until maturity. [The
+         second interpretation is somewhat more consistent with the survey’s overall
+         design because the SPF has always asked for quarterly projections for the 10-
+         year Treasury rate (nowcast and next four quarters) and annual-average
+         projections (current year and future years).]
+
+       o In first-quarter surveys beginning with that of 2014:Q1: We ask the
+         forecasters for their expectation of the “annual average yield on 10-year
+         constant-maturity Treasury bonds over the next 10 years.” We also make it
+         clear that we mean the average of a panelist’s projections for the current year
+         and the following nine years and that the long-term survey projection should
+         be consistent with the short-term survey projection for the current year and the
+         following three years.
+                                                                                                                           26
+
+3. Growth Rates: Median and Mean Forecasts and Technical Definitions
+
+Median and Mean Forecasts for Growth Rates.
+
+Two files contain median and mean forecasts for growth of selected survey variables:
+MedianGrowth.xlsx and MeanGrowth.xlsx. We construct these forecast growth rates by first
+computing the median or mean forecast for the level of the variable (X), as given in
+MedianLevel.xlsx and MeanLevel.xlsx. We then compute the rate of growth (g), using the
+formula
+
+                                                                       4
+                                                   ˆ                  
+                                                     X t + k | t −1      , k 0,1, , 4 ,
+                              gˆ t
+                              =    + k | t −1 100 
+                                                                     −1
+                                                                       =
+                                                    Xˆ                 
+                                                   t + k −1| t −1    
+
+where gˆ t + k | t −1 represents the forecast for quarter-over-quarter growth in period t + k made on
+the basis of observations known through period t − 1 , and Xˆ t + k | t −1 represents the
+corresponding mean or median forecast for the level. Our notation makes use of the fact that
+a survey is conducted in quarter t , and the forecasters make their projections on the basis of
+historical observations dated t − 1 and earlier. The (quarterly) projections are for periods
+t , t + 1, , t + 4. Thus, when k = 0 , we have the forecast for growth in the current quarter, the
+quarter in which the survey was conducted. As explained above, Xˆ            = X , where X
+                                                                                        t −1| t −1   t −1           t −1
+
+represents the historical value for the quarter before the survey quarter, as reported by
+government statistical agencies at the time the survey questionnaire is sent to the forecasters. 6
+
+Caveat. Note that the discussion of this subsection excludes the forecasts for the headline
+and core CPI price index and the headline and core PCE price index. For these variables, the
+panelists submit their projections in growth-rate form only (that is, for inflation rates). Hence,
+the survey’s median and mean projections for CPI and PCE inflation are means and medians
+of a growth rate (inflation), not growth rates of the mean and median projection for the level
+of the price index.
+
+An Example. Forecast growth rates are computed from the forecasts for levels in the files,
+MedianLevel.xlsx and MeanLevel.xlsx. Using the nomenclature for these files developed
+above, we can write the forecast for growth for nominal GDP in the current quarter and the
+next quarter as
+
+
+
+
+6
+    The forecasters are permitted to forecast a revision to the last quarter of history ( X t −1 ) . Most do not. Thus, in
+
+almost all cases, Xˆ t −1| t −1 = X t −1.
+                                                                                                 27
+
+                                       NGDP 2 4 
+                     =gˆ t | t −1 100        t
+                                                  − 1
+                                       NGDP1 t 
+                                                     
+                                                   
+                                         NGDP3 4 
+                     =gˆ t +1| t −1 100        t
+                                                    − 1
+                                         NGDP 2 t 
+                                                       
+                                                     
+
+while the forecast growth rate for the last quarter in the quarterly horizon of each survey is
+that given by
+
+                                           NGDP6 4 
+                     =gˆ t + 4 | t −1 100       t
+                                                     − 1 .
+                                           NGDP5 t 
+                                                        
+                                                      
+
+
+The format of our files of forecast growth rates parallels that described above for the
+forecasts of levels. Here are some noteworthy features:
+
+   •   We provide forecast growth rates for the following variables: nominal GNP/GDP
+       (NGDP), GNP/GDP price index (PGDP), corporate profits (CPROF), nonfarm
+       payroll employment (EMP), industrial production index (INDPROD), housing starts
+       (HOUSING), real GNP/GDP (RGDP), real personal consumption expenditures
+       (RCONSUM), real nonresidential fixed investment (RNRESIN), real residential fixed
+       investment (RRESINV), real federal government consumption and gross investment
+       (RFEDGOV), and real state and local government consumption and gross investment
+       (RSLGOV).
+
+   •   Growth rates are those for quarter-over-quarter growth, expressed in annualized
+       percentage points, beginning with the forecast for the current quarter.
+
+   •   Each worksheet lists the year and quarter in which the survey was conducted.
+
+   •   The column headers in each worksheet follow the same nomenclature described
+       above. (We use “d” in the column header to denote a growth rate.) In particular, the
+       number “2” appended to a column header represents a forecast for the quarter in
+       which the survey is conducted. The numbers “3” to “6” represent the quarter-over-
+       quarter growth rate forecasts for the following four quarters.
+
+   •   Two worksheets are associated with the forecasts for the level of nonfarm payroll
+       employment (EMP): EMP_AVG and EMP_PCG. The first (EMP_AVG) gives the
+       implied forecast for the per month flow of new jobs, defined as the first difference of
+       the forecast for the quarterly average level, divided by three. The second (EMP_PCG)
+       gives the forecast growth rate, in annualized percentage points.
+                                                                                                               28
+
+
+Technical Definitions of Growth Rates.
+
+The survey includes forecasts for quarterly, quarter-over-quarter growth rates and for annual
+growth rates. A number of critical points are worth noting at the outset about these forecasts
+for growth rates:
+
+    •    For all variables except headline and core CPI inflation and headline and core PCE
+         inflation: The survey’s official growth rates are those for the rate of growth of the
+         mean or median forecast for the level. That is, the survey’s reported growth rate is the
+         rate of growth of the mean or median forecast for the level, not the mean or median
+         forecast for the growth rate.
+
+    •    For headline and core CPI inflation and headline and core PCE inflation: The official
+         growth rate (that is, inflation itself) is the mean or median forecast for the inflation
+         rate itself.
+
+    •    All growth rates are expressed in annualized percentage points. The formulas use
+         discrete compounding, not continuous compounding.
+
+We use the preceding critical points to motivate the following general mathematical
+definitions for growth rates in the survey. Researchers and business analysts should keep
+these definitions in mind for understanding the survey’s results and also for computing the
+realizations associated with the forecasts.
+
+Quarterly, Quarter-over-Quarter Growth Rates. Let X t represent the quarterly average
+level of a variable in the quarter indexed by t .
+
+If the variable is available at a monthly observation frequency, we have the definition given
+     X t (1 3) ( X ( m1 )t + X ( m2 )t + X ( m3 )t ) , where X 1 t , X 2 t , X 3 t are the monthly levels of the
+                                                              (m)     (m)     (m)
+by=
+first, second, and third months of quarter t , respectively. The quarterly, quarter-over-quarter
+growth rate is
+
+
+                                             X  4 
+                                               (Q/Q)
+                                    gX
+                                    =  100  t  − 1 .
+                                              t
+                                            X t −1  
+
+This formula defines a quarterly, quarter-over-quarter growth rate for:
+
+     •   Every variable in the survey for which we report a quarterly growth rate. In
+         particular, that includes real GDP and components, nominal GDP, GDP price index,
+         headline and core CPI inflation, headline and core PCE inflation, industrial
+         production, nonfarm payroll employment, and housing starts. It also includes the
+                                                                                                                          29
+
+             survey’s implied forecasts for real interest rates through the term for expected
+             inflation.
+
+         •   The random variable behind “Probability a Decline in Real GNP/GDP” (whose
+             densities are called RECESS1, RECESS2, …, RECESS5).
+
+         •   The random variable behind the “Anxious Index” (whose density is the same as
+             RECESS2).
+
+   Annual-Average over Annual-Average Growth Rates. Let Yt represent the annual-
+   average level of a variable in the year indexed by t .
+
+If the variable is available at a monthly observation frequency, we have the definition given
+by Yt (1 12 ) (Y1(tm ) + Y2(tm ) + ... + Y12( mt ) ) , where Y1(tm ) , Y2(tm ) ,..., Y12( mt ) are the monthly levels of the
+=
+   12 months of year t , respectively. If the variable is available at a quarterly observation
+              Yt (1 4 ) (Y1(tq ) + Y2(tq ) + Y3(tq ) + Y4(tq ) ) , where Y1 t , Y2 t , Y3 t , Y4 t are the quarterly
+                                                                           (q)    (q)    (q)   (q)
+   frequency,
+           =
+   levels for the four quarters of year t . The annual annual-average over annual-average growth
+   rate is
+
+                                                    (AA/AA)
+                                                                 Y  
+                                                gYt
+                                                =           100  t  − 1 .
+                                                                 Yt −1  
+
+   This formula defines an annual growth rate for:
+
+        •    Every variable in the survey for which we report an annual growth rate, except
+             headline and core CPI inflation and headline and core PCE inflation. That includes
+             real GDP and components, nominal GDP, GDP price index, industrial production,
+             nonfarm payroll employment, and housing starts.
+
+        •    The random variable behind the density projections for annual real GDP growth
+             (PRGDP) and annual GDP price inflation (PRPGDP).
+
+   Fourth-Quarter over Fourth-Quarter Growth Rates. Let Z t represent the fourth-quarter
+   value of a variable in the year indexed by t .
+
+   If the variable is available at a monthly observation frequency, we have the definition given
+       Z t (1 3) ( Z1(4)
+                      t + Z 2 t + Z3 t )
+                                         , where Z1(4)    (4)    (4)
+   by=                                              t , Z 2 t , Z3 t are the monthly levels of the three
+                            (4)    (4)
+
+
+   months of the fourth quarter of year t , respectively. The fourth-quarter over fourth-quarter
+   growth rate is
+                                                                                              30
+
+                                      (Q 4/Q 4)
+                                                     Z  
+                                  gZ
+                                  =  t          100  t  − 1 .
+                                                     Z t −1  
+
+This formula defines an annual growth rate for:
+
+   •    headline and core CPI inflation and headline and core PCE inflation.
+
+   •    the random variables behind the density projections for core CPI inflation (PRCCPI)
+        and core PCE inflation (PRCPCE).
+
+Long-Term Growth Rates. The survey also includes projections for five-year and/or 10-
+year annual-average projections for real GDP growth (RGDP10), productivity growth
+(PROD 10), and CPI and PCE inflation (CPI5YR, PCE5YR, CPI10, PCE10). Some
+important points to note about these long-term projections are:
+
+    •   We do not tell the forecasters the formulas to use for these long-term projections.
+
+    •   For 10-year annual-average growth in real GDP and productivity, we assume the
+        forecasters use the geometric average of the annual-average over annual-average
+        calculation described above. That is, we assume the forecasters chain together 10
+        forecasts for annual-average over annual-average growth.
+
+    •   For five- and 10-year annual-average CPI and PCE inflation, we have a good reason
+        to believe the forecasters use the fourth-quarter over fourth-quarter calculation
+        described above, at least in the surveys we conducted starting with the one for
+        2011:Q1. (The reason is that the 2011:Q1 survey questionnaire is the first one in
+        which we began to provide automatic checks in the survey questionnaire allowing
+        the forecasters to examine the internal consistency across their one-, two-, and three-
+        year ahead annual fourth-quarter over fourth-quarter inflation projections and their
+        five- and 10-year annual-average inflation projections. Because the annual
+        projections use the fourth-quarter over fourth-quarter formula, we assume the check
+        for internal consistency implicitly forces a fourth-quarter over fourth-quarter
+        calculation on the panelists’ projections for long-term inflation.)
+                                                                                         31
+
+
+
+                         Rules vs. Discretion:
+          How Do We Know the Panelists Use the Correct Formulas?
+
+In short, we do not know with certainty that the SPF panelists are following our
+rules for growth rates. They may well be using their own discretion on the
+appropriate form of the growth rate. However, for the reasons listed below, we
+strongly believe most panelists follow our rules.
+
+   •   Our procedures for processing survey returns include running a number of
+       checks for the internal consistency of each panelist’s projections. Among
+       these checks are ones for the appropriate growth rates.
+
+   •   If we suspect a panelist is not following our rules, we will contact the
+       panelist and discuss our concerns.
+
+   •   Prior to a new panelist entering the survey, we send an information packet
+       that includes, among other items, a document (available on the Philadelphia
+       Fed’s web page for the survey) titled “Data Sources and Descriptions.” That
+       document describes the variables in the survey as well as the growth-rate
+       transformations. Each year, we resend “Data Sources and Descriptions” to all
+       forecasters on the panel.
+
+   •   The survey questionnaire itself is quite explicit in describing the appropriate
+       growth rates. (Examples of the questionnaire are available on the
+       Philadelphia Fed’s web page for the survey.)
+                                                                                              32
+
+4. Forecasts of Individual Participants
+An Excel workbook with multiple worksheets contains the individual responses of the
+forecasters: SPFmicrodata.xlsx. Each worksheet in the workbook covers the surveys of a
+different variable from 1968:Q4 to present.
+
+With three exceptions, these worksheets are organized in the same manner described above
+for the files of median and mean responses:
+
+    •   First Exception. The first exception is that we include an additional column giving
+        the forecaster’s confidential identification number (ID). This column appears after
+        the columns giving the year and quarter in which the survey was conducted. The
+        identification numbers are consistent over time, allowing you to trace a given
+        forecaster’s responses from one survey to the next. See the section below for some
+        caveats on using individual identification numbers.
+
+    •   Second Exception. The second exception is that we include another column giving
+        the forecaster’s industry classification (INDUSTRY). This column appears after the
+        columns giving the year, quarter, and individual identification number. Each
+        forecaster in each survey (1990:Q2 to present) is assigned a “1,” “2,” or “3” for the
+        industry classification depending on whether he works in a firm that we characterize
+        as a financial service provider (“1”) or a nonfinancial service provider (“2”). A value
+        of “3” is used when we don’t know the industry. A forecaster’s classification can
+        change when he changes his affiliation. In other words, we track the forecaster’s
+        classification in real time. See the section below for more information on the
+        INDUSTRY column.
+
+    •   Third Exception. The third exception is that we include six additional worksheet tabs
+        in the workbook: PRGDP, PRPGDP, PRUNEMP, PRCCPI, PRCPCE, and RECESS.
+
+               o The worksheet (variable) PRGDP gives the probability that the annual-
+                 average over annual-average percent change in GDP falls in a particular
+                 range. The percent changes are computed from the forecasts for annual-
+                 average levels.
+
+               o The worksheet PRPGDP gives the probability that the annual-average
+                 over annual-average percent change in GDP price index falls in a
+                 particular range. The percent changes are computed from the forecasts for
+                 annual-average levels.
+
+               Please note that these two worksheets (PRGDP and PRPGDP) contain data
+               that are very tricky to work with because: (1) the ranges change over time, (2)
+               the number of annual forecast horizons changes over time, and (3) in early
+               surveys, the output variable was nominal output, not real output. A section
+               below discusses these points in detail.
+                                                                                               33
+
+               o The worksheet PRUNEMP gives the probabilities that the annual average
+                 of the civilian unemployment rate falls in a particular range.
+
+               o The worksheet PRCCPI gives the probability that the fourth-quarter over
+                 fourth-quarter percent change in core CPI falls in a particular range. Please
+                 note that these probability ranges are for growth in the current year (the
+                 year in which the survey was conducted) and the following year, as shown
+                 in Table 9.
+
+               o The worksheet PRCPCE gives the probability that the fourth-quarter over
+                 fourth-quarter percent change in core PCE falls in a particular range.
+                 Please note that these probability ranges are for growth in the current year
+                 (the year in which the survey was conducted) and the following year, as
+                 shown in Table 9.
+
+               o The worksheet RECESS gives the probability of a decline in the level of
+                 real GDP in the current quarter and the following four quarters. These are
+                 declines in the level of real GDP from one quarter to the next, beginning
+                 with a decline in the current quarter (the quarter in which the survey was
+                 conducted) compared with the quarter prior.
+
+Caveats on Using the Individual Identification Numbers.
+
+As noted above, we code the data set of individual responses with an identification number
+for each forecaster. In principle, this identifier allows you to track an individual’s responses
+over time. However, for two reasons, users of these data should exercise some caution in
+interpreting the identifiers:
+
+    •   First, in the surveys conducted by the ASA/NBER, the same identification number
+        could represent different forecasters. In these surveys, we have noticed some
+        occurrences in which an individual participates, suddenly drops out of the panel for a
+        large number of periods, and suddenly re-enters, suggesting that the same identifier
+        might have been assigned to different forecasters. Unfortunately, we cannot
+        investigate the historical record of these individuals because we do not have hard-
+        copy historical records from the early surveys.
+
+    •   Second, in the surveys conducted by the Philadelphia Fed, it can be difficult to assign
+        an identification number to an individual who changes his place of employment but
+        remains in the survey. The question is: Should the identification number follow the
+        individual or should it remain with the original firm? Over the years, we have tried to
+        use the following guideline in deciding: If a forecast seems associated more with the
+        firm than the individual, the identification number stays with the firm, and we assign
+        a new identification number to the individual. If the forecast seems more clearly
+        associated with the panelist, the identification number follows the panelist to his new
+        place of employment.
+                                                                                        34
+
+INDUSTRY Classification.
+
+In the second half of 2007, we searched our computer files and hard-copy records to
+retroactively classify the industry with which each panelist is affiliated, beginning with
+the survey in 1990:Q2 (the first SPF conducted by the Federal Reserve Bank of
+Philadelphia). Loosely speaking, we code the industry as a “1” for a financial service
+provider, “2” for a nonfinancial service provider, and “3” if we are uncertain. We took a
+very conservative approach in assigning 1’s and 2’s: we use “1” or “2” only when we are
+very certain. If we do not know the firm at which the panelist is employed, we code the
+INDUSTRY variables as “3.” Even when we know the firm, we sometimes code
+INDUSTRY as “3” if we have no information about the firm. Below, we list examples of
+the types of firms that we code as “1” or “2.”
+
+We assign a “1” to the following list of financial service providers:
+
+1.   Insurance
+2.   Investment Banking
+3.   Commercial Banking
+4.   Payment Services
+5.   Hedge Funds
+6.   Mutual Funds
+7.   Association of Financial Service Providers
+8.   Asset Management
+
+We assign a “2” to the following list of nonfinancial service providers:
+
+1.   Manufacturers
+2.   Universities
+3.   Forecasting Firms
+4.   Investment Advisors
+5.   Pure Research Firms
+6.   Consulting Firms
+                                                                                              35
+
+5. One-Year-Ahead and 10-Year-Ahead Inflation Forecasts
+The file Inflation.xlsx contains expectations for one-year-ahead annual-average inflation,
+measured either by the GDP price index (INFPGDP1YR) or the CPI (INFCPI1YR), and
+expectations for the annual-average rate of CPI inflation over the next 10 years
+(INFCPI10YR).
+
+The two one-year-ahead series are expectations for average inflation over the four quarters
+following the quarter when we conducted the survey. We compute these series from the
+underlying median forecasts in the following manner:
+
+      •   For INFPGDP1YR, we use the forecasts for the level of the price index in the
+          columns PGDP2 and PGDP6 of the worksheet PGDP in the workbook
+          MedianLevel.xlsx.
+
+      •   For INFCPI1YR, we use the geometric average of the quarter-over-quarter median
+          forecasts for CPI inflation, corresponding to the columns CPI3 to CPI6 of the
+          worksheet CPI in the same workbook.
+
+The formulas are given by:
+
+                                                PGDP6t  
+                              INFPGDP
+                              =      1YR t 100           − 1
+                                                PGDP 2t  
+
+and
+
+                             CPI 3  CPI 4  CPI 5  CPI 6  1 4 
+          INFCPI1YR t =100  1 +    t
+                                        1 +
+                                                 t
+                                                   1 +
+                                                            t
+                                                              1 +
+                                                                       t
+                                                                          − 1 .
+                               100      100      100      100    
+
+The formulas differ — even though they measure a rate of change in the same way —
+because the forecasters provide their projections for the GDP price index in levels, but they
+report their forecasts for the CPI as quarter-over-quarter growth rates.
+                                                                                               36
+
+
+6. Mean Probability Forecasts
+The file Prob.xlsx contains the mean responses for the survey’s six probability variables in
+the following worksheets:
+
+    • PRGDP. The worksheet PRGDP gives the mean responses for the probabilities that
+      the annual-average over annual-average percent change in the level of chain-
+      weighted real GDP falls into a number of alternative ranges. The probabilities sum to
+      100 (up to a rounding error).
+
+       Note a number of technical details. First, the annual-average over annual-average
+       percent change is defined as the percent change in the annual-average level from one
+       year to the next, where the annual-average level is the average of the quarterly levels
+       over the four quarters of a calendar year. Second, the probability estimates are for
+       fixed event forecasts: In each quarterly survey of a given calendar year, the panelists
+       provide their probability estimates for annual-average over annual-average growth in
+       the current year (defined as the year in which we conducted the survey) and the
+       following years. Third, over 1992 to 1995, the survey uses fixed-weighted real GDP.
+       Surveys prior to 1992 use fixed-weighted real GNP.
+
+    • PRPGDP. The worksheet PRPGDP gives the mean responses for the probabilities
+      that the annual-average over annual-average percent change in the level of the GDP
+      chain-weighted price index falls into a number of alternative ranges. The
+      probabilities sum to 100 (up to a rounding error). The technical details are as
+      described above for PRGDP. Over 1992 to 1995, the survey uses the implicit deflator
+      for GDP. Surveys prior to 1992 use the implicit deflator for GNP.
+
+   •   PRCCPI. The worksheet PRCCPI gives the mean responses for the probabilities that
+       the fourth-quarter over fourth-quarter percent change in the level of the core CPI
+       price index falls into a number of alternative ranges. The probabilities sum to 100 (up
+       to a rounding error).
+
+       Note a number of technical details. First, the fourth-quarter over fourth-quarter
+       percent change is defined as the percent change in the fourth-quarter level from one
+       year to the next, where the fourth-quarter level is the average of the monthly levels
+       over the three months of the fourth quarter. Second, the probability estimates are for
+       fixed event forecasts: In each quarterly survey of a given calendar year, the panelists
+       provide their probability estimates for fourth-quarter over fourth-quarter growth in the
+       current year (defined as the year in which we conducted the survey) and the following
+       years.
+
+       Note also an important difference in the way that the probability ranges are defined
+       for PRGDP and PRPGDP on the one hand and for PRCCPI (and PRCPCE) on the
+       other. For PRGDP and PRPGDP, the probability ranges are for growth in the annual-
+       average level of GDP and the GDP price index. For PRCCPI (and PRCPCE), the
+       ranges are for fourth-quarter over fourth-quarter growth.
+                                                                                                37
+
+
+
+   •    PRCPCE. The worksheet PRCPCE gives the mean responses for the probabilities
+        that the fourth-quarter over fourth-quarter percent change in the level of the chain-
+        weighted core PCE price index falls into a number of alternative ranges. The
+        technical details are as described above for PRCCPI.
+
+        Note an important difference in the way that the probability ranges are defined for
+        PRGDP and PRPGDP on the one hand and for PRCCPI and PRCPCE on the other.
+        For PRGDP and PRPGDP, the probability ranges are for growth in the annual-
+        average level of GDP and the GDP price index. For PRCCPI and PRCPCE, the
+        ranges are for fourth-quarter over fourth-quarter growth.
+
+   •    PRUNEMP. The worksheet PRUNEMP gives the mean responses for the
+        probabilities that the annual average of the civilian unemployment rate falls into a
+        number of alternative ranges.
+
+        Note a number of technical details. First, the annual-average unemployment rate is
+        the arithmetic average of the level of the unemployment rate over the 12 months of
+        the year. Second, the probability estimates are for fixed event forecasts: In each
+        quarterly survey of a given calendar year, the panelists provide their probability
+        estimates for the annual-average unemployment rate in the current year (defined as
+        the year in which we conducted the survey) and the following years.
+
+   •    RECESS. The worksheet RECESS gives the mean responses for the probability of a
+        decline in the level of chain-weighted real GDP in the current quarter and the
+        following four quarters. These are declines in the level of chain-weighted real GDP
+        from one quarter to the next, beginning with a decline in the current quarter (the
+        quarter in which the survey was conducted) compared with the quarter prior. Over
+        1992 to 1995, the survey uses fixed-weighted real GDP. Surveys prior to 1992 use
+        fixed-weighted real GNP.
+
+Probabilities: Additional Comments on PRGDP and PRPGDP.
+
+Note that, conceptually, the percent changes for these two variables are those for the annual-
+average levels. These two worksheets contain data that are very tricky to work with because:
+
+    •   the ranges change over time.
+    •   the number of annual forecast horizons changes over time.
+    •   in early surveys, the output variable was nominal output, not real output.
+
+Some details follow. The variable PRGDP is the mean probability that the percent change in
+GDP falls in a particular range. From 1968:Q4 to 1981:Q2, this was the probability of
+nominal GNP falling in a particular range, while from 1981:Q3 to 1991:Q4, this variable
+refers to real GNP. From 1992:Q1 on, this variable refers to real GDP. Thus, over the entire
+history of the survey, this variable has switched from nominal to real and GNP to GDP. The
+variable PRPGDP is the mean probability that the percent change in the price index for GDP
+                                                                                               38
+
+(for GNP prior to 1992:Q1) falls in a particular range. The ranges for both these variables
+have changed over time.
+
+Major changes in these probability distribution questions occurred in the 1981:Q3 and
+1992:Q1 surveys. The old version (prior to 1981:Q3) asked for the probability attached to
+each of 15 possible percent changes in nominal GNP and the implicit deflator, usually from
+the previous year to the current year. The new version (1981:Q3 on) asks for percent changes
+in real GNP and the implicit deflator, usually for the current and following year. However,
+there are only six categories for each of the two years, instead of the 15 categories in the old
+version. Then, in 1992:Q1, the number of categories was changed to 10 for each of the two
+years, and output was changed from GNP to GDP. In 2009:Q2, the number of categories was
+changed to 11 and two additional years of annual forecast were added. In 2020:Q2 and
+2024:Q2, changes were made to the probability bins for PRGDP, but the number of
+categories remained at 11.
+
+As noted above, the probability variables prior to 1981:Q3 usually referred to percent
+changes for the current year. From 1981:Q3 on, the two probability variables usually refer to
+the current year and the following year. However, there are some exceptions. In certain
+surveys prior to 1981:Q3, most often in the fourth quarter, the probability variables referred
+to the percent change in nominal GNP and the deflator in the following year, rather than the
+current year. The surveys for which this is true are 1968:Q4, 1969:Q4, 1970:Q4, 1971:Q4,
+1972:Q3–Q4, 1973:Q4, 1975:Q4, 1976:Q4, 1977:Q4, 1978:Q4, and 1979:Q2–Q4. (For
+example, the probability ranges in the 1968:Q4 survey should pertain to growth in 1968, but
+in fact the survey asked about probabilities for growth in 1969.)
+
+In addition, we are uncertain about the years referred to in the surveys of the first quarters of
+1985 and 1986 and have not found documentation that can confirm our suspicion that the
+years do not follow the standard of the current year and the following year. For surveys since
+1990:Q2 (when the Philadelphia Fed took over the survey), the probability ranges always
+pertain to the current year and the following year.
+
+Tables 6 and 7 show how the ranges have changed over the years.
+
+Probabilities: Additional Comments on PRCCPI and PRCPCE.
+
+These two variables were added to the survey in 2007:Q1. Note that the percent changes for
+these two variables are measured in fourth-quarter over fourth-quarter growth rates of the
+price indices. Table 8 shows the probability ranges for PRCCPI and PRCPCE.
+
+Probabilities: Additional Comments on PRUNEMP.
+
+This variable was added to the survey in 2009:Q2. It is the probability that unemployment
+will fall into each of 10 ranges. In 2014:Q1, 2020:Q2, and 2024:Q2, changes were made to
+the probability bins for PRUNEMP. Table 9 shows the probability ranges for PRUNEMP.
+                                                                                            39
+
+Probabilities: Additional Comments on RECESS.
+
+The variable RECESS is the probability of a decline in real GDP (real GNP prior to
+1992:Q1) in the current quarter and the following four quarters. We label these RECESS1 to
+RECESS5. Please note that this is the probability of a decline in the level of real GDP from
+one quarter to the next. RECESS1, for example, refers to a decline in the current quarter
+from the previous quarter, and RECESS2 refers to a quarter-over-quarter decline in the next
+quarter. This is sometimes hard to explain to users of the data, but we can provide precise
+content with the following probability statements, using the nomenclature established above
+for the quarterly forecasts for the level of real GDP:
+
+                       Recess1 t Prob ( RGDP 2 t < RGDP1 t )
+                       =
+                       Recess2 t Prob ( RGDP3 t < RGDP 2 t )
+                       =
+                                                                     ,
+                            
+                       Recess5 t Prob ( RGDP6 t < RGDP5 t )
+                       =
+
+
+where Prob ( x ) is the probability of event x, and RGDP2 to RGDP6 are the quarterly
+forecasts for the level of real GDP in the current quarter (RGDP2) and the next four quarters.
+RGDP1 refers, of course, to the historical value for the quarter before the quarter in which
+the survey is conducted.
+                                                                                                    40
+
+                Table 6. Probability Ranges for PRPGDP (GDP Prices)
+
+                                                 Survey Dates
+Variable    1992:Q1         1985:Q2         1981:Q3         1974:Q4        1973:Q2        1968:Q4
+Number         to              to              to              to             to             to
+   ↓        2013:Q4         1991:Q4         1985:Q1         1981:Q2        1974:Q3        1973:Q1
+                                         Ranges
+             (Annual-Average over Annual-Average Percent Changes, Percentage
+                                         Points)
+   1            8+             10+             12+             16+            12+            10+
+   2         7 to 7.9        8 to 9.9       10 to 11.9      15 to 15.9     11 to 11.9      9 to 9.9
+   3         6 to 6.9        6 to 7.9        8 to 9.9       14 to 14.9     10 to 10.9      8 to 8.9
+   4         5 to 5.9        4 to 5.9        6 to 7.9       13 to 13.9      9 to 9.9       7 to 7.9
+   5         4 to 4.9        2 to 3.9        4 to 5.9       12 to 12.9      8 to 8.9       6 to 6.9
+   6         3 to 3.9          <2              <4           11 to 11.9      7 to 7.9       5 to 5.9
+   7         2 to 2.9                                       10 to 10.9      6 to 6.9       4 to 4.9
+   8         1 to 1.9                                        9 to 9.9       5 to 5.9       3 to 3.9
+   9         0 to 0.9                                        8 to 8.9       4 to 4.9       2 to 2.9
+  10           <0                                            7 to 7.9       3 to 3.9       1 to 1.9
+  11                                                         6 to 6.9       2 to 2.9       0 to 0.9
+  12                                                         5 to 5.9       1 to 1.9      -1 to -0.1
+  13                                                         4 to 4.9       0 to 0.9      -2 to -1.1
+  14         Same as         Same as         Same as         3 to 3.9      -1 to -0.1     -3 to -2.1
+  15           1 – 10          1–6             1–6              <3            < -1           < -3
+  16       for next year   for next year   for next year   Not included   Not included   Not included
+  17                                                       Not included   Not included   Not included
+  18                                                       Not included   Not included   Not included
+  19                                                       Not included   Not included   Not included
+  20                                                       Not included   Not included   Not included
+                                                                              41
+
+           Table 6 (cont.). Probability Ranges for PRPGDP (GDP Prices)
+
+                                      Survey Dates
+Variable                                 2014:Q1
+Number                                      to
+   ↓                                     Present
+                                        Ranges
+            (Annual-Average over Annual-Average Percent Changes, Percentage
+                                        Points)
+  1                                     4.0 or more
+  2                                      3.5 to 3.9
+  3                                      3.0 to 3.4
+  4                                      2.5 to 2.9
+  5                                      2.0 to 2.4
+  6                                      1.5 to 1.9
+  7                                      1.0 to 1.4
+  8                                      0.5 to 0.9
+  9                                      0.0 to 0.4
+  10                                    Will decline
+  11
+  12
+  13
+  14                                      Same as
+  15                                        1 – 10
+  16                                    for next year
+  17
+  18
+  19
+  20
+                                                                              42
+
+                   Table 7. Probability Ranges for PRGDP (Output)
+
+                                           Survey Dates
+Variable    1992:Q1         1981:Q3                      1968:Q4
+Number         to              to                           to
+   ↓        2009:Q1         1991:Q4                      1981:Q2
+           (Real GDP)      (Real GNP)                 (Nominal GNP)
+                                        Ranges
+            (Annual-Average over Annual-Average Percent Changes, Percentage
+                                        Points)
+  1             6+              6+
+  2          5 to 5.9        4 to 5.9
+  3          4 to 4.9        2 to 3.9
+  4          3 to 3.9        0 to 1.9
+  5          2 to 2.9       -2 to -0.1
+  6          1 to 1.9          < -2
+  7          0 to 0.9
+  8         -1 to -0.1
+  9         -2 to -1.1
+  10           < -2                                   Same as PRPGDP
+  11
+  12
+  13
+  14         Same as         Same as
+  15           1 – 10          1–6
+  16       for next year   for next year
+  17
+  18
+  19
+  20
+                                                                                                    43
+
+                   Table 7 (cont.). Probability Ranges for PRGDP (Output)
+
+                                               Survey Dates
+Variable           2024:Q2                        2020:Q2                        2009:Q2
+Number                to                             to                             to
+   ↓                Present                       2024:Q1                        2020:Q1
+                  (Real GDP)                     (Real GDP)                     (Real GDP)
+                                          Ranges
+           (Annual-Average over Annual-Average Percent Changes, Percentage Points)
+
+    1                 9.0+                            16+                            6+
+    2               7.0 to 8.9                   10.0 to 15.9                     5.0 to 5.9
+    3               5.5 to 6.9                     7.0 to 9.9                     4.0 to 4.9
+    4               4.0 to 5.4                     4.0 to 6.9                     3.0 to 3.9
+    5               2.5 to 3.9                     2.5 to 3.9                     2.0 to 2.9
+    6               1.5 to 2.4                     1.5 to 2.4                     1.0 to 1.9
+    7               0.0 to 1.4                     0.0 to 1.4                     0.0 to 0.9
+    8              -1.5 to -0.1                   -3.0 to -0.1                   -1.0 to -0.1
+    9              -3.0 to -1.6                   -6.0 to -3.1                   -2.0 to -1.1
+   10              -5.1 to -3.1                  -12.0 to -6.1                   -3.0 to -2.1
+   11                 <-5.1                         <-12.0                          <-3.0
+12 to 22   Same as 1 – 11 for next year   Same as 1 – 11 for next year   Same as 1 – 11 for next year
+23 to 33    Same as 1 – 11 for year 3      Same as 1 – 11 for year 3      Same as 1 – 11 for year 3
+34 to 44    Same as 1 – 11 for year 4      Same as 1 – 11 for year 4      Same as 1 – 11 for year 4
+                                                                          44
+
+           Table 8. Probability Ranges for PRCCPI and PRCPCE
+                   (Core CPI Prices and Core PCE Prices)
+
+                                           Survey Dates
+Variable Number                              2007:Q1
+      ↓                                         to
+                                             Present
+                                          Ranges
+                   (Fourth-Quarter over Fourth-Quarter Percent Changes)
+                            PRCCPI                         PRCPCE
+       1                   4.0 or more                    4.0 or more
+       2                    3.5 to 3.9                     3.5 to 3.9
+       3                    3.0 to 3.4                     3.0 to 3.4
+       4                    2.5 to 2.9                     2.5 to 2.9
+       5                    2.0 to 2.4                     2.0 to 2.4
+       6                    1.5 to 1.9                     1.5 to 1.9
+       7                    1.0 to 1.4                     1.0 to 1.4
+       8                    0.5 to 0.9                     0.5 to 0.9
+       9                    0.0 to 0.4                     0.0 to 0.4
+      10                   Will decline                   Will decline
+      11
+      12
+      13
+      14                     Same as                        Same as
+      15                       1 – 10                         1 – 10
+      16                   for next year                  for next year
+      17
+      18
+      19
+      20
+                                                                                      45
+
+             Table 9. Probability Ranges for PRUNEMP (Unemployment)
+
+                                           Survey Dates
+Variable     2024:Q2             2020:Q2             2014:Q1           2009:Q2
+Number          to                  to                  to                to
+   ↓         Present             2024:Q1             2020:Q1           2013:Q4
+                            Ranges (Annual-Average Level, Percent)
+    1           >= 9.9            >= 15.0               >= 9.0           >= 11.0
+    2         8.3 to 9.8        12.0 to 14.9          8.0 to 8.9       10.0 to 10.9
+    3         7.2 to 8.2        10.0 to 11.9          7.5 to 7.9        9.5 to 9.9
+    4         6.1 to 7.1         8.0 to 9.9           7.0 to 7.4        9.0 to 9.4
+    5         5.5 to 6.0         7.0 to 7.9           6.5 to 6.9        8.5 to 8.9
+    6         4.9 to 5.4         6.0 to 6.9           6.0 to 6.4        8.0 to 8.4
+    7         4.3 to 4.8         5.0 to 5.9           5.5 to 5.9        7.5 to 7.9
+    8         3.7 to 4.2         4.0 to 4.9           5.0 to 5.4        7.0 to 7.4
+    9         3.1 to 3.6         3.0 to 3.9           4.0 to 4.9        6.0 to 6.9
+   10            <3.1              < 3.0                 < 4.0            < 6.0
+11 to 20   Same as 1 – 10     Same as 1 – 10       Same as 1 – 10    Same as 1 – 10
+            for next year      for next year        for next year     for next year
+21 to 30   Same as 1 – 10     Same as 1 – 10       Same as 1 – 10    Same as 1 – 10
+              for year 3         for year 3           for year 3        for year 3
+31 to 40   Same as 1 – 10     Same as 1 – 10       Same as 1 – 10    Same as 1 – 10
+              for year 4         for year 4           for year 4        for year 4
+                                                                                            46
+
+
+
+7. Presentation of Data by Individual Variable
+In September 2008, we published an alternative way of presenting the SPF data on our
+website. The new arrangement presents the SPF data by individual variable. On the main
+index page (https://www.philadelphiafed.org/surveys-and-data/data-files), we group the data
+files into 10 subgroups:
+
+    •   U.S. Business Indicators
+    •   Real GDP and Its Components
+    •   CPI and PCE Inflation
+    •   Long-Term Inflation Forecasts
+    •   Additional Long-Term Forecasts
+    •   Equilibrium Unemployment
+    •   Probability on Ranges
+    •   Probability of Decline in Real GNP/GDP
+    •   Anxious Index
+    •   Implied Forecasts
+
+This arrangement lets researchers find a particular variable quickly. Each SPF variable has its
+own web page to let users select the individual, mean, median, mean growth, or median
+growth responses for that particular variable. For example, by choosing the link Nominal
+Gross National Product/Gross Domestic Product (NGDP) from the main index page, a user
+can browse the page for NGDP (https://www.philadelphiafed.org/surveys-and-data/ngdp)
+and select the desired data. For some variables, we also provide links to the real-time data
+and the forecast error statistics.
+                                                                                        47
+
+8. Natural Rate of Unemployment
+
+In third-quarter surveys, we ask the forecasters to provide their estimates of the natural
+rate of unemployment (UBAR). An important part of the analysis is the breakdown of the
+responses into two groups: (1) those who use the natural rate concept in preparing their
+forecasts, and (2) those who do not. The variable “DUMMY_UBAR” is coded as “1” for
+those who use the concept and “0” for those who do not. The variable “UBAR” is used to
+record the natural rate forecasts. Our newsletter reports the median response for those
+who use the concept. Note also that our files of mean and median responses, measures of
+dispersion, and individual responses use only the responses of those panelists who tell us
+that they use the natural rate of unemployment in preparing their projections.
+
+In October 2008, we added a new UBAR worksheet tab to each of the following Excel
+files:
+
+1. Micro1.xlsx, Micro2.xlsx, Micro3.xlsx, Micro4.xlsx, and Micro5.xlsx for individual
+   responses.
+
+   In October 2019, we combined the five individual responses files (Micro1.xlsx to
+   Micro5.xlsx) into a single file, SPFmicrodata.xlsx.
+
+2. MedianLevel.xlsx and MeanLevel.xlsx for mean and median responses.
+
+We have also produced three additional Excel files for the UBAR variable:
+
+1. Individual_UBAR.xlsx
+2. Mean_UBAR_Level.xlsx
+3. Median_UBAR_Level.xlsx
+                                                                                                             48
+
+            9. Cross-Sectional Forecast Dispersion
+
+            We organize the files for cross-sectional measures of forecast dispersion in two ways: by
+            dispersion measure and by individual variable.
+
+            Dispersion: Files Organized by Measure of Dispersion.
+
+            The files Dispersion_1.xlsx, Dispersion_2.xlsx, and Dispersion_3.xlsx contain the cross-
+            sectional forecast dispersion for selected survey variables. Each file corresponds to a
+            different measure of dispersion. The three files are organized in the same manner. Each is an
+            Excel workbook containing multiple worksheets, with each worksheet containing the forecast
+            dispersion for a particular variable. You move among the worksheets by choosing the
+            appropriate tab at the bottom. These tabs refer to the variable being forecast. The first column
+            in each worksheet gives the year and quarter in which the survey was conducted. The
+            remaining columns give the 25th percentile, the 75th percentile, and the forecast dispersion
+            for current quarter (T) and the following four quarters (T+1, …, T+4).
+
+            Please note that not all dispersion measures are available for each survey variable. In
+            particular, we avoid measures that are influenced by arbitrary changes in the scale of the
+            data, such as those that arise when the base year changes in a benchmark revision.
+
+            For most survey variables, we use “level” to refer to the level of the variable — for example,
+            the level of real GDP in chain-weighted dollars. However, for CPI and PCE inflation, we
+            define the level as a quarter-over-quarter (Q/Q) growth rate, in annualized percentage points,
+            because the forecasters provide their projections for these variables in growth rates.
+
+            We construct Dispersion_1.xlsx by first computing the 75th percentile and the 25th percentile
+            of the forecasts for the level of the variable (X). We then compute dispersion measure D1 as
+            the difference between the 75th percentile and the 25th percentile, using the formula
+
+=X _ D1t + k | t −1 Xˆ _ P75 _ D1t + k | t −1 − X
+                     =                          ˆ _ P 25 _ D1
+                                                             t + k | t −1 , k 0,1, , 4 ,
+
+            where X _ D1t + k | t −1 represents the interquartile forecast dispersion for the level of the
+            variable X in period t + k made on the basis of observations known through period t − 1 , and
+            Xˆ _P 75 _ D1t + k | t −1 and Xˆ _P 25 _ D1t + k | t −1 represent the corresponding 75th and 25th
+            percentiles for the level forecasts. Our notation makes use of the fact that a survey is
+            conducted in quarter t , and the forecasters make their projections on the basis of historical
+            observations dated t − 1 and earlier.
+
+            We construct Dispersion_2.xlsx by first computing the 75th percentile and the 25th percentile
+            of the projections for Q/Q growth (in annualized percentage points) of the variable (X). We
+            then compute dispersion measure D2 as the difference between the 75th percentile and the
+            25th percentile of the Q/Q growth forecasts, using the formula
+                                                                                                                    49
+
+=X _ D 2t + k | t −1 Xˆ _ P75 _ D 2t + k | t −1 − X
+                      =                           ˆ _ P 25 _ D 2
+                                                                 t + k | t −1 , k 0,1, , 4 ,
+
+             where X _ D 2t + k | t −1 represents the interquartile forecast dispersion for the Q/Q growth of the
+             variable X in period t + k made on the basis of observations known through period t − 1 , and
+             Xˆ _ P75 _ D 2t + k | t −1 and Xˆ _ P 25 _ D 2t + k | t −1 represent the corresponding 75th and 25th
+             percentiles for the Q/Q growth forecasts.
+
+             We construct Dispersion_3.xlsx by first computing the 75th percentile and the 25th percentile
+             for the level of the variable (X). We then compute dispersion measure D3 as the percent
+             difference between the 75th percentile and the 25th percentile of the projections in levels,
+             using the formula
+
+=X _ D3t + k | t −1 Xˆ _ P75 _ D3t + k | t −1 − X
+                     =                          ˆ _ P 25 _ D3
+                                                             t + k | t −1 , k 0,1, , 4 ,
+
+             where X _ D3t + k | t −1 represents the interquartile forecast dispersion for the percent difference
+             between the 75th percentile and the 25th percentile of the projections in level of the variable
+             X in period t + k made on the basis of observations known through period t − 1 , and
+             Xˆ _ P75 _ D3t + k | t −1 and Xˆ _ P 25 _ D3t + k | t −1 represent the corresponding natural logarithms of
+             the 75th and 25th percentiles for the level multiplied by 100.
+
+             Dispersion: Files Organized by Individual Variable.
+
+             We also construct an alternative way of presenting the forecast dispersion data. In this
+             arrangement, each SPF variable has its own file (Excel workbook) to let users select different
+             measures of cross-sectional forecast dispersion (D1, D2, and D3) for that particular variable.
+             Each Excel workbook contains up to three worksheets, with each worksheet containing a
+             different dispersion measure for a particular variable. You move among the worksheets by
+             choosing the appropriate tab at the bottom. These tabs refer to the D1, D2, and D3 measures
+             of dispersion (described above). The first column in each worksheet gives the year and
+             quarter in which the survey was conducted. The remaining columns give the 25th percentile,
+             the 75th percentile, and the forecast dispersion for the current quarter (T) and the following
+             four quarters (T+1, …, T+4).
+
+             Please note that not all dispersion measures are available for each survey variable. In
+             particular, we avoid measures that are influenced by arbitrary changes in the scale of the
+             data, such as those that arise when the base year changes in a benchmark revision.
+
+             For most survey variables, we use the “level” to refer to the level of the variable — for
+             example, the level of real GDP in chain-weighted dollars. However, for CPI and PCE
+             inflation, we define the level as a quarter-over-quarter (Q/Q) growth rate, in annualized
+             percentage points, because the forecasters provide their projections for these variables in
+             growth rates.
+                                                                                                50
+
+
+
+
+   Caveat on the Use of 25th and 75th Percentiles for Quarter-over-Quarter Growth
+
+Please note that the method for constructing the 25th and 75th percentiles of quarter-over-quarter
+growth rates differs from the method we use to construct the survey’s official projections for
+growth.
+
+To construct the 25th and the 75th percentiles for growth, we first compute the growth rates for
+each panelist from his forecast for the level of a variable. We then compute the percentiles.
+
+To construct the survey’s official measures for mean and median growth, we first compute the
+mean and median forecast for the level of the variable. We then compute the rate of growth of the
+mean or median level. In other words, the survey’s official measures for growth are the rate of
+growth of the mean or median level, not the mean or median growth rate.
+
+This caveat on 25th and 75th percentiles applies to the following SPF variables, for which
+panelists submit their projections for levels. For these variables, you should not plot the survey’s
+official measures for growth with the 25th and 75th percentiles. Such a plot could be misleading.
+
+   •   Nominal Gross National Product/Gross Domestic Product (NGDP)
+   •   Price Index for Gross National Product/Gross Domestic Product (PGDP)
+   •   Corporate Profits After Tax (CPROF)
+   •   Nonfarm Payroll Employment (EMP)
+   •   Industrial Production Index (INDPROD)
+   •   Housing Starts (HOUSING)
+   •   Real Gross National Product/Gross Domestic Product (RGDP)
+   •   Real Personal Consumption Expenditures (RCONSUM)
+   •   Real Nonresidential Fixed Investment (RNRESIN)
+   •   Real Residential Fixed Investment (RRESINV)
+   •   Real Federal Government Consumption Expenditures & Gross Investment (RFEDGOV)
+   •   Real State and Local Government Consumption Expenditures & Gross Investment
+       (RSLGOV)
+
+This caveat does not apply to the following SPF variables because the forecasters provide their
+projections for these variables in growth-rate form only. Thus, the survey’s official measures for
+growth may be compared with the 25th and 75th percentiles.
+
+   •   Headline and core CPI inflation (CPI, CORECPI)
+   •   Headline and core PCE inflation (PCE, COREPCE)
+   •   10-year annual-average projections for growth, including 10-year annual-average
+       inflation projections
+   •   Five-year annual-average inflation projections
+   •   Five-year forward five-year annual-average inflation projections
+   •   Three-year forward two-year annual-average inflation projections
+   •   Three-year forward seven-year annual-average inflation projections
+                                                                                                               51
+
+10. Implied Forecasts
+Overview. In August 2012, we released the projections for 21 new variables. These new
+variables do not appear directly in the survey. Rather, we compute the projections as linear
+combinations of the forecasts for variables already in the survey. For this reason, we refer to
+the new projections as “implied forecasts.” We compute the implied forecasts for:
+    •     yield spreads,
+    •     forward inflation rates, and
+    •     real interest rates.
+For the new variables listed below, we compute each panelist’s implied forecast at each
+survey date and forecast horizon. Then, for each survey, we compute the cross-sectional
+mean forecasts, the cross-sectional median forecasts, and measures of dispersion. (A previous
+section provides more information on measures of dispersion.)
+Table 10 below describes the variables for which we compute implied forecasts. 7
+
+                     Table 10. The Implied Forecasts Cover These Variables
+
+Yield Spreads (Annualized Percentage Points)
+     1.   SPR_TBOND_TBILL              Nominal Rate on 10-Year Treasury Bonds Minus Nominal Rate on Three-
+                                       Month Treasury Bills
+     2.   SPR_BAA_AAA                  Nominal Rate on Moody’s Baa Corporate Bonds Minus Nominal Rate on
+                                       Moody’s Aaa Corporate Bonds
+     3.   SPR_BAA_TBOND                Nominal Rate on Moody’s Baa Corporate Bonds Minus Nominal Rate on 10-
+                                       Year Treasury Bonds
+     4.   SPR_AAA_TBOND                Nominal Rate on Moody’s Aaa Corporate Bonds Minus Nominal Rate on 10-
+                                       Year Treasury Bonds
+Forward Inflation Rates (Annualized Percentage Points)
+     5. CPI05YF05                      Five-Year Forward Five-Year Annual-Average Headline CPI Inflation Rate
+     6. PCE05YF05                      Five-Year Forward Five-Year Annual-Average Headline PCE Inflation Rate
+     7. CPI02YF03                      Three-Year Forward Two-Year Annual-Average Headline CPI Inflation Rate
+     8. PCE02YF03                      Three-Year Forward Two-Year Annual-Average Headline PCE Inflation Rate
+     9. CPI07YF03                      Three-Year Forward Seven-Year Annual-Average Headline CPI Inflation Rate
+     10. PCE07YF03                     Three-Year Forward Seven-Year Annual-Average Headline PCE Inflation Rate
+Real Interest Rates: Nominal Rate on Three-Month Treasury Bills Minus GDP Price
+Inflation (Annualized Percentage Points)
+     11. RR1_TBILL_PGDP                Three-Month Treasury Bill Minus Same-Quarter GDP Price Inflation
+     12. RR2_TBILL_PGDP                Three-Month Treasury Bill Minus Next-Quarter GDP Price Inflation
+     13. RR3_TBILL_PGDP                Three-Month Treasury Bill Minus Average of Same-Quarter GDP Price
+                                       Inflation and Next-Quarter GDP Price Inflation
+
+7
+  The discussion of this section covers the survey’s forecasts at quarterly horizons. The quarterly horizons cover
+the current quarter (that is, the quarter when we conduct the survey) and the four quarters following the current
+quarter. The survey also produces forecasts at annual horizons. (See “Median and Mean Forecasts for Levels”
+for more information on the annual forecast horizons.) The implied forecasts for yield spreads are available at
+these annual horizons.
+                                                                                                        52
+
+               Table 10 (cont.). The Implied Forecasts Cover These Variables
+
+Real Interest Rates: Nominal Rate on Three-Month Treasury Bills Minus Headline CPI
+Inflation (Annualized Percentage Points)
+    14. RR1_TBILL_CPI                Three-Month Treasury Bill Minus Same-Quarter CPI Inflation
+    15. RR2_TBILL_CPI                Three-Month Treasury Bill Minus Next-Quarter CPI Inflation
+    16. RR3_TBILL_CPI                Three-Month Treasury Bill Minus Average of Same-Quarter CPI Inflation
+                                     and Next-Quarter CPI Inflation
+Real Interest Rates: Nominal Rate on Three-Month Treasury Bills Minus Core CPI
+Inflation (Annualized Percentage Points)
+    17. RR1_TBILL_CCPI               Three-Month Treasury Bill Minus Same-Quarter Core CPI Inflation
+    18. RR2_TBILL_CCPI               Three-Month Treasury Bill Minus Next-Quarter Core CPI Inflation
+    19. RR3_TBILL_CCPI               Three-Month Treasury Bill Minus Average of Same-Quarter Core CPI
+                                     Inflation and Next-Quarter Core CPI Inflation
+Real Interest Rates: Nominal Rate on Three-Month Treasury Bills Minus Headline PCE
+Inflation (Annualized Percentage Points)
+    20. RR1_TBILL_PCE                Three-Month Treasury Bill Minus Same-Quarter PCE Inflation
+    21. RR2_TBILL_PCE                Three-Month Treasury Bill Minus Next-Quarter PCE Inflation
+    22. RR3_TBILL_PCE                Three-Month Treasury Bill Minus Average of Same-Quarter PCE Inflation
+                                     and Next-Quarter PCE Inflation
+Real Interest Rates: Nominal Rate on Three-Month Treasury Bills Minus Core PCE
+Inflation (Annualized Percentage Points)
+    23. RR1_TBILL_CPCE               Three-Month Treasury Bill Minus Same-Quarter Core PCE Inflation
+    24. RR2_TBILL_CPCE               Three-Month Treasury Bill Minus Next-Quarter Core PCE Inflation
+    25. RR3_TBILL_CPCE               Three-Month Treasury Bill Minus Same-Quarter Core PCE Inflation and
+                                     Next-Quarter Core PCE Inflation
+
+Implied Forecasts: Computations. We begin by defining the existing survey variables that
+we use to construct the implied forecasts. These variables enter the survey directly. Table 11
+below provides the definitions.
+
+Now, let t index a quarterly survey date.
+
+Also, let xt +τ | t −1 , τ = −1, 0,1,..., 4 denote a panelist’s forecast for the quarterly value that
+variable x will take in period t + τ , as reported in the survey of period t , with quarterly
+historical values known through period t − 1. (For simplicity, we suppress the use of
+subscripts to distinguish one panelist’s projection from another’s.)
+
+For example, xt | t −1 denotes the current-quarter forecast (or nowcast) for quarter t in the
+survey of quarter t , and xt +1| t −1 denotes the corresponding forecast for the quarter after the
+nowcast quarter. Note that xt −1 | t −1 represents the last quarter of history in the forecasters’
+information set when they form their projections for the survey of period t . (As noted above,
+the forecasters are permitted to forecast a revision to the last quarterly historical value, but
+most do not.)
+                                                                                    53
+
+     Table 11. Component Variables Used in Computing the Implied Forecasts
+                 (Various Quarterly Forecast Horizons Indicated)
+
+     Long Name               Survey Name              Mathematical Notation
+                           (Forecast Horizon      (Forecast Horizon:τ = −1, 0,..., 4)
+                          Indicated as 1, …,6)
+Nominal Rate on
+Three-Month Treasury      TBILL1, …, TBILL6                  TBILLt +τ | t −1
+Bills (annualized
+percentage points)
+Nominal Rate on 10-
+Year Treasury Bonds      TBOND1, …, TBOND6                  TBONDt +τ | t −1
+(annualized percentage
+points)
+Nominal Rate on
+Moody’s Aaa Bonds         BOND1, …, BOND6                    BONDt +τ | t −1
+(annualized percentage
+points)
+Nominal Rate on
+Moody’s Baa Bonds          BAABOND1, …,                    BAABONDt +τ | t −1
+(annualized percentage      BAABOND6
+points)
+GNP/GDP Price Level       PGDP1, …, PGDP6                    PGDPt +τ | t −1
+Q/Q Rate of Change in
+the Quarterly-Average       CPI1, …, CPI6                      CPI t +τ | t −1
+Headline CPI Level
+(annualized percentage
+points)
+Q/Q Rate of Change in
+the Quarterly-Average    CoreCPI, …, CoreCPI6              CORECPI t +τ | t −1
+Core CPI Level
+(annualized percentage
+points)
+                                                                                      54
+
+  Table 11 (cont.). Component Variables Used in Computing the Implied Forecasts
+                   (Various Quarterly Forecast Horizons Indicated)
+
+      Long Name               Survey Name               Mathematical Notation
+                            (Forecast Horizon       (Forecast Horizon:τ = −1, 0,..., 4)
+                           Indicated as 1 , …, 6)
+Q/Q Rate of Change in
+the Quarterly Average         PCE1, …, PCE6                     PCEt +τ | t −1
+Headline PCE Price
+Index Level (annualized
+percentage points)
+Q/Q Rate of Change in
+the Quarterly Average     CorePCE1, …, CorePCE6             COREPCEt +τ | t −1
+Core PCE Price Index
+Level (annualized
+percentage points)
+                       Five- and 10-Year Inflation Projections
+                           (Annualized Percentage Points)
+                    Long Name                                  Survey Name
+Five-Year Annual-Average Headline CPI Inflation
+(Horizon: Year of Survey and Following Four Years)               CPI5YR
+Five-Year Annual-Average Headline PCE Inflation
+(Horizon: Year of Survey and Following Four Years)               PCE5YR
+10-Year Annual-Average Headline CPI Inflation
+(Horizon: Year of Survey and Following Nine Years)                CPI10
+10-Year Annual-Average Headline PCE Inflation
+(Horizon: Year of Survey and Following Nine Years)                PCE10
+                                                                                                      55
+
+Computations for Yield Spreads. We compute each panelist’s implied forecasts using the
+formulas shown below. Then, for each survey and across all panelists, we compute the mean
+projections, the median projections, and measures of cross-section dispersion.
+
+         SPR _ TBOND _ TBILLt +τ | t −1 TBOND
+                                       =     t +τ | t −1 − TBILLt +τ | t −1 ,      τ −1, 0,..., 4
+                                                                                    =
+
+
+               SPR _ BAA _ AAAt +τ | t −1 BAABOND
+                                         =−      t +τ | t −1 BONDt +τ | t −1 ,      τ −1, 0,...,
+                                                                                     =           4
+
+
+           SPR _ BAA _ TBONDt +τ | t −1 BAABOND
+                                       =−      t +τ | t −1 TBONDt +τ | t −1 , τ −1, 0,...,
+                                                                               =           4
+
+
+           SPR _ AAA _ TBONDt +τ | t −1 BONDt +τ | t
+                                       =             −1 − TBONDt +τ | t −1 ,        τ −1, 0,..., 4
+                                                                                     =
+
+Table 12 below maps the mathematical names on the left-hand side of the preceding
+equation for SPR_TBOND_TBILL to the variables names in the survey’s Excel files. Note
+that the Excel file dates the observations at the survey date (t ) and indicates the forecast
+horizon with a suffix. The mapping is similar for the remaining variables whose equations
+are shown immediately above.
+
+             Table 12. Example: Variable Names for SPR_TBOND_TBILL
+                           (Quarterly Forecast Horizons)
+
+    Mathematical Name ( τ = −1, 0,..., 4 )                    Variable Name in Excel File
+                                                            (Dated at the Survey Quarter, t )
+         SPR _ TBOND _ TBILLt −1| t −1                            SPR _ TBOND _ TBILL1t
+                                                                 (Historical value for t − 1 )
+          SPR _ TBOND _ TBILLt | t −1                            SPR _ TBOND _ TBILL 2t
+                                                          (Nowcast for quarter t from survey t )
+         SPR _ TBOND _ TBILLt +1| t −1                            SPR _ TBOND _ TBILL3t
+                                                        (Forecast for quarter t + 1 from survey t )
+         SPR _ TBOND _ TBILLt + 2 | t −1                         SPR _ TBOND _ TBILL 4t
+                                                        (Forecast for quarter t + 2 from survey t )
+         SPR _ TBOND _ TBILLt +3 | t −1                           SPR _ TBOND _ TBILL5t
+                                                        (Forecast for quarter t + 3 from survey t )
+         SPR _ TBOND _ TBILLt + 4 | t −1                         SPR _ TBOND _ TBILL6t
+                                                        (Forecast for quarter t + 4 from survey t )
+                                                                                                           56
+
+Computations for Real Interest Rates. We compute the projection for the nominal interest
+rate on three-month Treasury bills minus the projection for inflation. We do this first for each
+panelist, using the formulas shown below. Then, for each survey and across all panelists, we
+compute the mean projections, the median projections, and measures of cross-section
+dispersion.
+
+Because there is not a perfect correspondence between the period covered by the interest rate
+and the period for inflation, we compute three measures of the real interest rate (RR1, RR2,
+and RR3). The measures differ according to the horizon for the inflation projection. The first
+measure subtracts the same-quarter inflation projection from the interest-rate projection. The
+second measure subtracts the one-quarter-ahead inflation projection. The third measure
+subtracts the average inflation projection (same quarter and one-quarter ahead) from the
+interest-rate projection.
+
+Nominal Rate on Three-Month Treasury Bills Minus GNP/GDP Price Inflation
+
+                                                             PGDP                
+                                                                                     4
+                                                                                          
+        RR1_ TBILL _ PGDPt +τ | =    TBILL            − 100  
+                                                                      t +τ | t −1
+                                                                                      − 1, τ
+                                                                                             = 0,..., 4
+                                                             PGDPt +τ −1| t −1 
+                                t −1      t +τ | t −1
+                                                                                          
+                                                                                         
+
+
+                                                               PGDP              
+                                                                                     4
+                                                                                          
+        RR 2 _ TBILL _ PGDPt +τ | =    TBILL            − 100  
+                                                                     t +τ +1| t −1
+                                                                                      − 1, τ
+                                                                                             = 0,...,3
+                                                               PGDPt +τ | t −1 
+                                  t −1      t +τ | t −1
+                                                                                          
+                                                                                         
+
+
+                                                                                     4
+                                                                                           
+                                                                
+                                                              PGDPt +τ +1| t −1     2
+                                                                                           
+        RR3 _ TBILL _ PGDPt +τ | =    TBILLt +τ | t −1 − 100                         − 1 , τ
+                                                                                               = 0,...,3
+                                 t −1                            PGDPt +τ −1| t −1 
+                                                                                       
+
+Table 13 below maps the mathematical names on the left-hand-side of the preceding
+equation for RR1_TBILL_PGDP to the variable names in the survey's Excel files. Note that
+the Excel file dates the observations at the survey date (t ) and indicates the forecast horizon
+with a suffix. The mapping is similar for the remaining variables whose equations are shown
+directly above and for the additional measures of real interest rates given below.
+                                                                                                                57
+
+                  Table 13. Example: Variable Names for RR1_TBILL_PGDP
+                                (Quarterly Forecast Horizons)
+
+       Mathematical Name ( τ = 0,..., 4 )                                 Variable Name in Excel File
+                                                                        (Dated at the Survey Quarter, t )
+              RR1_ TBILL _ PGDPt | t −1                                     RR1_ TBILL _ PGDP _ 2t
+                                                                    (Nowcast for quarter t from survey t )
+             RR1_ TBILL _ PGDPt +1| t −1                                    RR1_ TBILL _ PGDP _ 3t
+                                                                  (Forecast for quarter t + 1 from survey t )
+             RR1_ TBILL _ PGDPt + 2 | t −1                                  RR1_ TBILL _ PGDP _ 4t
+                                                                 (Forecast for quarter t + 2 from survey t )
+             RR1_ TBILL _ PGDPt +3 | t −1                                   RR1_ TBILL _ PGDP _ 5t
+                                                                 (Forecast for quarter t + 3 from survey t )
+             RR1_ TBILL _ PGDPt + 4 | t −1                                  RR1_ TBILL _ PGDP _ 6t
+                                                                 (Forecast for quarter t + 4 from survey t )
+
+Nominal Rate on Three-Month Treasury Bills Minus Headline CPI Inflation
+
+ RR1_ TBILL _ CPI t +τ | t −1 TBILLt +τ | t −1 − CPI t
+                             =                         +τ | t −1 ,                                           τ 0,..., 4
+                                                                                                              =
+
+
+RR 2 _ TBILL _ CPI
+             =     t +τ | t −1 TBILLt +τ | t −1 − CPI t +τ +1| t −1 ,                                       τ = 0,...,3
+
+
+                                                                                                  1
+                                                                                                      
+                                                      CPI t +τ | t −1   CPI t +τ +1| t −1   2 
+RR3 _ TBILL _ CPI t +τ | t=
+                          −1 TBILLt +τ | t −1 − 100  1 +               1 +                  − 1 , τ
+                                                                                                          = 0,...,3
+                                                         100               100                 
+                                                                                                     
+Nominal Rate on Three-Month Treasury Bills Minus Core CPI Inflation
+
+RR1_ TBILL _ CCPI t +τ | t −1 TBILLt +τ | t −1 −
+                             =                   CORECPI t +τ | t −1 ,                                   τ 0,..., 4
+                                                                                                          =
+
+
+RR 2 _ TBILL _ CCPI t +τ | t −1 TBILLt +τ | t −1 −
+                               =                   CORECPI t +τ +1| t −1 ,                               τ 0,...,3
+                                                                                                          =
+
+
+RR3 _ TBILL _ CCPI t +τ | t −1 = TBILLt +τ | t −1
+                                                                                                1
+                                                                                                  
+                                     
+                                         CORECPI t +τ | t −1      CORECPI t +τ +1| t −1   2
+                                                                                                   
+                             − 100  1 +                      1 +                         − 1 ,   τ=
+                                                                                                          0,...,3
+                                            100                      100                    
+                                                                                                  
+
+Nominal Rate on Three-Month Treasury Bills Minus Headline PCE Inflation
+                                                                                                          58
+
+
+ RR1_ TBILL _ PCEt +τ | t −1 TBILLt +τ | t −1 − PCE
+                            =                      t +τ | t −1 ,                                          τ 0,..., 4
+                                                                                                           =
+
+
+RR 2 _ TBILL _ PCE
+              =   t +τ | t −1 TBILLt +τ | t −1 − PCEt +τ +1| t −1 ,                                      τ = 0,...,3
+
+
+                                                                                               1
+                                                                                                   
+                                                     PCEt +τ | t −1   PCEt +τ +1| t −1   2 
+RR3 _ TBILL _ PCEt +τ | t=
+                         −1 TBILLt +τ | t −1 − 100  1 +              1 +                 − 1 , τ
+                                                                                                       = 0,...,3
+                                                        100              100                
+                                                                                                  
+Nominal Rate on Three-Month Treasury Bills Minus Core PCE Inflation
+
+RR1_ TBILL _ CPCEt +τ | t −1 TBILLt +τ | t −1 −
+                            =                   COREPCEt +τ | t −1 ,                                   τ 0,..., 4
+                                                                                                        =
+
+
+RR 2 _ TBILL _ CPCEt +τ | t −1 TBILLt +τ | t −1 −
+                              =                   COREPCEt +τ +1| t −1 ,                               τ 0,...,3
+                                                                                                        =
+
+
+RR3 _ TBILL _ CPCEt +τ | t −1 = TBILLt +τ | t −1
+                                                                                              1
+                                                                                                
+                                      COREPCE t +τ | t −1      COREPCE t +τ +1| t −1   2
+                                                                                                 
+                           − 100  1 +                      1 +                         − 1 ,   τ=
+                                                                                                        0,...,3
+                                          100                      100                    
+                                                                                                
+                                                                                                  59
+
+Computations for Forward Inflation Rates. We use the survey’s projections for five-year
+annual-average inflation and 10-year annual-average inflation. (Note that the survey’s
+projections for five-year annual-average inflation cover the first five years of the 10-year
+horizon.)
+
+We compute each panelist’s implied forecast for inflation over the second five years of the
+10-year horizon, using the formulas shown below. Then, for each survey and across all
+panelists, we compute the mean projections, the median projections, and measures of cross-
+section dispersion.
+
+Five-year forward five-year annual-average CPI inflation
+
+
+                                                        𝐶𝐶𝐶𝐶𝐶𝐶10 2
+                                                   �1 + 100 𝑡𝑡 �
+                          𝐶𝐶𝐶𝐶𝐶𝐶05𝑌𝑌𝑌𝑌05𝑡𝑡 = 100 �                     − 1�
+                                                       𝐶𝐶𝐶𝐶𝐶𝐶5𝑌𝑌𝑅𝑅𝑡𝑡
+                                                  �1 +               �
+                                                          100
+
+Five-year forward five-year annual-average PCE inflation
+
+                                                      𝑃𝑃𝑃𝑃𝑃𝑃10𝑡𝑡 2
+                                                     �1 +
+                        𝑃𝑃𝑃𝑃𝑃𝑃05𝑌𝑌𝑌𝑌05𝑡𝑡 = 100 �         100 � − 1�
+                                                     𝑃𝑃𝑃𝑃𝑃𝑃5𝑌𝑌𝑅𝑅𝑡𝑡
+                                                �1 +               �
+                                                         100
+
+
+
+We compute each panelist’s implied forecast for inflation over the last two years of the 5-
+year horizon, using the formulas shown below. Then, for each survey and across all panelists,
+we compute the mean projections, the median projections, and measures of cross-section
+dispersion.
+
+Three-year forward two-year annual-average CPI inflation
+                                                                        5
+                                   ⎡                     𝐶𝐶𝐶𝐶𝐶𝐶5𝑌𝑌𝑌𝑌𝑡𝑡 2                      ⎤
+                                                  �1 +                 �
+                                   ⎢                        100                               ⎥
+            𝐶𝐶𝐶𝐶𝐶𝐶02𝑌𝑌𝑌𝑌03𝑡𝑡 = 100 ⎢                                                     1 − 1⎥
+                                   ⎢[(1 + 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝑡𝑡 )(1 + 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝑡𝑡 )(1 + 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝑡𝑡 )]2    ⎥
+                                   ⎣                                                          ⎦
+
+Three-year forward two-year annual-average PCE inflation
+                                                                         5
+                                  ⎡                     𝑃𝑃𝑃𝑃𝑃𝑃5𝑌𝑌𝑌𝑌𝑡𝑡 2                      ⎤
+                                                  �1 +                �
+                                  ⎢                         100                              ⎥
+           𝑃𝑃𝑃𝑃𝑃𝑃02𝑌𝑌𝑌𝑌03𝑡𝑡 = 100 ⎢                                                     1 − 1⎥
+                                  ⎢[(1 + 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑡𝑡 )(1 + 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑡𝑡 )(1 + 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑡𝑡 )]2    ⎥
+                                  ⎣                                                          ⎦
+                                                                                                  60
+
+We compute each panelist’s implied forecast for inflation over the last seven years of the 10-
+year horizon, using the formulas shown below. Then, for each survey and across all panelists,
+we compute the mean projections, the median projections, and measures of cross-section
+dispersion.
+
+Three-year forward seven-year annual-average CPI inflation
+                                                                       10
+                                   ⎡                      𝐶𝐶𝐶𝐶𝐶𝐶10 7                          ⎤
+                                   ⎢               �1 + 100 𝑡𝑡 �                              ⎥
+            𝐶𝐶𝐶𝐶𝐶𝐶07𝑌𝑌𝑌𝑌03𝑡𝑡 = 100 ⎢                                                     1 − 1⎥
+                                   ⎢[(1 + 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝑡𝑡 )(1 + 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝑡𝑡 )(1 + 𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝑡𝑡 )]7    ⎥
+                                   ⎣                                                          ⎦
+
+
+Three-year forward seven-year annual-average PCE inflation
+                                                                       10
+                                  ⎡                      𝑃𝑃𝑃𝑃𝑃𝑃10 7                          ⎤
+                                  ⎢               �1 + 100 𝑡𝑡 �                              ⎥
+           𝑃𝑃𝑃𝑃𝑃𝑃07𝑌𝑌𝑌𝑌03𝑡𝑡 = 100 ⎢                                                     1 − 1⎥
+                                  ⎢[(1 + 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑡𝑡 )(1 + 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑡𝑡 )(1 + 𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑃𝑡𝑡 )]7    ⎥
+                                  ⎣                                                          ⎦
+                                                                                      61
+
+11. List of Changes to this Document
+                           Table 14. List of Changes
+
+
+   Date of Change                        Description of Change
+
+ May 2008           INDUSTRY classification added in Section 4.
+ September 2008     Timing of the survey added in Section 1.
+ September 2008     Presentation of data by individual variable added in Section 7.
+ October 2008       Natural rate of unemployment (NAIRU) added in Section 8.
+ July 2009          Made minor changes to some narrative to reflect the BEA’s July
+                    2009 benchmark revision to the national income and product
+                    accounts.
+ November 2009      Extended RGDP series back to 1968:Q4. Previously, RGDP
+                    started in 1981:Q3.
+ January 2010       Added Moody’s Baa corporate bond yield.
+                    Added two more years of annual forecasts for the civilian
+                    unemployment rate, three-month Treasury bill rate, 10-year
+                    Treasury bond rate, and real GDP.
+                    Added two additional years for probability of changes in real
+                    GDP.
+                    Added probability of civilian unemployment rates.
+ June 2010          The base year for the industrial production indexes changed from
+                    2002 to 2007.
+ September 2010     Added a new section titled “Cross-Sectional Forecast
+                    Dispersion.”
+ August 2011        Extended RGDPC, RGDPD, UNEMPC, UNEMPD, PRGDP1–
+                    PRGDP44, and PRUNEMP1–PRUNEMP40 series back to
+                    2009:Q2. Previously, these series started in 2010:Q1.
+                    Extended TBILLC, TBILLD, TBONDC, and TBONDD series
+                    back to 2009:Q3. Previously, these series started in 2010:Q1.
+ August 2012        Added a new section titled “Implied Forecasts.”
+ February 2014      Modified the bin definitions for PRPGDP and PRUNEMP.
+                    Added a new definition for the long-term projection for the 10-
+                    year constant-maturity Treasury yield (BOND10).
+ July 2015          Updated Table 5 to indicate a new base year for industrial
+                    production, beginning with the survey of 2015:Q3.
+ September 2015     Added the 25th percentiles and the 75th percentiles to the files for
+                    cross-sectional forecast dispersion.
+ December 2015      Augmented our descriptions of the survey’s density projections
+                    (section 6, “Mean Probability Forecasts”).
+ May 2016           Added some clarifying language on growth rates throughout the
+                    documentation.
+                                                                                          62
+
+May 2017                On May 12, 2017, the survey’s data files on the Bank’s website
+                        were changed to a .xlsx extension instead of .xls. We adjusted
+                        this document accordingly.
+                        Moody’s now views the historical values for the Aaa and Baa
+                        corporate bond yields (BOND and BAABOND) as proprietary.
+                        Accordingly, the Philadelphia Fed is not permitted to release
+                        these historical values to the public.
+November 2017           Added additional clarifying details on many of the survey’s
+                        variables, most notably the natural rate of unemployment
+                        (UBAR) and the density projections for GDP and GDP prices
+                        (PRGDP, PRPGDP).
+August 2018             Updated Table 4 to indicate a new base year for NIPA variables,
+                        beginning with the survey of 2018:Q3.
+October 2019            Combined the five individual forecast files (Micro1.xlsx to
+                        Micro5.xlsx) into a single file, SPFmicrodata.xlsx.
+April 2020              Modified the bin definitions for PRGDP and PRUNEMP.
+May 2021                Updated Table 5 to indicate a new base year for industrial
+                        production, beginning with the survey of 2021:Q3.
+October 2023            Updated Table 4 to indicate a new base year for NIPA variables,
+                        beginning with the survey of 2023:Q4.
+April 2024              Modified the bin definitions for PRGDP and PRUNEMP.
+July 2026               Added four new implied forward inflation rates.
+                           • CPI02YF03
+                           • PCE02YF03
+                           • CPI07YF03
+                           • PCE07YF03
+                        Renamed two existing implied forward inflation rates.
+                            • CPIF5 to CPI05YF05
+                            • PCEF5 to PCE05YF05
+
+
+
+  For additional information, please contact:
+
+  Casey Ross
+  Real Time Data Operations Manager
+  Real-Time Data Research Center
+
+  Economic Research Department
+  Federal Reserve Bank of Philadelphia
+  Ten Independence Mall
+  Philadelphia, PA 19106-1574
+  Casey.Ross@phil.frb.org
+  PHIL.SPF@phil.frb.org
+

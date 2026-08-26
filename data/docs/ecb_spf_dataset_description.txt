@@ -1,0 +1,508 @@
+                                                                                     February 2026
+
+
+
+        ECB Survey of Professional Forecasters (SPF)1:
+                 description of SPF dataset
+
+Dataset description and file structure
+The purpose of this document is to explain the structure and the technical
+characteristics of the dataset including the individual forecasters’ data series. This
+document serves as a manual to the files named:
+    -    “xxxxQx.csv”
+Individual spreadsheets are provided for each SPF forecast round. These files can be
+handled by standard desktop applications, such as Microsoft Excel. The files are
+stored in .csv format, a standard that is supported by most analytical software across
+various system platforms.
+
+
+1    Variables
+The ECB micro-data SPF contains forecasts for three main economic indicators and
+for the assumptions made by forecasters for underlying economic factors:
+    1) Inflation
+       Inflation is defined as the year on year percentage change of the Harmonised
+       Index of Consumer Prices (HICP) published by Eurostat. HICP/HICPX2
+    2) GDP
+       Real gross domestic product growth is defined as the year on year percentage
+       change of real GDP, based on standardised ESA definition. RGDP
+    3) Unemployment
+       The unemployment rate refers to Eurostat's definition and it is calculated as
+       percentage of the labour force. UNEM
+    4) Assumptions (ASSU)
+       The forecasters are asked to provide their assumptions concerning the ECB’s
+       policy interest rates (ECBIR)3, oil prices (OIL - per barrel of Brent crude in
+       USD), the USD/EUR exchange rate (USD) and labour costs (LAB - year-on-
+       year rate of change in whole economy compensation per employee).
+
+
+1
+  If you have any questions concerning the SPF please contact Mr Bruno Fagandini, Mr Aidan Meyler
+and Mr Pablo Anaya Longaric at European Central Bank, Telephone 00 49 69 1344 0, email: ecb-
+spf@ecb.europa.eu.
+2
+  Since 2016 Q4 (2017 Q1), in addition to their forecasts for overall or headline HICP inflation,
+participants have also been asked to provide their point and probability density forecasts for the HICP
+excluding food and energy - HICPX.
+3
+  Since 2024Q4 DFR - deposit facility rate, prior to this MRO - main refinancing operations rate)
+2    Forecast horizons
+The SPF dataset contains forecasts for up to six different forecast horizons for each of
+the main macroeconomic indicators:4
+    1) a forecast for the current calendar year
+    2) a forecast for the next calendar year
+    3) a forecast for the calendar year after next
+    4) a longer term forecast (four calendar years ahead in the Q1 and Q2 rounds and
+       five calendar years ahead in the Q3 and Q4 rounds)
+    5) a “rolling horizon” forecast for the month (for HICP inflation and the
+       unemployment rate) and quarter (for GDP growth) one year ahead of the latest
+       available observation (at the time of the survey)
+    6) a “rolling horizon” forecast for the month (for HICP inflation and the
+       unemployment rate) and quarter (for GDP growth) two years ahead of the
+       latest available observation (at the time of the survey).
+The rolling horizons are set 1- and 2-years ahead of the period (month or quarter) for
+which the latest official release of a given macroeconomic indicator is available, and
+therefore differ across the indicators. For example, in the survey conducted in the first
+quarter of 2025 (after the release of the December 2024 figure for HICP inflation) the
+participants were asked to report their expectations for the year-on-year rate of change
+in the euro area HICP in December 2025 and December 2026. By then, the latest
+available GDP data related to the third quarter of 2024 and the latest unemployment
+rate figure was for November 2024. Hence, respondents were asked for their
+expectations for GDP in the third quarter of 2025 and 2026 and the unemployment
+rate in November 2026 and November 2027. In the 2025 Q2 SPF (conducted after the
+release of the March 2025 HICP figure), participants were asked for their expectations
+for the inflation rate in March 2026 and March 2027, and so on.
+The forecast horizon structure for all assumptions except for labour costs also
+comprises rolling horizons and calendar year horizons, according to the following
+scheme5:
+
+4
+  This is the forecast horizon structure used since the 2001 Q2 SPF round. Before that the horizons in
+use were the following (see also Annex 1):
+1) a forecast for the current calendar year
+2) a forecast for the next calendar year
+3) a forecast for the calendar year after next
+4) a forecast for the calendar year five years ahead
+5) a “rolling horizon” forecast for the month (for HICP inflation and the unemployment rate) and the
+     quarter (for GDP growth) one year ahead of the latest available data, at the time the survey is
+     conducted;
+6) a “rolling horizon” forecast for the month (for HICP inflation and the unemployment rate) and the
+     quarter (for GDP growth) two years ahead of the latest available data, at the time the survey is
+     conducted;
+7) a “rolling horizon” forecast for the month (for HICP inflation and the unemployment rate) and the
+     quarter (for GDP growth) five years ahead of the latest available data, at the time the survey is
+     conducted.
+In these earlier rounds the forecasts for the five years ahead calendar year and the five years ahead
+rolling horizon were asked only in the first round of each year (i.e. the Q1 SPF rounds).
+The calendar year after next forecast horizon in the Q3 and Q4 rounds was introduced in 2000. It was
+extended to Q1 and Q2 rounds in 2013 Q1.
+
+
+                                                                                                    2
+    1) four consecutive quarters starting with the quarter when the survey is
+       conducted;
+    2) a forecast for the next calendar year (annual average);
+    3) a forecast for the calendar year after next (annual average);
+    4) Since 2024 Q4, a longer term forecast (four calendar years ahead in the Q1
+       and Q2 rounds and five calendar years ahead in the Q3 and Q4 rounds).
+The scheme for labour costs constitutes calendar year horizons only, in particular the
+following:
+     1) a forecast for the current calendar year (annual average);
+     2) a forecast for the next calendar year (annual average);
+     3) a forecast for the calendar year after next (annual average);
+     4) a longer term forecast (four calendar years ahead in the Q1 and Q2 rounds and
+         five calendar years ahead in the Q3 and Q4 rounds).
+The SPF horizon structure for each round in 2025 is shown in Annex 2.
+3    Observation types
+For each of the three macroeconomic indicators there are two classes of observation
+types in use in the ECB SPF:
+    1) Point forecasts
+        Forecasters are asked to provide a single value or a point forecast of the
+        variable for each of the time horizons
+    2) Probability distribution forecasts
+        Forecasters are asked to provide also a probability distribution of forecasted
+        outcomes for each time horizon. Forecasters are asked to report the probability
+        distribution along a set of intervals provided by the ECB for each indicator.
+        The set of intervals varies between macroeconomic indicators and is subject to
+        revisions whenever deemed necessary to take account of economic
+        developments. Annex 3 shows a graphical overview of the intervals used in
+        the different SPF rounds so far.
+    3) Assumptions
+        As described in Section 1, assumptions make a special group of observation
+        types, for which only point forecasts are asked. Annex 4 shows which
+        assumptions were asked in which SPF rounds.
+
+
+
+
+5
+  This is the forecast horizon structure used since the 2013 Q1 SPF round. From 2002 Q1 to 2010 Q1
+the assumptions in each SPF round were asked for five consecutive quarters starting with the quarter
+the SPF survey is conducted. For example, in 2009 Q1 SPF round the assumptions were provided for
+2009 Q1, 2009 Q2, 2009 Q3, 2009 Q4 and 2010 Q1. From 2010 Q2 to 2012 Q4 the forecast for the
+calendar year after next was only surveyed in Q3 and Q4 rounds.
+
+
+                                                                                                  3
+4    Column and row structure of the SPF dataset
+The ECB provides the full dataset of individual forecasters’ SPF forecasts in ‘csv’
+format. The “individual rounds’ files” contain data for forecasts in the upper part of
+the spreadsheet and data for the assumptions in the lower part of the spreadsheet
+(except for early rounds when no assumptions were asked). The forecast data have the
+following column structure:
+1)      TARGET_PERIOD
+     This column stands for the point (or period) in time to which the forecast refers to.
+     Depending on the macroeconomic variable, the target period is given either as
+     year (format “yyyy”), quarter (format “yyyyQq”) or month (format “yyyymmm”),
+     where the month is a mixed-case three-character tag of calendar months in
+     English. See section 2 on forecast horizons for details.
+2)      FCT_SOURCE
+     This column stands for forecast source or forecaster ID, is the code number
+     assigned to an individual forecaster. This number remains the same for a specific
+     forecaster over all forecast rounds (only the subset of forecasters that were
+     actually responding in a particular round is reported).
+3)      POINT
+     Column contains the forecasters’ point forecast for the macroeconomic variable.
+4)      The following columns
+    These columns contain the probability assigned to each of the intervals of the
+    forecasted variable. The headers of the columns specify the intervals. The coding
+    of the intervals is explained in Annex 5.
+Each file contains four tables – two for inflation (HICP/HICPX) and one for GDP and
+unemployment. The tables are stored on the same worksheet one below the other,
+each separated by one blank row. The top table contains the inflation forecasts, the
+second one the core inflation forecasts, the next one the GDP forecasts and the fourth
+reports the unemployment forecasts. Data in the tables are ordered first by target
+period and then by forecaster ID.
+Below the forecast data, the assumptions data have the following column structure:
+     1) TARGET_PERIOD (as above)
+     2) FCT_SOURCE (as above)
+     3) IR
+        Assumptions concerning the ECB policy interest rate (since 2024 Q4 for
+        deposit facility rate (DFR), prior to this, main refinancing operations (MRO)
+        rate, in percent p.a.)
+     4) LAB
+        Assumptions concerning labour costs (year-on-year rate of change in whole
+        economy compensation per employee)
+     5) OIL
+        Assumptions for the price of a barrel of Brent crude oil in US dollars
+     6) USD
+        Assumptions for the EUR/USD exchange rate.
+
+
+                                                                                        4
+5        Corrections of the dataset
+Table 5.1 Corrections made in the ECB SPF dataset*
+Date of the update in                 SPF round                               Forecaster                                                 Variable(s)                                       Old value                                            New value
+  the SPF dataset                      affected                                  ID                                                       affected
+
+       03 July 2009                     2008 Q2                                             92                                                             All                                      Data                                              Missing
+                                                                                                                                                                                                                                                      values
+
+    09 December 2009                    2009 Q4                                             59                                                             All                                 Missing                                                 Data
+                                                                                                                                                                                               values
+
+ 11 November 2010                       2010 Q3                                             10                                   Unemployment,                                                           25                                               20
+                                                                                                                                probability for the
+                                                                                                                                     interval
+                                                                                                                                  F10_5T10_9 “
+
+* Please note that aggregate data are updated simultaneously with the changes in the individual data.
+
+
+
+
+Annex 1 Evolution of forecast horizon structure over time
+                                SPF ROUND
+
+
+
+
+                                               1999Q1   1999Q2   1999Q3   1999Q4   2000Q1   2000Q2   2000Q3   2000Q4   2001Q1   2001Q2   2001Q3   2001Q4                     2012Q1   2012Q2   2012Q3*   2012Q4   2013Q1   2013Q2   2013Q3   2013Q4
+     FORECAST
+     HORIZON                                                                                                                                               …     …   …   …                                                                            …   …    …   …
+     Current calendar year
+     Next calendar year
+     Calendar year after next
+     Calendar year four/five years ahead
+     One year ahead rolling horizon
+     Two years ahead rolling horizon
+     Five years ahead rolling horizon
+
+
+     Forecast horizons surveyed in that particular round
+*    Current set of forecast horizons since 2012Q3.
+
+
+
+
+                                                                                                                                                                                                                                                                   5
+Annex 2 Scheme of the SPF horizon structure across survey rounds (2025 example)6
+Round                                                        Variables                                                                                            Survey horizons
+2025 Q1
+                                                                                     Current calendar year    Next calendar year   Calendar year after next       One year ahead       Two years ahead        Longer term
+          Economic indicators           Inflation (overall HICP and HICPX)                                                                                       December 2025        December 2026
+                                        Unemployment rate                                   2025                    2026                        2027             November 2025        November 2026               2029
+                                        GDP growth                                                                                                                  2025Q3               2026Q3
+          Underlying economic factors   Labour costs                                        2025                    2026                        2027                                                              2029
+                                                                                           Quarter t              Quarter t+1                Quarter t+2            Quarter t+3           Next year      Calendar year after next   Longer term
+                                        ECB's policy interest rate (DFR/MRO)*
+                                        Brent crude oil prices (US dollars)               2025Q1                  2025Q2                      2025Q3                 2025Q4                 2026                  2027                2029
+                                        USD/EUR exchange rate
+2025 Q2
+                                                                                     Current calendar year    Next calendar year   Calendar year after next       One year ahead       Two years ahead        Longer term
+          Economic indicators           Inflation (overall HICP and HICPX)                                                                                         March 2026           March 2026
+                                        Unemployment rate                                   2025                    2026                        2027              February 2026        February 2026              2029
+                                        GDP growth                                                                                                                   2025Q4               2025Q4
+          Underlying economic factors   Labour costs                                        2025                    2026                        2027                                                              2029
+                                                                                           Quarter t              Quarter t+1                Quarter t+2            Quarter t+3           Next year      Calendar year after next   Longer term
+                                        ECB's policy interest rate (DFR/MRO)
+                                        Brent crude oil prices (US dollars)               2025Q2                  2025Q3                      2025Q4                 2026Q1                 2026                  2027                2029
+                                        USD/EUR exchange rate
+2025 Q3
+                                                                                     Current calendar year    Next calendar year   Calendar year after next       One year ahead       Two years ahead        Longer term
+          Economic indicators           Inflation (overall HICP and HICPX)                                                                                          June 2026            June 2026
+                                        Unemployment rate                                   2025                    2026                        2027                May 2026             May 2026                 2030
+                                        GDP growth                                                                                                                   2026Q1               2026Q1
+          Underlying economic factors   Labour costs                                        2025                    2026                        2027                                                              2030
+                                                                                           Quarter t              Quarter t+1                Quarter t+2            Quarter t+3           Next year      Calendar year after next   Longer term
+                                        ECB's policy interest rate (DFR/MRO)
+                                        Brent crude oil prices (US dollars)               2025Q3                  2025Q4                      2026Q1                 2026Q2                 2026                  2027                2030
+                                        USD/EUR exchange rate
+2025 Q4
+                                                                                     Current calendar year    Next calendar year   Calendar year after next       One year ahead       Two years ahead        Longer term
+          Economic indicators           Inflation (overall HICP and HICPX)                                                                                       September 2026       September 2026
+                                        Unemployment rate                                   2025                    2026                        2027              August 2026          August 2026                2030
+                                        GDP growth                                                                                                                   2026Q2               2026Q2
+          Underlying economic factors   Labour costs                                        2025                    2026                        2027                                                              2030
+                                                                                           Quarter t              Quarter t+1                Quarter t+2            Quarter t+3           Next year      Calendar year after next   Longer term
+                                        ECB's policy interest rate (DFR/MRO)
+                                        Brent crude oil prices (US dollars)               2025Q4                  2026Q1                      2026Q2                 2026Q3                 2026                  2027                2030
+                                        USD/EUR exchange rate
+
+
+
+*         From 2024Q4 round onwards, the question regarding the ECB's main policy interest rate refers to the deposit facility rate (prior to this it was the main refinancing operation rate)
+
+
+
+
+6
+ Note, there was a slight variation to the normal pattern in 2019. In the Q2 round, owing to the timing of Easter, the survey was carried out earlier than normal.
+Consequently, data for HICP inflation were only available until February 2019, until 2018 Q4 for real GDP growth and until January 2019 for the unemployment rate. The
+one-year and two-year ahead horizons were changed accordingly.
+Annex 3 Changes in intervals for probability distribution forecasts
+Overview of Intervals for Probability Distributions in the SPF Survey over Time
+HICP Inflation
+           Intervals      1999Q1    2000Q2     2000Q3    2000Q4     2001Q1    2002Q2     2008Q3    2008Q4     2009Q2    2010Q1     2017Q1    2018Q1     2020Q2    2021Q1     2022Q3      2024Q4       Current
+       (upto 2024Q3)                                                                                                                                                                                 Intervals*
+             ≤-4.1
+          -4.0 to -3.6
+          -3.5 to -3.1
+          -3.0 to -2.6
+          -2.5 to -2.1
+          -2.0 to -1.6
+          -1.5 to -1.1                                                                                                                                                                                  ≤-0.8
+          -1.0 to -0.6                                                                                                                                                                              -0.7 to -0.3
+          -0.5 to -0.1                                                                                                                                                                               -0.2 to 0.2
+            0.0-0.4                                                                                                                                                                                    0.3-0.7
+            0.5-0.9                                                                                                                                                                                    0.8-1.2
+            1.0-1.4                                                                                                                                                                                    1.3-1.7
+            1.5-1.9                                                                                                                                                                                    1.8-2.2
+            2.0-2.4                                                                                                                                                                                    2.3-2.7
+            2.5-2.9                                                                                                                                                                                    2.8-3.2
+            3.0-3.4                                                                                                                                                                                    3.3-3.7
+            3.5-3.9                                                                                                                                                                                    3.8-4.2
+            4.0-4.4                                                                                                                                                                                    4.3-4.7
+            4.5-4.9                                                                                                                                                                                     ≥4.8
+              ≥5.0
+HICPX inflation†
+           Intervals      1999Q1    2000Q2     2000Q3    2000Q4     2001Q1    2002Q2     2008Q3    2008Q4     2009Q2    2010Q1     2017Q1    2018Q1     2020Q2    2021Q1     2022Q3      2024Q4       Current
+       (upto 2024Q3)                                                                                                                                                                                 Intervals*
+             ≤-4.1
+          -4.0 to -3.6
+          -3.5 to -3.1
+          -3.0 to -2.6
+          -2.5 to -2.1
+          -2.0 to -1.6
+          -1.5 to -1.1                                                                                                                                                                                  ≤-0.8
+          -1.0 to -0.6                                                                                                                                                                              -0.7 to -0.3
+          -0.5 to -0.1                                                                                                                                                                               -0.2 to 0.2
+            0.0-0.4                                                                                                                                                                                    0.3-0.7
+            0.5-0.9                                                                                                                                                                                    0.8-1.2
+            1.0-1.4                                                                                                                                                                                    1.3-1.7
+            1.5-1.9                                                                                                                                                                                    1.8-2.2
+            2.0-2.4                                                                                                                                                                                    2.3-2.7
+            2.5-2.9                                                                                                                                                                                    2.8-3.2
+            3.0-3.4                                                                                                                                                                                    3.3-3.7
+            3.5-3.9                                                                                                                                                                                    3.8-4.2
+            4.0-4.4                                                                                                                                                                                    4.3-4.7
+            4.5-4.9                                                                                                                                                                                     ≥4.8
+              ≥5.0
+real GDP Growth
+           Intervals      1999Q1    2000Q2     2000Q3    2000Q4     2001Q1    2002Q2     2008Q3    2008Q4     2009Q2    2010Q1     2017Q1    2018Q1     2020Q2    2021Q1     2022Q3      2024Q4       Current
+       (upto 2024Q3)                                                                                                                                                                                 Intervals*
+             ≤15.1
+        -15.0 to -13.1
+        -13.0 to -11.1
+         -11.0 to -9.1
+          -9.0 to -7.1
+          -7.0 to -5.1
+          -5.0 to -3.1
+          -3.0 to -1.1
+          -6.0 to -5.6
+          -5.5 to -5.1
+          -5.0 to -4.6
+          -4.5 to -4.1
+          -4.0 to -3.6
+          -3.5 to -3.1
+          -3.0 to -2.6
+          -2.5 to -2.1
+          -2.0 to -1.6
+          -1.5 to -1.1                                                                                                                                                                                 ≤-1.1
+          -1.0 to -0.6                                                                                                                                                                              -1.0 to -0.6
+          -0.5 to -0.1                                                                                                                                                                              -0.5 to -0.1
+            0.0-0.4                                                                                                                                                                                   0.0-0.4
+            0.5-0.9                                                                                                                                                                                   0.5-0.9
+            1.0-1.4                                                                                                                                                                                   1.0-1.4
+            1.5-1.9                                                                                                                                                                                   1.5-1.9
+            2.0-2.4                                                                                                                                                                                   2.0-2.4
+            2.5-2.9                                                                                                                                                                                   2.5-2.9
+            3.0-3.4                                                                                                                                                                                   3.0-3.4
+            3.5-3.9                                                                                                                                                                                   3.5-3.9
+            4.0-4.4                                                                                                                                                                                     ≥4.0
+            4.5-4.9
+            4.0-5.9
+            6.0-7.9
+            8.0-9.9
+             ≥10.0
+Unemployment rate
+           Intervals      1999Q1    2000Q2     2000Q3    2000Q4     2001Q1    2002Q2     2008Q3    2008Q4     2009Q2    2010Q1     2017Q1    2018Q1     2020Q2    2021Q1     2022Q3      2024Q4       Current
+       (upto 2024Q3)                                                                                                                                                                                 Intervals*
+              ≤3.9                                                                                                                                                                                      ≤3.9
+            4.0-4.4                                                                                                                                                                                   4.0-4.4
+            4.5-4.9                                                                                                                                                                                   4.5-4.9
+            5.0-5.4                                                                                                                                                                                   5.0-5.4
+            5.5-5.9                                                                                                                                                                                   5.5-5.9
+            6.0-6.4                                                                                                                                                                                   6.0-6.4
+            6.5-6.9                                                                                                                                                                                   6.5-6.9
+            7.0-7.4                                                                                                                                                                                   7.0-7.4
+            7.5-7.9                                                                                                                                                                                   7.5-7.9
+            8.0-8.4                                                                                                                                                                                   8.0-8.4
+            8.5-8.9                                                                                                                                                                                   8.5-8.9
+            9.0-9.4                                                                                                                                                                                   9.0-9.4
+            9.5-9.9                                                                                                                                                                                   9.5-9.9
+           10.0-10.4                                                                                                                                                                                 10.0-10.4
+           10.5-10.9                                                                                                                                                                                 10.5-10.9
+           11.0-11.4                                                                                                                                                                                   ≥11.0
+           11.5-11.9
+           12.0-12.4
+           12.5-12.9
+           13.0-13.4
+           13.5-13.9
+           14.0-14.4
+           14.5-14.9
+             ≥15.0
+                         Closed interval
+                         Open interval. At the lower end, the interval spans from the bottom of the adjacent above interval to minus infinity. At the upper end, the interval spans from the top of the adjacent
+                         below interval to infinity.
+              †          HICPx denotes HICP excluding food and energy. Probability densities for this variable have been surveyed since 2017 Q1.
+                         Current intervals for HICP (and HICPX) inflation were changed in the 2024 Q4 SPF round and those for real GDP growth and the unemployment rate were last changed in the 2022
+              *
+                         Q3 SPF round.
+
+
+Note: A probability assigned to an open interval stands for the probability that the variable’s outcome
+will be larger (or smaller) than the lower (upper) interval boundary.
+Annex 4 Assumptions and SPF rounds when they were asked in the
+questionnaire
+
+                            SPF ROUND
+
+
+                                             1999Q1   1999Q2   1999Q3   1999Q4   2000Q1   2000Q2   2000Q3   2000Q4   2001Q1   2001Q2   2001Q3   2001Q4   2002Q1   2002Q2   2002Q3   2002Q4   2003Q1   2003Q2   2003Q3   2003Q4   2004Q1   2004Q2   2004Q3*   2004Q4
+     ASSUMPTION
+     VARIABLE
+     ECB main policy interest rate**
+     Oil price
+     USD/EUR exchange rate
+     Labour costs
+
+   Assumption asked in particular round SPF questionnaire.
+*  Current set of variables asked since 2004Q3 SPF round.
+   From 2024Q4 round onwards, the question regarding the ECB's interest rate refers to the deposit facility rate DFR
+** (prior to this it was the main refinancing operation MRO rate)
+
+
+
+
+Annex 5 Description of the observation type code
+The following list explains the observation type codes. For the intervals, each
+forecaster assigns a probability for the forecasted variable to fall within the given
+interval. The sum of these probabilities is required to sum up to 100 (deviations occur
+in some cases at the 5th decimal place or lower).
+    FCT_TOPIC           FCT_BREAKDOWN                                            DESCRIPTION
+       HICP/                 POINT                                               point forecast
+      HICPX7
+      RGDP/                   TNx_y (Tx_y)                                       probability for interval < -x.y % (< x.y %)
+                                                                                 (e.g. TN4_0 denotes < -4.0 % and T4_0 denotes <4.0 %)
+      UNEM
+                                       T0_0                                      probability for interval < 0.0 %
+                               FNa_bTNx_y                                        probability for interval from -a.b to -x.y %
+                                                                                 (e.g. FN0_5TN0_1 denotes from -0.5 to -0.1 %)
+
+                                 Fa_bTx_y                                        probability for interval from a.b to - x.y %
+                                                                                 (e.g. F0_0T0_4 denotes from 0.0 to 0.4 %)
+
+                                       Fx_y                                      probability for interval >= x.y %
+                                                                                 (e.g. F3_5 denotes >= 3.5 %)
+                                                                                 Assumption for ECB's policy interest rate (since 2024Q4 DFR -
+                                        IR                                       deposit facility rate, prior to this MRO - main refinancing
+       ASSU                                                                      operations rate)
+                                       OIL                                       Assumption for oil prices (USD)
+                                       USD                                       Assumption for USD/EUR exchange rate
+                                                                                 Assumption for labour costs; annual rate of change in whole
+                                       LAB
+                                                                                 economy compensation per employee
+* Note, bins referring to negative values not applicable for the unemployment rate (which is strictly positive)
+
+
+
+
+7
+  Point (probability density) forecasts are also available for HICP excluding food and energy – HICPX
+– since 2016 Q4 (2017 Q1).
+
+
+                                                                                                                                                                                                                                                                 8
+                                                                                                                                                                                                                                                                                                     9
+                                         Example for 2016 data.
+                                         The expectations for the calendar year averages are stored in multiple time series, which are coded depending on how many months after the survey cycle the end of the forecast horizon will be reached- in this example, the observations refer to 2016:
+                                                                                    SPF rounds: 2011Q3 2011Q4 2012Q1 2012Q2 2012Q3 2012Q4 2013Q1 2013Q2 2013Q3 2013Q4 2014Q1 2014Q2 2014Q3 2014Q4 2015Q1 2015Q2 2015Q3 2015Q4 2016Q1 2016Q2 2016Q3 2016Q4
+                                         Series code:                               Value for:
+                                         SPF.A.U2.RGDP.POINT.P66M.Q.AVG             2016             1.86
+                                         SPF.A.U2.RGDP.POINT.P63M.Q.AVG             2016                       1.8
+                                         SPF.A.U2.RGDP.POINT.P60M.Q.AVG             2016                              1.75
+                                         SPF.A.U2.RGDP.POINT.P57M.Q.AVG             2016                                      1.78
+                                         SPF.A.U2.RGDP.POINT.P54M.Q.AVG             2016                                           not asked
+                                         SPF.A.U2.RGDP.POINT.P51M.Q.AVG             2016                                                    not asked
+Annex 6 Calendar year forecasts in SDW
+
+
+
+
+                                         SPF.A.U2.RGDP.POINT.P48M.Q.AVG             2016                                                             not asked
+                                         SPF.A.U2.RGDP.POINT.P45M.Q.AVG             2016                                                                      not asked
+                                         SPF.A.U2.RGDP.POINT.P42M.Q.AVG             2016                                                                               not asked
+                                         SPF.A.U2.RGDP.POINT.P39M.Q.AVG             2016                                                                                        not asked
+                                         SPF.A.U2.RGDP.POINT.P36M.Q.AVG             2016                                                                                                   1.66
+                                         SPF.A.U2.RGDP.POINT.P33M.Q.AVG             2016                                                                                                           1.68
+                                         SPF.A.U2.RGDP.POINT.P30M.Q.AVG             2016                                                                                                                    1.71
+                                         SPF.A.U2.RGDP.POINT.P27M.Q.AVG             2016                                                                                                                            1.54
+                                         SPF.A.U2.RGDP.POINT.P24M.Q.AVG             2016                                                                                                                                     1.52
+                                         SPF.A.U2.RGDP.POINT.P21M.Q.AVG             2016                                                                                                                                             1.73
+                                         SPF.A.U2.RGDP.POINT.P18M.Q.AVG             2016                                                                                                                                                     1.77
+                                         SPF.A.U2.RGDP.POINT.P15M.Q.AVG             2016                                                                                                                                                              1.73
+                                         SPF.A.U2.RGDP.POINT.P12M.Q.AVG             2016                                                                                                                                                                      1.68
+                                         SPF.A.U2.RGDP.POINT.P9M.Q.AVG              2016                                                                                                                                                                              1.49
+                                         SPF.A.U2.RGDP.POINT.P6M.Q.AVG              2016                                                                                                                                                                                      1.53
+                                         SPF.A.U2.RGDP.POINT.P3M.Q.AVG              2016
+
