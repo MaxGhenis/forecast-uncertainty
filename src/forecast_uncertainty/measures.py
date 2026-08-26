@@ -12,29 +12,25 @@ QUANTILES = (0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95)
 def finite_intervals(
     intervals: Sequence[tuple[float | None, float | None]],
 ) -> np.ndarray:
-    """Replace open tails by one adjacent-bin width and return ascending bounds."""
+    """Replace open tails by one adjacent-bin width, preserving input order."""
     if not intervals:
         raise ValueError("At least one interval is required")
 
-    ordered = sorted(
-        intervals,
-        key=lambda bounds: -np.inf if bounds[0] is None else bounds[0],
-    )
     finite_widths = [
         upper - lower
-        for lower, upper in ordered
+        for lower, upper in intervals
         if lower is not None and upper is not None and upper > lower
     ]
     if not finite_widths:
         raise ValueError("An adjacent closed interval is required for open tails")
 
     output: list[tuple[float, float]] = []
-    for index, (lower, upper) in enumerate(ordered):
+    for index, (lower, upper) in enumerate(intervals):
         if lower is None:
-            width = _nearest_width(ordered, index, direction=1)
+            width = _nearest_width(intervals, index)
             lower = float(upper) - width
         elif upper is None:
-            width = _nearest_width(ordered, index, direction=-1)
+            width = _nearest_width(intervals, index)
             upper = float(lower) + width
         if upper <= lower:
             raise ValueError(f"Invalid interval: {(lower, upper)}")
@@ -45,14 +41,14 @@ def finite_intervals(
 def _nearest_width(
     intervals: Sequence[tuple[float | None, float | None]],
     index: int,
-    direction: int,
 ) -> float:
-    cursor = index + direction
-    while 0 <= cursor < len(intervals):
-        lower, upper = intervals[cursor]
-        if lower is not None and upper is not None and upper > lower:
-            return float(upper - lower)
-        cursor += direction
+    for distance in range(1, len(intervals)):
+        for cursor in (index - distance, index + distance):
+            if not 0 <= cursor < len(intervals):
+                continue
+            lower, upper = intervals[cursor]
+            if lower is not None and upper is not None and upper > lower:
+                return float(upper - lower)
     raise ValueError("Open tail has no adjacent closed interval")
 
 
@@ -83,7 +79,7 @@ def pooled_quantiles(
     raw_order = np.argsort(
         [-np.inf if lower is None else lower for lower, _ in intervals]
     )
-    bounds = finite_intervals(intervals)
+    bounds = finite_intervals(intervals)[raw_order]
     probabilities = probabilities[raw_order]
     cumulative = np.cumsum(probabilities)
     result: dict[str, float] = {}
@@ -96,7 +92,9 @@ def pooled_quantiles(
         prior = cumulative[index - 1] if index else 0.0
         lower, upper = bounds[index]
         fraction = 0.0 if mass <= 0 else (q - prior) / mass
-        result[_quantile_name(q)] = float(lower + np.clip(fraction, 0, 1) * (upper - lower))
+        result[_quantile_name(q)] = float(
+            lower + np.clip(fraction, 0, 1) * (upper - lower)
+        )
     return result
 
 
@@ -104,7 +102,9 @@ def _quantile_name(quantile: float) -> str:
     return f"q{round(100 * quantile):02d}"
 
 
-def filter_probability_rows(probabilities: np.ndarray) -> tuple[np.ndarray, dict[str, int]]:
+def filter_probability_rows(
+    probabilities: np.ndarray,
+) -> tuple[np.ndarray, dict[str, int]]:
     """Apply the survey response filter and normalize retained rows to one."""
     values = np.asarray(probabilities, dtype=float)
     if values.ndim != 2:
@@ -118,9 +118,9 @@ def filter_probability_rows(probabilities: np.ndarray) -> tuple[np.ndarray, dict
     if kept.size:
         kept = kept / kept.sum(axis=1, keepdims=True)
     counts = {
-        "rows_total": int(len(values)),
+        "rows_total": len(values),
         "rows_all_nan": int(all_nan.sum()),
-        "rows_nonempty": int(len(nonempty)),
+        "rows_nonempty": len(nonempty),
         "rows_kept": int(valid.sum()),
         "rows_dropped": int((~valid).sum()),
     }

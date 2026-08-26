@@ -36,9 +36,10 @@ within-forecaster share carries the rest. The distributions are honest on
 average (a ±1σ band covered 70% of outcomes over 33 years) and fail in
 clusters, missing six straight years around the late-1990s productivity boom
 and the pandemic in both directions. Density elicitation stops three to five
-years out. Published estimates of AI's growth effects span [NEEDS LIT:
-range] at exactly the horizons no survey asks about, and we show what asking
-would take. An interactive companion tracks every series.
+years out. Published estimates of AI's growth effects span roughly 0.1 to 30
+percentage points a year (Shenk 2026; Cunningham 2025) at exactly the
+horizons no survey asks about, and we show what asking would take. An
+interactive companion tracks every series.
 [NEEDS-SOL: confirm cross-variable/EA versions of facts 1–2 hold before
 "every variable" phrasing ships.]
 
@@ -51,9 +52,15 @@ Job: the elicitation-gap hook, then the contribution list. Open with the
 on next year's US growth and a 0.20-point IQR on the next decade's — the
 ten-year answer is tighter than the one-year answer, and no one asked the
 ten-year question as a distribution. Then the AI contrast: the published
-range of decade-scale growth effects runs [NEEDS LIT: verified range +
-citations] — a debate conducted entirely outside the instruments that
-measure stated uncertainty.
+range of decade-scale growth effects runs from under 0.1pp a year (Acemoglu
+2024; CBO per Cunningham 2025) through ~1.5pp (Briggs and Kodnani 2023) and
+0.07–1.24pp within one framework (Aghion and Bunel 2024) to above 30pp
+(Davidson 2021; Erdil and Besiroglu 2023) — compiled at 0.1–30pp/yr by
+Shenk (2026) and Cunningham (2025), almost entirely as point estimates — a
+debate conducted outside the instruments that measure stated uncertainty.
+The one large elicitation, Karger et al. (2026, FRI + Chicago Fed), is a
+one-off collecting medians and two quantiles, and it confirms the pattern:
+the disagreement is about economic impact, not capability arrival.
 
 Contributions (draft list, confirm against LITREVIEW verdict):
 1. The panorama: every density variable, horizon, and round of both
@@ -68,8 +75,19 @@ Contributions (draft list, confirm against LITREVIEW verdict):
    stops, against where the growth debate now lives.
 6. A live interactive publishing every series.
 
-[Lit positioning paragraph: PENDING-LIT. The decomposition is the Wallis
-school's; the novelty claim must be assembled honestly from the verdict.]
+Positioning (from LITREVIEW.md, all citations verified): the decomposition
+is Wallis (2005) and Boero, Smith and Wallis (2008), first posed on these
+histograms by Zarnowitz and Lambros (1987); the histogram machinery follows
+Engelberg, Manski and Williams (2009); the fixed-event conversion is Ganics,
+Rossi and Sekhposyan (2024); the calibration template runs from Diebold,
+Tay and Wallis (1999) through Clements (2014). Nearest antecedents:
+D'Amico and Orphanides (2008) — the US long series, inflation only, ending
+2008; Clements, Rich and Tracy (2022) — both surveys, in prose, no new
+series; Allayioti et al. (2024) — the ECB's own 25-year retrospective, one
+survey. The paper is the assembled object none of them built: every density
+variable, both surveys, decomposed and calibration-checked through 2026,
+with a live interactive — and the elicitation-gap argument, which the
+corpus shows unmade.
 
 ## 2. The elicitation landscape
 
@@ -88,8 +106,18 @@ what, how far out. Draftable now from FACTS.md (survey structure blocks):
 
 Prose to carry: the asymmetry. The US survey is longer; the euro-area survey
 asks further out. Nobody asks beyond five years, and the US stops at three.
-[PENDING-LIT: the no-10-year-densities-anywhere claim, verified or
-refuted; SCE/Michigan/Consensus/Blue Chip/Livingston/SEP inventory line.]
+The rest of the landscape (verified in LITREVIEW.md §5): the NY Fed's SCE
+elicits household densities to three years (a five-year inflation question
+since 2022); Consensus Economics elicits by-range probabilities at one year
+and publishes its 5–10 year forecasts as points; Livingston (since 1946),
+Blue Chip, and the FOMC's SEP are point products — the SEP's fans come from
+historical errors, not elicited beliefs. The two partial precedents at long
+horizons are one-offs: Christensen, Gillingham and Nordhaus (2018, expert
+quantiles on growth to 2100) and Karger et al. (2026). The claim the
+inventory supports: no survey anywhere regularly elicits probability
+distributions over ten-year-ahead growth. Bin history for the US densities
+(SPF documentation): 15 bins at the 1968Q4 origin, 6 from 1981Q3, 10 from
+1992Q1, 11 from 2009Q2, with changes in 2020Q2 and 2024Q2.
 
 ## 3. Measures
 
@@ -145,13 +173,18 @@ Each fact gets a figure from the pipeline and a paragraph. Status:
 
 ## 5. The elicitation gap
 
-Job: put the AI growth debate against the inventory. Beats only until the
-lit review lands: the published decade-scale range [NEEDS LIT], the expert
-surveys that collect point estimates or wide scenario bands but not
-forecaster densities [NEEDS LIT: FRI/Chicago Fed survey specifics], and the
-observation the paper owns: the instruments that would discipline this
-debate exist, run quarterly, and stop at year three (US) or five (EA).
-Tone check: state the gap; do not scold the surveys.
+Job: put the AI growth debate against the inventory. Beats, citations
+verified (LITREVIEW.md §5): the 0.1–30pp/yr published range and its
+anchors (Acemoglu low, Goldman mid, Aghion–Bunel spread-within-framework,
+Davidson/Erdil–Besiroglu high, Epoch's GATE model whose own authors
+disclaim quantitative reliability); Karger et al. (2026) as the flagship
+elicitation — medians and two quantiles, once; Chow, Halperin and Mazlish
+(2026) extracting long-horizon growth beliefs from asset prices precisely
+because no survey elicits them; Cunningham (2025) independently noting the
+missing distributions. The observation the paper owns: the instruments that
+would discipline this debate exist, run quarterly, have 50 years of
+calibration record — and stop at year three (US) or five (EA). Tone check:
+state the gap; do not scold the surveys.
 
 ## 6. What better elicitation would look like
 

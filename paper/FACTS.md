@@ -73,12 +73,29 @@ PENDING-LIT (awaiting the verified lit review). Unresolved items carry
   ECB longer-term series level and post-2021 shift; calibration per
   variable; disagreement share across variables; bin-change mechanics.
 
-## Pending literature (workflow)
+## Literature (verified — LITREVIEW.md, 84 works, all fetch-checked)
 
-- Every citation. The AI-growth published range ("0.1–30pp/yr").
-- The claim that no survey anywhere regularly elicits ~10-year-ahead growth
-  densities (confirm or find the counterexample).
-- Novelty verdict per component.
+- AI-growth published range 0.1–30pp/yr: VERIFIED (Shenk 2026 AI Frontiers;
+  Cunningham 2025 compilation of 33 forecasts; anchors Acemoglu 2024,
+  Briggs–Kodnani 2023, Aghion–Bunel 2024, Davidson 2021, Erdil–Besiroglu
+  2023; Karger et al. 2026 = the FRI + Chicago Fed survey, NBER WP 35046).
+- "No survey anywhere regularly elicits 10-year-ahead growth densities":
+  SUPPORTED by the verified inventory; sharpened by two one-off partial
+  precedents (Christensen–Gillingham–Nordhaus 2018; Karger et al. 2026).
+  State with the word "regularly."
+- No live cross-survey uncertainty tracker exists: VERIFIED ABSENCE (ECB
+  dashboard = latest 3 rounds only; FRED carries no SPF series; Philly Fed
+  error-statistics page renders empty).
+- Novelty per component: (a) decomposition DONE (Wallis school); (b) US
+  long series PARTIAL (D'Amico–Orphanides 2008 the antecedent); (c)
+  cross-Atlantic PARTIAL (Glas–Hartmann 2022 pool for rounding only);
+  (d) panorama + term structure OPEN as assembly; (e) calibration method
+  DONE, 2020s panel OPEN; (f) interactive OPEN; (g) elicitation-gap
+  framing OPEN.
+- US bin history (SPF documentation, verified): 15 bins 1968Q4, 6 from
+  1981Q3, 10 from 1992Q1, 11 from 2009Q2; changes 2020Q2 and 2024Q2.
+- Appendix 8 of LITREVIEW.md lists unverified items — cite NOTHING from it
+  without fresh verification.
 
 ## Prohibitions
 
