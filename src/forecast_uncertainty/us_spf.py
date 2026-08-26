@@ -14,7 +14,7 @@ from .bins import BinScheme, us_bin_scheme
 
 DEFAULT_DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "raw"
 DENSITY_VARIABLES = ("PRGDP", "PRPGDP", "PRUNEMP", "PRCCPI", "PRCPCE")
-LONGRUN_VARIABLES = ("RGDP10", "CPI10", "PCE10", "UNEMP10")
+LONGRUN_VARIABLES = ("RGDP10", "CPI10", "PCE10")
 
 _EARLY_NEXT_YEAR_ROUNDS = {
     (1968, 4),

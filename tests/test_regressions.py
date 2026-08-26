@@ -6,8 +6,12 @@ import pytest
 
 from forecast_uncertainty.build import add_recession_realizations, aggregate_density
 from forecast_uncertainty.ecb_spf import parse_ecb_round
-from forecast_uncertainty.realizations import calibration_table, load_us_realizations
-from forecast_uncertainty.us_spf import parse_us_density
+from forecast_uncertainty.realizations import (
+    calibration_table,
+    load_ecb_realizations,
+    load_us_realizations,
+)
+from forecast_uncertainty.us_spf import LONGRUN_VARIABLES, parse_us_density
 
 ROOT = Path(__file__).resolve().parents[1]
 SEED = ROOT / "tests" / "fixtures" / "seed"
@@ -79,6 +83,61 @@ def test_documented_round_coverage_and_core_starts():
         .notna()
         .any()
     )
+
+
+def test_hicpx_realizations_support_calendar_and_rolling_calibration():
+    realizations = load_ecb_realizations()
+    core = realizations[realizations["variable"] == "hicpx"].set_index("target_period")
+
+    assert len(core) == 377
+    assert core.loc["2024Dec", "realized"] == pytest.approx(2.7)
+    assert core.loc["2024Dec", "observation_status"] == "A"
+    assert core.loc["2025", "realized"] == pytest.approx(2.425)
+    assert core.loc["2025", "observation_status"] == "A+E"
+
+    forecasts = pd.DataFrame(
+        [
+            {
+                "survey": "ecb",
+                "variable": "hicpx",
+                "target_period": target,
+                "mean": 2.5,
+                "total_sd": 1.0,
+                "q05": 1.0,
+                "q95": 4.0,
+            }
+            for target in ("2024Dec", "2025")
+        ]
+    )
+    calibration = calibration_table(forecasts, realizations)
+
+    assert calibration["target_period"].tolist() == ["2024Dec", "2025"]
+    estimated = calibration["observation_status"].str.contains("E", na=False)
+    assert estimated.tolist() == [False, True]
+
+
+def test_generated_hicpx_calibration_coverage():
+    calibration = pd.read_csv(ROOT / "outputs" / "calibration.csv")
+    core = calibration[
+        (calibration["survey"] == "ecb") & (calibration["variable"] == "hicpx")
+    ]
+
+    assert len(core) == 176
+    assert (int(core["inside_1sd"].sum()), int(core["inside_pooled_90"].sum())) == (
+        106,
+        128,
+    )
+
+    actual_only = core[~core["observation_status"].str.contains("E", na=False)]
+    assert len(actual_only) == 156
+    assert (
+        int(actual_only["inside_1sd"].sum()),
+        int(actual_only["inside_pooled_90"].sum()),
+    ) == (90, 108)
+
+
+def test_documented_longrun_point_configuration():
+    assert LONGRUN_VARIABLES == ("RGDP10", "CPI10", "PCE10")
 
 
 def test_calibration_excludes_us_gnp_concepts():

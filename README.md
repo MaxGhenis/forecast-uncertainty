@@ -9,10 +9,10 @@ horizon, and round of the two surveys that collect them:
   output growth (PRGDP), GDP price inflation (PRPGDP), unemployment
   (PRUNEMP), core CPI (PRCCPI), core PCE (PRCPCE), and recession
   probability (RECESS), plus 10-year point forecasts (RGDP10, CPI10,
-  PCE10, UNEMP10).
+  PCE10).
 - **ECB SPF** (quarterly since 1999Q1): density forecasts for euro-area
-  HICP inflation, real GDP growth, and unemployment at one-year,
-  two-year, and five-calendar-year-ahead horizons.
+  HICP and core HICP inflation, real GDP growth, and unemployment at
+  one-year, two-year, and longer-term horizons.
 
 For each (survey, variable, round, target) it decomposes pooled
 uncertainty by the law of total variance:

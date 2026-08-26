@@ -124,8 +124,8 @@ def load_ecb_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame
     Calendar-year values are arithmetic averages of the complete set of local
     monthly or quarterly year-on-year observations, matching the supplied source
     series and the SPF's calendar-year-average convention.  Rolling targets use the
-    exact target month or quarter.  No HICPX rows are created because a verifiably
-    matching local core-HICP realization series was not supplied.
+    exact target month or quarter.  Observation statuses are retained so rows
+    containing ECB estimates can be identified in calibration sensitivity checks.
     """
     directory = Path(raw_dir)
     specifications = (
@@ -135,6 +135,13 @@ def load_ecb_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame
             "monthly",
             "year_on_year_hicp_inflation",
             "ECB Data Portal ICP.M.U2.N.000000.4.ANR (latest vintage)",
+        ),
+        (
+            "hicpx",
+            directory / "ecb_ea_hicpx_yoy_monthly.csv",
+            "monthly",
+            "year_on_year_hicpx_inflation",
+            "ECB Data Portal ICP.M.U2.N.XEF000.4.ANR (latest vintage)",
         ),
         (
             "rgdp",

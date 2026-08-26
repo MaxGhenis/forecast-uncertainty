@@ -12,7 +12,7 @@ fetch () { # fetch <url> <out>
 }
 
 # US SPF individual density + long-run point files
-for v in prgdp prpgdp prunemp prccpi prcpce recess rgdp10 cpi10 pce10 unemp10; do
+for v in prgdp prpgdp prunemp prccpi prcpce recess rgdp10 cpi10 pce10; do
   fetch "$PHIL/data-files/files/individual_${v}.xlsx" "individual_${v}.xlsx"
 done
 

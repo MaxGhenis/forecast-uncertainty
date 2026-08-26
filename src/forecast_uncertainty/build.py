@@ -281,19 +281,6 @@ def build_outputs(
         ],
         ignore_index=True,
     )
-    if "UNEMP10" not in set(coverage["variable"]):
-        coverage.loc[len(coverage)] = {
-            "survey": "us",
-            "variable": "UNEMP10",
-            "rounds_parsed": 0,
-            "first_round": pd.NA,
-            "last_round": pd.NA,
-            "target_groups": 0,
-            "rows_kept": 0,
-            "rows_dropped": 0,
-            "rows_all_nan": 0,
-            "note": "input is an HTML error page, not an XLSX workbook",
-        }
     coverage = coverage.sort_values(["survey", "variable"]).reset_index(drop=True)
 
     outputs = {
