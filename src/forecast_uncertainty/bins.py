@@ -388,16 +388,15 @@ def _ecb_number(value: str | None, negative: str | None) -> float | None:
     return -number if negative else number
 
 
-def contiguous_ecb_intervals(
+def ecb_intervals(
     intervals: list[Interval] | tuple[Interval, ...],
 ) -> tuple[Interval, ...]:
-    """Join literal ECB grid labels at the next bin's lower endpoint.
+    """Validate and sort literal ECB interval labels from low to high.
 
-    ECB headers label one-decimal outcome ranges, for example 0.0--0.4 followed
-    by 0.5--0.9. For a continuous approximation, the effective upper edge of a
-    closed bin is the next bin's lower edge (0.5 in that example), rather than a
-    halfway boundary. Open tails retain the boundary encoded in their header.
-    Returned intervals are sorted from low to high.
+    Annexes 3 and 5 define the finite ranges as closed, one-decimal-grid
+    intervals. Thus 0.0--0.4 retains those literal bounds even when followed by
+    0.5--0.9; the continuous surrogate has a 0.1 gap and does not shift either
+    reported endpoint.
     """
     if not intervals:
         raise ValueError("At least one ECB interval is required")
@@ -405,19 +404,17 @@ def contiguous_ecb_intervals(
         intervals,
         key=lambda bounds: float("-inf") if bounds[0] is None else bounds[0],
     )
-    output: list[Interval] = []
     for index, (lower, upper) in enumerate(ordered):
+        if lower is None and index != 0:
+            raise ValueError("Only the first interval may have an open lower tail")
+        if upper is None and index != len(ordered) - 1:
+            raise ValueError("Only the last interval may have an open upper tail")
         if index + 1 < len(ordered):
             next_lower = ordered[index + 1][0]
-            if next_lower is None:
-                raise ValueError("Only the first interval may have an open lower tail")
-            if upper is None:
-                raise ValueError("Only the last interval may have an open upper tail")
-            if upper > next_lower:
-                raise ValueError("ECB intervals overlap")
-            upper = next_lower
-        output.append((lower, upper))
-    return tuple(output)
+            if upper is None or next_lower is None or upper > next_lower:
+                raise ValueError("ECB intervals overlap or have misplaced open tails")
+    return tuple(ordered)
 
 
-ecb_contiguous_intervals = contiguous_ecb_intervals
+contiguous_ecb_intervals = ecb_intervals
+ecb_contiguous_intervals = ecb_intervals

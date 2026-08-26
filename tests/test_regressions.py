@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from forecast_uncertainty.build import aggregate_density
+from forecast_uncertainty.build import add_recession_realizations, aggregate_density
 from forecast_uncertainty.ecb_spf import parse_ecb_round
 from forecast_uncertainty.realizations import calibration_table, load_us_realizations
 from forecast_uncertainty.us_spf import parse_us_density
@@ -79,3 +79,86 @@ def test_documented_round_coverage_and_core_starts():
         .notna()
         .any()
     )
+
+
+def test_calibration_excludes_us_gnp_concepts():
+    forecasts = pd.DataFrame(
+        [
+            {
+                "survey": "us",
+                "variable": "PRGDP",
+                "concept": concept,
+                "target_year": 1992,
+                "mean": 2.0,
+                "total_sd": 1.0,
+                "q05": 0.0,
+                "q95": 4.0,
+            }
+            for concept in ("nominal_gnp", "real_gnp", "real_gdp")
+        ]
+        + [
+            {
+                "survey": "us",
+                "variable": "PRPGDP",
+                "concept": concept,
+                "target_year": 1992,
+                "mean": 2.0,
+                "total_sd": 1.0,
+                "q05": 0.0,
+                "q95": 4.0,
+            }
+            for concept in ("gnp_implicit_deflator", "gdp_implicit_deflator")
+        ]
+    )
+    realizations = pd.DataFrame(
+        [
+            {
+                "survey": "us_spf",
+                "variable": variable,
+                "target_period": "1992",
+                "realized": 2.5,
+            }
+            for variable in ("prgdp", "prpgdp")
+        ]
+    )
+
+    calibration = calibration_table(forecasts, realizations)
+
+    assert calibration[["variable", "concept"]].to_records(index=False).tolist() == [
+        ("PRGDP", "real_gdp"),
+        ("PRPGDP", "gdp_implicit_deflator"),
+    ]
+
+
+def test_recession_realizations_require_chain_weighted_gdp_concept():
+    forecasts = pd.DataFrame(
+        [
+            {
+                "survey": "us",
+                "variable": "RECESS",
+                "concept": concept,
+                "year": 1996,
+                "quarter": 1,
+                "target_period": "1996Q1",
+                "mean_probability": 25.0,
+            }
+            for concept in ("fixed_weighted_real_gdp", "chain_weighted_real_gdp")
+        ]
+    )
+    realizations = pd.DataFrame(
+        [
+            {
+                "survey": "us_spf",
+                "variable": "recess",
+                "target_period": "1996Q1",
+                "realized": 0.0,
+                "source": "test",
+            }
+        ]
+    )
+
+    scored = add_recession_realizations(forecasts, realizations)
+
+    assert scored.loc[0, ["realized", "source"]].isna().all()
+    assert scored.loc[1, "realized"] == 0.0
+    assert scored.loc[1, "source"] == "test"

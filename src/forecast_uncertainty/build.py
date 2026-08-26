@@ -209,6 +209,9 @@ def add_recession_realizations(
     output = recess.merge(
         actual, on="target_period", how="left", validate="many_to_one"
     )
+    if "concept" in output:
+        incompatible = output["concept"] != "chain_weighted_real_gdp"
+        output.loc[incompatible, ["realized", "source"]] = [np.nan, pd.NA]
     mean_column = "mean_probability" if "mean_probability" in output else "mean"
     output["error"] = output["realized"] - output[mean_column]
     output["brier_score"] = (

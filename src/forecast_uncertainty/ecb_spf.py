@@ -10,7 +10,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .bins import BinScheme, ecb_contiguous_intervals, parse_ecb_header
+from .bins import BinScheme, ecb_intervals, parse_ecb_header
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_RAW_DIR = REPOSITORY_ROOT / "data" / "raw" / "ecb_spf"
@@ -153,7 +153,7 @@ def _parse_section(
 
     ordered_bins = _ordered_bins(bin_columns)
     bin_headers = [header_name for _, header_name, _ in ordered_bins]
-    intervals = ecb_contiguous_intervals([bounds for _, _, bounds in ordered_bins])
+    intervals = ecb_intervals([bounds for _, _, bounds in ordered_bins])
     scheme_name = "|".join(bin_headers)
     midpoints = np.asarray(BinScheme(scheme_name, intervals).midpoints, dtype=float)
 
