@@ -229,6 +229,11 @@ https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf
 The canonical theory of proper scoring rules: propriety, the Savage representation, and the standard scores for predictive densities and CDFs, including the continuous ranked probability score (CRPS) and quantile/interval scores. (Added after the workflow pass; verified from the fetched paper itself, DOI 10.1198/016214506000001437.)
 Covers: the theoretical foundation for the paper's CRPS/pinball scoring layer.
 
+**Clements, Michael P. (2014). "Probability distributions or point predictions? Survey forecasts of US output growth and inflation." International Journal of Forecasting 30(1), 99–117.**
+https://ideas.repec.org/a/eee/intfor/v30y2014i1p99-117.html
+Asks whether SPF respondents' reported histograms deliver dependable point predictions under a Bayesian learning framework, and concludes a role remains for directly elicited point predictions alongside the histograms. (Promoted from the unverified appendix after in-session verification via IDEAS; DOI 10.1016/j.ijforecast.2013.07.010.)
+Covers: the point-vs-density comparison inside one survey — background for both the calibration section and the elicitation-design discussion.
+
 ## 3. The ECB SPF
 
 The euro-area survey: design, measurement, official retrospectives, and the unique longer-horizon densities.
@@ -595,7 +600,6 @@ Do not cite any of the following without fresh independent verification. These a
 
 **Real but unverified (verification bar not met — confirm before citing):**
 - "Uncertain and Asymmetric Forecasts" (arXiv 2411.05938, 2024): ECB-SPF histogram-moment corrections; author name could not be confirmed from fetched pages.
-- Clements (2014, IJF 30(1), 99–117), "Probability distributions or point predictions? Survey forecasts of US output growth and inflation": exists per search results; no confirming page fetched.
 - Bassetti, Casarin and Del Negro's Handbook of Economic Expectations chapter (COVID-era SPF uncertainty application): appears in ScienceDirect listings; chapter page could not be fetched. Cite the verified CEPR DP 19426 instead.
 - Oinonen and Paloviita, "How informative are aggregated inflation expectations?": surfaced in search; bibliographic details not confirmed.
 - "Uncertainty in long-term macroeconomic forecasts: Ex post evaluation of forecasts by economics researchers": exists per search listing; unverified.
