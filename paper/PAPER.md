@@ -220,11 +220,17 @@ state the gap; do not scold the surveys.
 ## 6. What better elicitation would look like
 
 Job: constructive close. Candidate beats (design, not advocacy): extend one
-existing survey block to a 10-year density on growth; bins wide enough to
-be honest about tails (the 2020 US widening as precedent); score and
-publish calibration the way section 4 does; pair each long-horizon density
-with the respondent's AI-adoption assumption so the growth debate becomes
-decomposable. [Draft after facts 3 and 5 are in.]
+existing survey block to a 10-year density on growth — the ECB's
+longer-term question shows a panel will answer it, and its 2023 special
+survey already asked whether ten-year expectations would differ (Allayioti
+et al. 2024); bins wide enough to be honest about tails (the 2020 US
+widening as precedent — and fact 3 says the current instruments would
+likely elicit a plateau, which is itself the test); score and publish
+calibration the way section 4 does, since the record shows where stated
+densities break (regime shifts) and the AI question is a regime-shift
+question; pair each long-horizon density with the respondent's AI-adoption
+assumption so the 0.1–30pp range becomes decomposable into capability and
+diffusion beliefs.
 
 ## 7. Conclusion
 
