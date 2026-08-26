@@ -147,7 +147,21 @@ measure: bin-scheme changes move midpoint-based SDs mechanically, and the
 Fixed-event structure: targets are calendar years, so a "next year"
 forecast made in Q1 and one made in Q4 differ in horizon by three quarters.
 We treat (round, target) pairs explicitly and show within-year shrinkage
-rather than averaging over it. [PENDING-SOL: shrinkage profile.]
+rather than averaging over it (computed: current-year uncertainty falls
+24–41% from Q1 to Q4, by variable).
+
+Scoring: coverage rates test the density at two thresholds; proper scores
+evaluate all of it. The pooled CDF is piecewise linear, so the CRPS has an
+exact closed form, and pinball losses at the published quantile levels
+decompose it by tail. We score every calibrated round against two
+no-lookahead benchmarks — expanding-window climatology and a Gaussian
+centered on the consensus with historical-error SD — and report skill, plus
+the pooled mixture against the average individual forecaster (does the
+disagreement variance earn its keep?). PITs complete the standard
+diagnostics. Scoring rules on these densities go back to Boero, Smith and
+Wallis (2011, IJF); the scoring-rule theory is Gneiting and Raftery (2007,
+JASA 102(477), 359–378 — verified from the paper). [PENDING-SOL-3: all
+score numbers.]
 
 ## 4. Five stylized facts
 
@@ -188,7 +202,9 @@ below are computed (FACTS.md, full-pipeline block).
    spread — they cluster in regime shifts: every forecast of the 1996–99
    outcomes missed; every US core-inflation forecast of 2021 and 2022
    missed both the ±1σ and the 90% band; all 16 ECB calendar-year HICP
-   forecasts of 2022 missed both bands.
+   forecasts of 2022 missed both bands. [PENDING-SOL-3: the skill version —
+   CRPS vs climatology and Gaussian-around-consensus benchmarks; pinball
+   05/95 to show the miss clusters live in the tails.]
 5. **The euro area asks the question the US doesn't — and after 2021 the
    long answer moved less than the short one, but it moved.** The ECB
    longer-term (4–5 year) density: total SD 0.70 before 2021, 0.91 after
@@ -226,9 +242,10 @@ survey already asked whether ten-year expectations would differ (Allayioti
 et al. 2024); bins wide enough to be honest about tails (the 2020 US
 widening as precedent — and fact 3 says the current instruments would
 likely elicit a plateau, which is itself the test); score and publish
-calibration the way section 4 does, since the record shows where stated
-densities break (regime shifts) and the AI question is a regime-shift
-question; pair each long-horizon density with the respondent's AI-adoption
+the record the way section 4 does — CRPS with pinball components, so a
+long-horizon density question ships with the scoring rule that disciplines
+it, and the record shows where stated densities break (regime shifts)
+exactly because the AI question is a regime-shift question; pair each long-horizon density with the respondent's AI-adoption
 assumption so the 0.1–30pp range becomes decomposable into capability and
 diffusion beliefs.
 

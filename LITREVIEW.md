@@ -224,6 +224,11 @@ Covers: primary-source documentation of the COVID-era bin widening on the ECB si
 
 ---
 
+**Gneiting, Tilmann and Adrian E. Raftery (2007). "Strictly Proper Scoring Rules, Prediction, and Estimation." Journal of the American Statistical Association 102(477), 359–378.**
+https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf
+The canonical theory of proper scoring rules: propriety, the Savage representation, and the standard scores for predictive densities and CDFs, including the continuous ranked probability score (CRPS) and quantile/interval scores. (Added after the workflow pass; verified from the fetched paper itself, DOI 10.1198/016214506000001437.)
+Covers: the theoretical foundation for the paper's CRPS/pinball scoring layer.
+
 ## 3. The ECB SPF
 
 The euro-area survey: design, measurement, official retrospectives, and the unique longer-horizon densities.

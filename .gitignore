@@ -8,3 +8,4 @@ data/raw/ecb_spf/
 *.lane.log
 *.err.log
 lane2-note.md
+lane*-note.md

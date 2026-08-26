@@ -110,8 +110,24 @@ identity max error 4e-16)
   (current + next) per documentation Table 6 — not four; the SPF has NO
   UNEMP10 variable (the downloaded file was an HTML error page); RGDP10
   runs Q1-only 1992Q1–2026Q1 (35 rounds), CPI10 quarterly since 1991Q4.
-- HICPX calibration pending lane 2 (realization series now local,
-  concept-verified "All-items excluding energy and food").
+- HICPX calibration COMPUTED (lane 2): 60.2% ±1σ / 72.7% pooled-90% over
+  176 rows (57.7%/69.2% excluding ECB estimate-status observations);
+  realization concept-verified "All-items excluding energy and food".
+
+## Pending — lane 3 (proper scores; sol run 20260826-103739)
+
+- CRPS (closed form on the piecewise-linear pooled CDF), pinball at
+  05/10/25/50/75/90/95, PIT per calibrated row.
+- Benchmarks, no lookahead (expanding window, min 10 obs): climatology and
+  Gaussian-around-consensus with historical-error SD; skill scores.
+- Pooled-mixture CRPS vs average individual CRPS (does disagreement
+  variance earn its keep?).
+- Scores view in the interactive.
+- Lit anchors verified: Boero, Smith and Wallis (2011, IJF 27(2), 379–393 —
+  in the LITREVIEW corpus) on scoring rules and survey density forecasts;
+  Gneiting and Raftery (2007), "Strictly Proper Scoring Rules, Prediction,
+  and Estimation," JASA 102(477), 359–378 — VERIFIED from the fetched paper
+  this session (DOI 10.1198/016214506000001437).
 
 ## Literature (verified — LITREVIEW.md, 84 works, all fetch-checked)
 
