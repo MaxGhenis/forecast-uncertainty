@@ -26,6 +26,7 @@ SOURCE_PATHS = {
     "measures": OUTPUTS / "measures.csv",
     "calibration": OUTPUTS / "calibration.csv",
     "longrun_points": OUTPUTS / "longrun_points.csv",
+    "scores": OUTPUTS / "scores.csv",
 }
 
 MEASURE_FIELDS = [
@@ -70,6 +71,56 @@ LONGRUN_FIELDS = [
     "median",
     "iqr",
 ]
+SCORE_KEY_FIELDS = [
+    "survey",
+    "variable",
+    "concept",
+    "year",
+    "quarter",
+    "target_year",
+    "target_period",
+    "horizon_class",
+    "horizon_years",
+    "horizon_quarters",
+    "bin_scheme",
+]
+PINBALL_FIELDS = [
+    "pinball_05",
+    "pinball_10",
+    "pinball_25",
+    "pinball_50",
+    "pinball_75",
+    "pinball_90",
+    "pinball_95",
+]
+DISTRIBUTION_LOSS_FIELDS = [
+    "crps_pooled",
+    "crps_individual_mean",
+    *PINBALL_FIELDS,
+]
+BENCHMARK_COUNT_FIELDS = ["n_climatology", "n_gaussian"]
+BENCHMARK_SCORE_FIELDS = ["crps_climatology", "crps_gaussian"]
+SKILL_FIELDS = ["skill_vs_climatology", "skill_vs_gaussian"]
+SCORE_REQUIRED_FIELDS = [
+    *SCORE_KEY_FIELDS,
+    *DISTRIBUTION_LOSS_FIELDS,
+    "pit",
+    *BENCHMARK_COUNT_FIELDS,
+    *BENCHMARK_SCORE_FIELDS,
+    *SKILL_FIELDS,
+]
+SCORE_FIELDS = [
+    "survey",
+    "variable",
+    "year",
+    "quarter",
+    "horizon_class",
+    "horizon_years",
+    "crps_pooled",
+    "crps_climatology",
+    "crps_gaussian",
+]
+MIN_BENCHMARK_OBSERVATIONS = 10
 
 SURVEYS = [
     {"id": "us", "label": "US SPF"},
@@ -154,6 +205,14 @@ def _combo_set(frame: pd.DataFrame) -> set[tuple[str, str, str]]:
         for survey, variable, horizon in frame[
             ["survey", "variable", "horizon_class"]
         ].itertuples(index=False, name=None)
+    }
+
+
+def _key_set(frame: pd.DataFrame, columns: list[str]) -> set[tuple[Any, ...]]:
+    """Return hashable row keys with every missing representation normalized."""
+    return {
+        tuple(None if pd.isna(value) else value for value in row)
+        for row in frame[columns].itertuples(index=False, name=None)
     }
 
 
@@ -259,6 +318,23 @@ def _longrun_rows(frame: pd.DataFrame) -> list[list[Any]]:
     ]
 
 
+def _score_rows(frame: pd.DataFrame) -> list[list[Any]]:
+    return [
+        [
+            row.survey,
+            row.variable,
+            int(row.year),
+            int(row.quarter),
+            row.horizon_class,
+            significant(row.horizon_years),
+            significant(row.crps_pooled),
+            significant(row.crps_climatology),
+            significant(row.crps_gaussian),
+        ]
+        for row in frame.itertuples(index=False)
+    ]
+
+
 def _assert_series(
     frame: pd.DataFrame,
     combos: set[tuple[str, str, str]],
@@ -279,6 +355,7 @@ def main() -> None:
     measures_raw = pd.read_csv(SOURCE_PATHS["measures"])
     calibration = pd.read_csv(SOURCE_PATHS["calibration"])
     longrun = pd.read_csv(SOURCE_PATHS["longrun_points"])
+    scores = pd.read_csv(SOURCE_PATHS["scores"])
 
     measure_source_fields = MEASURE_FIELDS
     calibration_source_fields = [
@@ -301,6 +378,8 @@ def main() -> None:
         calibration, calibration_source_fields, SOURCE_PATHS["calibration"]
     )
     _require_columns(longrun, LONGRUN_FIELDS, SOURCE_PATHS["longrun_points"])
+    _require_columns(calibration, SCORE_KEY_FIELDS, SOURCE_PATHS["calibration"])
+    _require_columns(scores, SCORE_REQUIRED_FIELDS, SOURCE_PATHS["scores"])
     for column in ("inside_1sd", "inside_pooled_90"):
         assert pd.api.types.is_bool_dtype(calibration[column]), (
             f"Calibration flag {column} must contain booleans"
@@ -330,11 +409,69 @@ def main() -> None:
     assert not longrun[LONGRUN_FIELDS].isna().any().any(), (
         "Long-run rows contain missing view fields"
     )
+    assert not (
+        scores[SCORE_FIELDS[:6] + DISTRIBUTION_LOSS_FIELDS + ["pit"]].isna().any().any()
+    ), "Score rows contain missing compact identity or distribution-score fields"
+    for column in DISTRIBUTION_LOSS_FIELDS:
+        values = scores[column]
+        assert values.map(math.isfinite).all(), f"Score field {column} is not finite"
+        assert values.ge(0).all(), f"Score field {column} contains negative values"
+    pit = scores["pit"]
+    assert pit.map(math.isfinite).all(), "PIT contains non-finite values"
+    assert pit.between(0, 1, inclusive="both").all(), "PIT must lie in [0, 1]"
+    for count_column, score_column, skill_column in zip(
+        BENCHMARK_COUNT_FIELDS,
+        BENCHMARK_SCORE_FIELDS,
+        SKILL_FIELDS,
+        strict=True,
+    ):
+        counts = scores[count_column]
+        assert not counts.isna().any(), f"Benchmark count {count_column} is missing"
+        assert counts.map(math.isfinite).all(), (
+            f"Benchmark count {count_column} is not finite"
+        )
+        assert counts.ge(0).all() and counts.eq(counts.round()).all(), (
+            f"Benchmark count {count_column} must be a nonnegative integer"
+        )
+        benchmark = scores[score_column]
+        observed = benchmark.dropna()
+        assert observed.map(math.isfinite).all(), (
+            f"Benchmark score {score_column} is not finite"
+        )
+        assert observed.ge(0).all(), (
+            f"Benchmark score {score_column} contains negative values"
+        )
+        expected_benchmark_missing = counts.lt(MIN_BENCHMARK_OBSERVATIONS)
+        assert benchmark.isna().equals(expected_benchmark_missing), (
+            f"{score_column} nullness must exactly match the benchmark minimum"
+        )
+
+        skill = scores[skill_column]
+        observed_skill = skill.dropna()
+        assert observed_skill.map(math.isfinite).all(), (
+            f"Skill score {skill_column} is not finite"
+        )
+        expected_skill_missing = benchmark.isna() | benchmark.eq(0)
+        assert skill.isna().equals(expected_skill_missing), (
+            f"{skill_column} nullness must match unavailable or zero benchmarks"
+        )
+        valid = ~expected_skill_missing
+        expected_skill = 1 - scores.loc[valid, "crps_pooled"] / benchmark.loc[valid]
+        tolerance = 1e-12 + 1e-10 * expected_skill.abs()
+        assert ((skill.loc[valid] - expected_skill).abs() <= tolerance).all(), (
+            f"{skill_column} does not equal 1 - pooled CRPS / benchmark CRPS"
+        )
     assert not measures.duplicated(identity_fields).any(), (
         "Duplicate measure round rows"
     )
     assert not calibration.duplicated(identity_fields).any(), (
         "Duplicate calibration round rows"
+    )
+    assert not scores.duplicated(SCORE_KEY_FIELDS).any(), "Duplicate score rows"
+    calibration_keys = _key_set(calibration, SCORE_KEY_FIELDS)
+    score_keys = _key_set(scores, SCORE_KEY_FIELDS)
+    assert len(scores) == len(calibration) and score_keys == calibration_keys, (
+        "Scores and calibration must have the same exact row-key universe"
     )
 
     options = _options(measures)
@@ -363,6 +500,13 @@ def main() -> None:
     )
     _assert_series(measures, EXPECTED_COMBOS, "measure")
     _assert_series(calibration, EXPECTED_COMBOS, "calibration")
+    score_combos = _combo_set(scores)
+    assert score_combos == EXPECTED_COMBOS, (
+        "Score series and expected 38-combo matrix differ: "
+        f"missing={sorted(EXPECTED_COMBOS - score_combos)}, "
+        f"unexpected={sorted(score_combos - EXPECTED_COMBOS)}"
+    )
+    _assert_series(scores, EXPECTED_COMBOS, "score")
 
     longrun_combos = set(
         longrun[["survey", "variable"]].itertuples(index=False, name=None)
@@ -418,6 +562,7 @@ def main() -> None:
 
     measures = sort_matrix(measures)
     calibration = sort_matrix(calibration)
+    scores = sort_matrix(scores)
     longrun = longrun.sort_values(["survey", "variable", "year", "quarter"])
 
     source_files = [
@@ -432,6 +577,7 @@ def main() -> None:
             "rows": len(calibration),
         },
         "longrun_points": {"combos": len(longrun_combos), "rows": len(longrun)},
+        "scores": {"combos": len(score_combos), "rows": len(scores)},
         "excluded_unclassified_measure_rows": unclassified,
     }
     data = {
@@ -451,11 +597,13 @@ def main() -> None:
             "measures": MEASURE_FIELDS,
             "calibration": CALIBRATION_FIELDS,
             "longrun_points": LONGRUN_FIELDS,
+            "scores": SCORE_FIELDS,
         },
         "options": options,
         "measures": _measure_rows(measures),
         "calibration": _calibration_rows(calibration),
         "longrun_points": _longrun_rows(longrun),
+        "scores": _score_rows(scores),
     }
 
     payload = (
@@ -473,7 +621,8 @@ def main() -> None:
         "manifest: "
         f"measures {len(measure_combos)} combos × {len(measures):,} rows; "
         f"calibration {len(calibration_combos)} combos × {len(calibration):,} rows; "
-        f"longrun {len(longrun_combos)} combos × {len(longrun):,} rows"
+        f"longrun {len(longrun_combos)} combos × {len(longrun):,} rows; "
+        f"scores {len(score_combos)} combos × {len(scores):,} rows"
     )
     print(f"wrote {OUT} ({byte_count:,} bytes; budget {SIZE_BUDGET:,})")
 

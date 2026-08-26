@@ -22,14 +22,17 @@ total variance = mean within-forecaster variance + between-forecaster variance
                  (individual uncertainty)          (disagreement)
 ```
 
-and evaluates calibration against realized outcomes.
+and evaluates calibration and proper scores against realized outcomes, including
+strictly expanding-window climatology and Gaussian benchmarks.
 
 ## Layout
 
 - `data/raw/` — downloaded source files (see `data/raw/download.sh`)
 - `data/docs/` — survey documentation (bin schemes) as PDF + extracted text
-- `src/forecast_uncertainty/` — parsing, measures, realizations, build
-- `outputs/` — tidy CSVs consumed by the paper and the interactive
+- `src/forecast_uncertainty/` — parsing, measures, scores, benchmarks,
+  realizations, and build
+- `outputs/` — tidy CSVs consumed by the paper and the interactive, including
+  `scores.csv`
 - `tests/` — pytest suite, incl. golden-value tests against the seed
   pipeline (`tests/fixtures/seed/`)
 

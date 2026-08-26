@@ -12,16 +12,23 @@ QUANTILES = (0.05, 0.10, 0.25, 0.50, 0.75, 0.90, 0.95)
 def finite_intervals(
     intervals: Sequence[tuple[float | None, float | None]],
 ) -> np.ndarray:
-    """Replace open tails by one adjacent-bin width, preserving input order."""
+    """Replace open tails by one adjacent-bin width, preserving input order.
+
+    Degenerate finite intervals are retained as point masses.  They are useful
+    for the scoring primitives even though the survey bin schemes themselves
+    contain only positive-width intervals.
+    """
     if not intervals:
         raise ValueError("At least one interval is required")
 
-    finite_widths = [
-        upper - lower
+    if any(lower is None and upper is None for lower, upper in intervals):
+        raise ValueError("An interval cannot be open at both ends")
+    has_open_tail = any(lower is None or upper is None for lower, upper in intervals)
+    has_positive_width = any(
+        lower is not None and upper is not None and upper > lower
         for lower, upper in intervals
-        if lower is not None and upper is not None and upper > lower
-    ]
-    if not finite_widths:
+    )
+    if has_open_tail and not has_positive_width:
         raise ValueError("An adjacent closed interval is required for open tails")
 
     output: list[tuple[float, float]] = []
@@ -32,7 +39,7 @@ def finite_intervals(
         elif upper is None:
             width = _nearest_width(intervals, index)
             upper = float(lower) + width
-        if upper <= lower:
+        if upper < lower:
             raise ValueError(f"Invalid interval: {(lower, upper)}")
         output.append((float(lower), float(upper)))
     return np.asarray(output, dtype=float)
@@ -66,36 +73,61 @@ def pooled_quantiles(
     quantiles: Iterable[float] = QUANTILES,
 ) -> dict[str, float]:
     """Quantiles of the mean histogram, with mass uniform inside each bin."""
+    levels = tuple(float(quantile) for quantile in quantiles)
+    values = histogram_quantiles(weights, intervals, levels)
+    return {
+        _quantile_name(quantile): float(value)
+        for quantile, value in zip(levels, values, strict=True)
+    }
+
+
+def histogram_quantiles(
+    weights: np.ndarray,
+    intervals: Sequence[tuple[float | None, float | None]],
+    quantiles: Iterable[float] = QUANTILES,
+) -> np.ndarray:
+    """Return inverse-CDF values for a pooled piecewise-uniform histogram.
+
+    Two-dimensional weights are averaged across rows before normalization,
+    matching :func:`pooled_quantiles`.  The array return form is convenient for
+    dense quantile grids used to connect pinball loss and CRPS.
+    """
     probabilities = np.asarray(weights, dtype=float)
     if probabilities.ndim == 2:
         probabilities = probabilities.mean(axis=0)
     if probabilities.ndim != 1 or probabilities.size != len(intervals):
         raise ValueError("Weights and intervals have incompatible shapes")
+    levels = np.asarray(tuple(float(quantile) for quantile in quantiles), dtype=float)
+    if levels.ndim != 1:
+        raise ValueError("Quantiles must be one-dimensional")
+    if np.any(~np.isfinite(levels)) or np.any((levels < 0) | (levels > 1)):
+        invalid = levels[(~np.isfinite(levels)) | (levels < 0) | (levels > 1)][0]
+        raise ValueError(f"Invalid quantile: {invalid}")
+
     total = probabilities.sum()
     if not np.isfinite(total) or total <= 0:
-        return {_quantile_name(q): np.nan for q in quantiles}
+        return np.full(levels.shape, np.nan, dtype=float)
     probabilities = probabilities / total
 
     raw_order = np.argsort(
-        [-np.inf if lower is None else lower for lower, _ in intervals]
+        [-np.inf if lower is None else lower for lower, _ in intervals], kind="stable"
     )
     bounds = finite_intervals(intervals)[raw_order]
     probabilities = probabilities[raw_order]
     cumulative = np.cumsum(probabilities)
-    result: dict[str, float] = {}
-    for quantile in quantiles:
-        q = float(quantile)
-        if not 0 <= q <= 1:
-            raise ValueError(f"Invalid quantile: {q}")
-        index = min(int(np.searchsorted(cumulative, q, side="left")), len(bounds) - 1)
-        mass = probabilities[index]
-        prior = cumulative[index - 1] if index else 0.0
-        lower, upper = bounds[index]
-        fraction = 0.0 if mass <= 0 else (q - prior) / mass
-        result[_quantile_name(q)] = float(
-            lower + np.clip(fraction, 0, 1) * (upper - lower)
-        )
-    return result
+    indices = np.searchsorted(cumulative, levels, side="left")
+    indices = np.minimum(indices, len(bounds) - 1)
+    masses = probabilities[indices]
+    prior = np.where(indices == 0, 0.0, cumulative[np.maximum(indices - 1, 0)])
+    fractions = np.divide(
+        levels - prior,
+        masses,
+        out=np.zeros_like(levels),
+        where=masses > 0,
+    )
+    lower = bounds[indices, 0]
+    upper = bounds[indices, 1]
+    return lower + np.clip(fractions, 0, 1) * (upper - lower)
 
 
 def _quantile_name(quantile: float) -> str:

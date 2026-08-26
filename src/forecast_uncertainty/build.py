@@ -8,11 +8,13 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from forecast_uncertainty.benchmarks import add_benchmark_scores
 from forecast_uncertainty.measures import round_stats
 from forecast_uncertainty.realizations import (
     calibration_table,
     load_realizations,
 )
+from forecast_uncertainty.scores import score_density_calibration
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "data" / "raw"
@@ -225,7 +227,7 @@ def build_outputs(
     raw_dir: str | Path = RAW_DIR,
     output_dir: str | Path = OUTPUT_DIR,
 ) -> dict[str, pd.DataFrame]:
-    """Run the complete local pipeline and write the five deliverable CSVs."""
+    """Run the complete local pipeline and write the six deliverable CSVs."""
     from forecast_uncertainty.ecb_spf import parse_ecb_round
     from forecast_uncertainty.us_spf import (
         DENSITY_VARIABLES,
@@ -240,12 +242,15 @@ def build_outputs(
 
     us_measure_frames: list[pd.DataFrame] = []
     us_detail_frames: list[pd.DataFrame] = []
+    score_density_frames: list[pd.DataFrame] = []
     for variable in DENSITY_VARIABLES:
-        variable_measures, variable_details = aggregate_density(
-            parse_us_density(variable, data_dir=raw)
-        )
+        variable_density = parse_us_density(variable, data_dir=raw)
+        variable_measures, variable_details = aggregate_density(variable_density)
         us_measure_frames.append(variable_measures)
         us_detail_frames.append(variable_details)
+        score_density_frames.append(
+            variable_density.assign(response_id=variable_density["response_index"])
+        )
     us_measures = pd.concat(us_measure_frames, ignore_index=True)
     us_details = pd.concat(us_detail_frames, ignore_index=True)
 
@@ -255,9 +260,13 @@ def build_outputs(
     if not round_paths:
         raise FileNotFoundError(f"No ECB SPF rounds found in {raw / 'ecb_spf'}")
     for path in round_paths:
-        round_measures, round_details = aggregate_density(parse_ecb_round(path))
+        round_density = parse_ecb_round(path)
+        round_measures, round_details = aggregate_density(round_density)
         ecb_measure_frames.append(round_measures)
         ecb_detail_frames.append(round_details)
+        score_density_frames.append(
+            round_density.assign(response_id=round_density["respondent"])
+        )
     ecb_measures = pd.concat(ecb_measure_frames, ignore_index=True)
     ecb_details = pd.concat(ecb_detail_frames, ignore_index=True)
 
@@ -272,6 +281,11 @@ def build_outputs(
     realizations = load_realizations(raw)
     recess = add_recession_realizations(recess, realizations)
     calibration = _sort_round_targets(calibration_table(measures, realizations))
+    distribution_scores = score_density_calibration(
+        calibration,
+        pd.concat(score_density_frames, ignore_index=True),
+    )
+    scores = _sort_round_targets(add_benchmark_scores(distribution_scores, raw_dir=raw))
 
     coverage = pd.concat(
         [
@@ -288,6 +302,7 @@ def build_outputs(
         "longrun_points.csv": longrun,
         "recess.csv": recess,
         "calibration.csv": calibration,
+        "scores.csv": scores,
         "coverage.csv": coverage,
     }
     for filename, frame in outputs.items():

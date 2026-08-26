@@ -113,6 +113,7 @@
       <button role="tab" data-view="fan" aria-selected="false">Consensus fan</button>
       <button role="tab" data-view="calibration" aria-selected="false">Calibration</button>
       <button role="tab" data-view="term" aria-selected="false">Term structure</button>
+      <button role="tab" data-view="scores" aria-selected="false">Scores</button>
     </div>
   </div>
 
@@ -151,6 +152,7 @@ const DATABASE = {
   measures: decodeRows('measures'),
   calibration: decodeRows('calibration'),
   longrun: decodeRows('longrun_points'),
+  scores: decodeRows('scores'),
 };
 const SURVEY_LABELS = { us: 'US SPF', ecb: 'ECB SPF' };
 const VARIABLE_LABELS = {
@@ -246,17 +248,27 @@ function axes(scales, domain, unit, categories) {
   }
 }
 function line(points, scales, color, dash) {
-  const valid = points.filter(point => isNumber(point[0]) && isNumber(point[1]));
-  if (!valid.length) return;
-  const d = valid.map((point, i) =>
-    `${i ? 'L' : 'M'}${scales.x(point[0]).toFixed(1)},${scales.y(point[1]).toFixed(1)}`
-  ).join(' ');
-  const attrs = {
-    d, fill: 'none', stroke: color, 'stroke-width': 2,
-    'stroke-linejoin': 'round', 'stroke-linecap': 'round',
-  };
-  if (dash) attrs['stroke-dasharray'] = dash;
-  addSvg('path', attrs);
+  const segments = [];
+  let segment = [];
+  points.forEach(point => {
+    if (isNumber(point[0]) && isNumber(point[1])) {
+      segment.push(point);
+    } else if (segment.length) {
+      segments.push(segment); segment = [];
+    }
+  });
+  if (segment.length) segments.push(segment);
+  segments.forEach(valid => {
+    const d = valid.map((point, i) =>
+      `${i ? 'L' : 'M'}${scales.x(point[0]).toFixed(1)},${scales.y(point[1]).toFixed(1)}`
+    ).join(' ');
+    const attrs = {
+      d, fill: 'none', stroke: color, 'stroke-width': 2,
+      'stroke-linejoin': 'round', 'stroke-linecap': 'round',
+    };
+    if (dash) attrs['stroke-dasharray'] = dash;
+    addSvg('path', attrs);
+  });
 }
 function band(rows, scales, low, high) {
   const valid = rows.filter(row => isNumber(roundTime(row)) && isNumber(low(row)) && isNumber(high(row)));
@@ -384,7 +396,10 @@ function labels() {
   const label = select => select.options[select.selectedIndex] ? select.options[select.selectedIndex].textContent : '';
   return { survey: label(byId('survey')), variable: label(byId('variable')), horizon: label(byId('horizon')) };
 }
-function selectedRows(rows) {
+function selectedRows(rows, numeric = [
+  'horizon_years', 'n', 'mean', 'median', 'within_sd', 'disagreement',
+  'total_sd', 'share_between', 'iqr', 'q25', 'q75',
+], requireComplete = []) {
   const selected = rows.filter(row =>
     row.survey === byId('survey').value && row.variable === byId('variable').value &&
     row.horizon_class === byId('horizon').value &&
@@ -397,15 +412,14 @@ function selectedRows(rows) {
     if (!byRound.has(key)) byRound.set(key, []);
     byRound.get(key).push(row);
   });
-  const numeric = [
-    'horizon_years', 'n', 'mean', 'median', 'within_sd', 'disagreement',
-    'total_sd', 'share_between', 'iqr', 'q25', 'q75',
-  ];
   return [...byRound.values()].map(group => {
     if (group.length === 1) return group[0];
     const collapsed = { ...group[0] };
-    numeric.forEach(key => { collapsed[key] = average(group, key); });
-    collapsed.n = Math.round(collapsed.n);
+    numeric.forEach(key => {
+      collapsed[key] = requireComplete.includes(key) && !group.every(row => isNumber(row[key]))
+        ? null : average(group, key);
+    });
+    if (isNumber(collapsed.n)) collapsed.n = Math.round(collapsed.n);
     return collapsed;
   }).sort((a, b) => roundTime(a) - roundTime(b));
 }
@@ -612,6 +626,65 @@ function calibration() {
   );
 }
 
+function scores() {
+  const rows = selectedRows(DATABASE.scores, [
+    'horizon_years', 'crps_pooled', 'crps_climatology', 'crps_gaussian',
+  ], ['crps_climatology', 'crps_gaussian']), chosen = labels();
+  if (!rows.length) return empty(
+    'CRPS over time',
+    `No proper-score rows are available for ${chosen.variable}, ${chosen.horizon.toLowerCase()}, under this rounds filter.`
+  );
+  byId('chart-title').textContent = 'CRPS over time';
+  const completeBenchmarkNote = byId('survey').value === 'ecb' && byId('horizon').value === 'longer_term'
+    ? ' A benchmark is shown for an averaged duplicate round only when every target has one.'
+    : '';
+  byId('chart-note').textContent = `${chosen.variable}, ${chosen.horizon.toLowerCase()}. Lower is better. ` +
+    'The expanding-window benchmarks use only information available before each forecast round and appear after their 10-observation minimum.' +
+    roundsNote() + completeBenchmarkNote + ' The x-axis is the forecast round, not the target period.';
+  const series = [
+    { key: 'crps_pooled', color: token('--series-1'), label: 'Pooled forecast', short: 'Pooled' },
+    { key: 'crps_climatology', color: token('--series-2'), label: 'Climatology benchmark', short: 'Climatology' },
+    { key: 'crps_gaussian', color: token('--series-3'), label: 'Gaussian around consensus', short: 'Gaussian' },
+  ];
+  const availableSeries = series.filter(item => rows.some(row => isNumber(row[item.key])));
+  const unavailableBenchmarks = series.slice(1).filter(item => !availableSeries.includes(item));
+  const unavailableNote = unavailableBenchmarks.length
+    ? ` ${unavailableBenchmarks.map(item => item.short).join(' and ')} benchmark${unavailableBenchmarks.length > 1 ? 's are' : ' is'} unavailable for this selection.`
+    : '';
+  byId('chart-note').textContent += unavailableNote;
+  const times = rows.map(roundTime);
+  const domain = makeDomain(availableSeries.flatMap(item => rows.map(row => row[item.key])), true);
+  const scales = makeScales(times, domain);
+  axes(scales, domain, 'pp');
+  availableSeries.forEach(item => line(
+    rows.map(row => [roundTime(row), row[item.key]]), scales, item.color
+  ));
+  setLegend(availableSeries.map(item => ({ color: item.color, label: item.label })));
+  availableSeries.forEach((item, i) => {
+    const end = rows.slice().reverse().find(row => isNumber(row[item.key]));
+    if (end) endpoint(
+      roundTime(end), end[item.key], scales, item.color,
+      `${item.short} ${number(end[item.key])}`, (i - (availableSeries.length - 1) / 2) * 12
+    );
+  });
+  const byTime = new Map(rows.map(row => [roundTime(row), row]));
+  const scoreLabel = value => isNumber(value) ? `${number(value)}pp` : '—';
+  crosshair(times, scales, time => {
+    const row = byTime.get(time);
+    return {
+      title: roundName(row),
+      rows: availableSeries.map(item => [item.label, scoreLabel(row[item.key])]),
+    };
+  });
+  dataTable(
+    ['Forecast round', 'Pooled CRPS', 'Climatology CRPS', 'Gaussian CRPS'],
+    rows.map(row => [
+      roundName(row), number(row.crps_pooled), number(row.crps_climatology),
+      number(row.crps_gaussian),
+    ])
+  );
+}
+
 function average(rows, key) {
   const values = rows.map(row => row[key]).filter(isNumber).map(Number);
   return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
@@ -712,7 +785,7 @@ function termStructure() {
   );
 }
 
-const RENDERERS = { decomposition, fan, calibration, term: termStructure };
+const RENDERERS = { decomposition, fan, calibration, term: termStructure, scores };
 function toggleViewControls() {
   byId('measure-control').hidden = activeView !== 'decomposition';
   byId('rounds-control').hidden = activeView === 'term';

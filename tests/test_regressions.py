@@ -136,6 +136,49 @@ def test_generated_hicpx_calibration_coverage():
     ) == (90, 108)
 
 
+def test_generated_scores_match_calibration_and_flag_benchmark_windows():
+    calibration = pd.read_csv(ROOT / "outputs" / "calibration.csv")
+    scores = pd.read_csv(ROOT / "outputs" / "scores.csv")
+
+    assert len(scores) == len(calibration) == 3070
+    assert scores.columns[: len(calibration.columns)].tolist() == list(
+        calibration.columns
+    )
+    pd.testing.assert_frame_equal(
+        scores[list(calibration.columns)], calibration, check_dtype=False
+    )
+
+    distribution_columns = [
+        "crps_pooled",
+        "crps_individual_mean",
+        "pinball_05",
+        "pinball_10",
+        "pinball_25",
+        "pinball_50",
+        "pinball_75",
+        "pinball_90",
+        "pinball_95",
+        "pit",
+    ]
+    assert scores[distribution_columns].notna().all().all()
+    assert scores[distribution_columns[:-1]].ge(0.0).all().all()
+    assert scores["pit"].between(0.0, 1.0).all()
+    assert (scores["crps_pooled"] <= scores["crps_individual_mean"] + 1e-10).all()
+
+    for name in ("climatology", "gaussian"):
+        benchmark = scores[f"crps_{name}"]
+        eligible = scores[f"n_{name}"] >= 10
+        assert benchmark.notna().equals(eligible)
+        expected_skill = 1.0 - scores["crps_pooled"] / benchmark
+        np.testing.assert_allclose(
+            scores.loc[eligible, f"skill_vs_{name}"],
+            expected_skill.loc[eligible],
+            rtol=0.0,
+            atol=1e-12,
+        )
+        assert scores.loc[~eligible, f"skill_vs_{name}"].isna().all()
+
+
 def test_documented_longrun_point_configuration():
     assert LONGRUN_VARIABLES == ("RGDP10", "CPI10", "PCE10")
 

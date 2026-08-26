@@ -34,6 +34,16 @@ _MONTH_ABBREVIATIONS = {
 }
 _MONTH_NUMBERS = {name.lower(): index for index, name in _MONTH_ABBREVIATIONS.items()}
 
+_US_CALIBRATION_START_YEARS = {
+    "prgdp": 1992,
+    "prpgdp": 1992,
+    "prunemp": 2009,
+    "prccpi": 2007,
+    "prcpce": 2007,
+    "recess": 1992,
+}
+_US_FULL_HISTORY_START_YEARS = {variable: 0 for variable in _US_CALIBRATION_START_YEARS}
+
 
 def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
     """Return documented US SPF realization mappings in tidy form.
@@ -43,6 +53,27 @@ def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
     when every required source month is present.  ``recess`` is expressed on the
     survey's percentage-point scale: 100 for a real-GDP decline and 0 otherwise.
     """
+    return _load_us_realizations(raw_dir, start_years=_US_CALIBRATION_START_YEARS)
+
+
+def load_us_realization_history(
+    raw_dir: str | Path = DEFAULT_RAW_DIR,
+) -> pd.DataFrame:
+    """Return the longest compatible US realization histories available locally.
+
+    Unlike :func:`load_us_realizations`, this loader does not trim observations to
+    each density survey's calibration era.  It is intended for strictly expanding
+    benchmark windows; joining it directly to forecasts still requires the usual
+    survey-concept compatibility checks.
+    """
+    return _load_us_realizations(raw_dir, start_years=_US_FULL_HISTORY_START_YEARS)
+
+
+def _load_us_realizations(
+    raw_dir: str | Path,
+    *,
+    start_years: dict[str, int],
+) -> pd.DataFrame:
     directory = Path(raw_dir)
     frames: list[pd.DataFrame] = []
 
@@ -52,7 +83,7 @@ def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
             real_gdp,
             survey="us_spf",
             variable="prgdp",
-            start_year=1992,
+            start_year=start_years["prgdp"],
             concept="annual_average_real_gdp_growth",
             source="BEA NIPA-T10101/A191RL-A (latest vintage)",
         )
@@ -67,7 +98,7 @@ def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
             gdp_price_growth,
             survey="us_spf",
             variable="prpgdp",
-            start_year=1992,
+            start_year=start_years["prpgdp"],
             concept="annual_average_gdp_price_index_growth",
             source="BEA NIPA-T10104/A191RG-A (latest vintage)",
         )
@@ -79,7 +110,7 @@ def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
             _complete_period_averages(unemployment, frequency="monthly"),
             survey="us_spf",
             variable="prunemp",
-            start_year=2009,
+            start_year=start_years["prunemp"],
             concept="annual_average_civilian_unemployment_rate",
             source="BLS LNS14000000 (latest vintage)",
         )
@@ -91,7 +122,7 @@ def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
             _q4_over_q4_growth(core_cpi),
             survey="us_spf",
             variable="prccpi",
-            start_year=2007,
+            start_year=start_years["prccpi"],
             concept="q4_over_q4_core_cpi_inflation",
             source="BLS CUSR0000SA0L1E (latest vintage)",
         )
@@ -105,7 +136,7 @@ def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
             _q4_over_q4_growth(core_pce),
             survey="us_spf",
             variable="prcpce",
-            start_year=2007,
+            start_year=start_years["prcpce"],
             concept="q4_over_q4_core_pce_inflation",
             source="BEA NIPA-T20804/DPCCRG-M (latest vintage)",
         )
@@ -114,7 +145,7 @@ def load_us_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
     quarterly_gdp = _load_dbnomics_series(
         directory / "dbnomics_us_rgdp_growth_quarterly.json"
     )
-    frames.append(_recession_rows(quarterly_gdp, start_year=1992))
+    frames.append(_recession_rows(quarterly_gdp, start_year=start_years["recess"]))
     return _finish_realizations(pd.concat(frames, ignore_index=True))
 
 
@@ -191,6 +222,21 @@ def load_realizations(raw_dir: str | Path = DEFAULT_RAW_DIR) -> pd.DataFrame:
     return _finish_realizations(
         pd.concat(
             [load_us_realizations(raw_dir), load_ecb_realizations(raw_dir)],
+            ignore_index=True,
+        )
+    )
+
+
+def load_realization_history(
+    raw_dir: str | Path = DEFAULT_RAW_DIR,
+) -> pd.DataFrame:
+    """Load the longest local histories for expanding forecast benchmarks."""
+    return _finish_realizations(
+        pd.concat(
+            [
+                load_us_realization_history(raw_dir),
+                load_ecb_realizations(raw_dir),
+            ],
             ignore_index=True,
         )
     )
@@ -625,6 +671,8 @@ __all__ = [
     "REALIZATION_COLUMNS",
     "calibration_table",
     "load_ecb_realizations",
+    "load_realization_history",
     "load_realizations",
+    "load_us_realization_history",
     "load_us_realizations",
 ]
