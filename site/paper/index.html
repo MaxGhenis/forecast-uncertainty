@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What do forecasters say they don't know? — working paper</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="What do forecasters say they don't know?">
+<meta property="og:description" content="Elicited macroeconomic uncertainty in the US and euro-area Surveys of Professional Forecasters, 1968–2026: decomposed, calibrated, scored.">
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface-1: #fcfcfb;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --muted: #898781;
+    --border: rgba(11,11,11,0.10); --accent: #2a78d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface-1: #1a1a19;
+      --text-primary: #ffffff; --text-secondary: #c3c2b7; --muted: #898781;
+      --border: rgba(255,255,255,0.10); --accent: #3987e5;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface-1: #1a1a19;
+    --text-primary: #ffffff; --text-secondary: #c3c2b7; --muted: #898781;
+    --border: rgba(255,255,255,0.10); --accent: #3987e5;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    background: var(--page); color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 32px 20px 40px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  nav a { color: var(--text-secondary); text-decoration: none; font-size: 13.5px; }
+  nav a:hover { color: var(--text-primary); }
+  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-top: 26px; }
+  h1 { font-size: 26px; font-weight: 650; letter-spacing: -0.01em; margin-top: 8px; }
+  .desc { color: var(--text-secondary); font-size: 14.5px; margin-top: 10px; max-width: 78ch; line-height: 1.55; }
+  .pill {
+    display: inline-block; margin-top: 12px; font-size: 12px; color: var(--text-secondary);
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 99px;
+    padding: 4px 12px;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+  .actions a {
+    font-size: 13px; text-decoration: none; padding: 7px 14px; border-radius: 8px;
+    border: 1px solid var(--border); color: var(--text-primary); background: var(--surface-1);
+  }
+  .actions a.primary { background: var(--accent); border-color: var(--accent); color: #ffffff; }
+  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 8px; }
+  iframe {
+    width: 100%; height: calc(100vh - 16rem); min-height: 720px; border: 0;
+    border-radius: 8px; background: #fff; display: block;
+  }
+  footer { display: flex; gap: 18px; margin-top: 16px; font-size: 13px; }
+  footer a { color: var(--text-secondary); text-decoration: none; }
+  footer a:hover { color: var(--text-primary); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav><a href="../">← What do forecasters say they don't know? — live tracker</a></nav>
+
+  <p class="kicker">Working paper</p>
+  <h1>What do forecasters say they don't know?</h1>
+  <p class="desc">Elicited macroeconomic uncertainty across the US and euro-area Surveys of
+  Professional Forecasters, 1968–2026: every reported histogram pooled by the law of total
+  variance, decomposed into stated individual uncertainty and disagreement, calibrated against
+  realized outcomes, and scored (CRPS, pinball) against no-lookahead benchmarks. Embedded below
+  is the current draft render; every number in it computes from the pipeline outputs at render
+  time.</p>
+  <p class="pill">Revision 1 · 2026-08-26 · Max Ghenis</p>
+
+  <div class="actions">
+    <a class="primary" href="web/index.html?v=r1-20260826">Open standalone HTML</a>
+    <a href="web/index.pdf?v=r1-20260826">Download PDF</a>
+    <a href="../">Live tracker</a>
+  </div>
+
+  <div class="card">
+    <iframe src="web/index.html?v=r1-20260826"
+            title="What do forecasters say they don't know? — working paper manuscript"
+            loading="lazy"
+            sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            referrerpolicy="same-origin"></iframe>
+  </div>
+
+  <footer>
+    <a href="#top">↑ Back to top</a>
+    <a href="web/index.html?v=r1-20260826">Open manuscript in a new page</a>
+  </footer>
+</div>
+</body>
+</html>

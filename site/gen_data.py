@@ -4,7 +4,7 @@ The browser receives positional rows, with their field names recorded once in
 ``DATA.fields``.  This keeps every selectable survey-variable-horizon series
 while avoiding repeated JSON keys and staying within the static-page budget.
 
-Run: uv run --no-sync python interactive/gen_data.py
+Run: uv run --no-sync python site/gen_data.py
 """
 
 from __future__ import annotations
@@ -588,7 +588,7 @@ def main() -> None:
                 "realizations documented in outputs/calibration.csv."
             ),
             "source_files": source_files,
-            "generated_from": "outputs/ via interactive/gen_data.py",
+            "generated_from": "outputs/ via site/gen_data.py",
             "build_date": build_date,
             "rounding": "four significant digits",
             "manifest": manifest,
